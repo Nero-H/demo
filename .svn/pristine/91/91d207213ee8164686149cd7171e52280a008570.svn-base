@@ -1,0 +1,14 @@
+package dataservice.stockdataservice;
+
+import java.rmi.RemoteException;
+
+import po.GoodsSortPO;
+
+public interface GoodsSortDataService {
+	public boolean addGoodsSort (GoodsSortPO po) throws RemoteException;
+	public boolean deleteGoodsSort (GoodsSortPO po ) throws RemoteException;
+	public boolean updateGoodsSort (GoodsSortPO po) throws RemoteException;
+	public GoodsSortPO findGoodsSort (String ID) throws RemoteException;
+	public void init() throws RemoteException;
+	public void finish() throws RemoteException;
+}

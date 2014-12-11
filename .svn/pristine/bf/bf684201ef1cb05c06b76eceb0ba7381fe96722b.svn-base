@@ -1,0 +1,10 @@
+package businesslogicservice.userblservice;
+
+import java.rmi.RemoteException;
+
+import vo.UserVO;
+
+public interface LoginBLService {
+
+	public UserVO login(String id,String password) throws RemoteException;
+}

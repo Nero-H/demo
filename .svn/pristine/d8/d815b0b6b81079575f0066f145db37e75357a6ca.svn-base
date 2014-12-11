@@ -1,0 +1,97 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import data.databaseutility.SerializableDataFactory;
+import dataservice.stockdataservice.Stock_controller_dataService;
+import dataservice.utility.DataFactory;
+import po.StockCheckListPO;
+import vo.StockVO;
+import businesslogicservice.stockblservice.StockInterface;
+
+public class Stock implements StockInterface{
+	ArrayList<StockVO> stockVOs ;
+	ArrayList<StockCheckListVO> stockCheckListVOs;
+	ArrayList<StockDailyCheckListVO> stockDailyCheckListVOs ;
+	DataFactory factory;
+	Stock_controller_dataService stockData ;
+	
+	public Stock() throws RemoteException {
+		super();
+		factory = new SerializableDataFactory();
+		
+		stockData = factory.getsStockDataService();
+		
+		
+		
+	}
+
+	@SuppressWarnings("null")
+	public ArrayList<StockCheckListVO> getStockCheck(Date d1, Date d2) {
+							
+		// TODO Auto-generated method stub
+		StockCheckListVO sVo = null ;
+		ArrayList<StockCheckListPO> stockCheckListPOs = new ArrayList<StockCheckListPO>();
+		stockCheckListPOs = stockData.checkStock(d1, d2);
+		
+		for (StockCheckListPO stockCheckListPO : stockCheckListPOs) {
+			sVo.setDate(stockCheckListPO.getDate());
+			sVo.setId(stockCheckListPO.getId());
+			sVo.setName(stockCheckListPO.getName());
+			sVo.setNumber(stockCheckListPO.getNumber());
+			sVo.setStateString(stockCheckListPO.getStateString());
+			sVo.setUnitPrice(stockCheckListPO.getUnitPrice());
+			
+			stockCheckListVOs.add(sVo);
+		}
+		
+		return stockCheckListVOs;
+	}
+	
+	public ArrayList<StockVO> getSumList(ArrayList<StockCheckListVO> stockCheckListVOs) {
+		for (int i = 0; i < stockCheckListVOs.size(); i++) {
+			String id = stockCheckListVOs.get(i).getId();
+			for (int j = i+1; j < stockCheckListVOs.size(); j++) {
+				
+				if (id.equals(stockCheckListVOs.get(j).getId())) {
+					stockCheckListVOs.get(i).setNumber(stockCheckListVOs.get(i).getNumber()+stockCheckListVOs.get(j).getNumber());
+					stockCheckListVOs.get(i).setUnitPrice(stockCheckListVOs.get(i).getUnitPrice()+stockCheckListVOs.get(j).getUnitPrice());
+					stockCheckListVOs.remove(j);
+				}
+			}
+		    StockVO stockVO = new StockVO();
+		    stockVO.setModelNum(stockCheckListVOs.get(i).getId());
+		    stockVO.setNameString(stockCheckListVOs.get(i).getName());
+		    stockVO.setNumber(stockCheckListVOs.get(i).getNumber());
+		    stockVO.setPerPrice(stockCheckListVOs.get(i).getUnitPrice());
+		    if (stockCheckListVOs.get(i).getNumber() > 0) {
+				stockVO.setState("出库");
+			}else if (stockCheckListVOs.get(i).getNumber() < 0) {
+				stockVO.setState("入库");
+			}else {
+				stockVO.setState("无");
+			}
+		    stockVOs.add(stockVO);
+		}
+		
+		return stockVOs ;
+	}
+
+	
+	public ArrayList<StockDailyCheckListVO> getStockDailyCheck(int n) {
+		
+		//stockDailyCheckListVOs.add(stockData.checkDailyStock(date,n));
+	 	GoodsManage goodsManage;
+	 	
+		
+		// TODO Auto-generated method stub
+		return stockDailyCheckListVOs;
+	}
+
+	
+	
+	
+	
+}

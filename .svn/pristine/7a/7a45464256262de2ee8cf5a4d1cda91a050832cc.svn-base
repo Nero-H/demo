@@ -1,0 +1,66 @@
+package data.examingdata;
+
+import java.util.ArrayList;
+
+import po.ReceiptPO;
+import data.databaseutility.FileOperate;
+import dataservice.examingdataservice.ExamingDataService;
+
+public class ExamingDataServiceImpl implements ExamingDataService{
+
+	ArrayList<ReceiptPO> receiptPOs;
+	
+	private static ExamingDataServiceImpl examingDataServiceImpl;
+	
+	private ExamingDataServiceImpl(){
+		init();
+	}
+	
+	public static ExamingDataService getInstance(){
+		if(examingDataServiceImpl==null)
+			examingDataServiceImpl=new ExamingDataServiceImpl();
+		return examingDataServiceImpl;
+	}
+	
+	public boolean insert(ReceiptPO po) {
+		// TODO Auto-generated method stub
+		receiptPOs.add(po);
+		finish();
+		return true;
+	}
+
+	public boolean delete(String id) {
+		// TODO Auto-generated method stub
+		for(ReceiptPO temp:receiptPOs){
+			if(temp.getId().equals(id)){
+				ArrayList<ReceiptPO> tempList=new ArrayList<ReceiptPO>();
+				tempList.add(temp);
+				receiptPOs.removeAll(tempList);
+			}
+		}
+		return true;
+	}
+
+	@SuppressWarnings("unchecked")
+	public boolean init() {
+		// TODO Auto-generated method stub
+		receiptPOs=(ArrayList<ReceiptPO>) new FileOperate("src/receipt.ser").read();
+		if(receiptPOs==null)
+			receiptPOs=new ArrayList<ReceiptPO>();
+		return true;
+	}
+
+	public ArrayList<ReceiptPO> getReceiptPOs() {
+		// TODO Auto-generated method stub
+		
+		return receiptPOs;
+	}
+
+	public boolean finish() {
+		// TODO Auto-generated method stub
+		new FileOperate("src/receipt.ser").write(receiptPOs);
+		return true;
+	}
+
+
+}

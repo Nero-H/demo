@@ -1,0 +1,17 @@
+package data.stockdata;
+
+import dataservice.stockdataservice.GoodsManageDataService;
+
+
+public class GoodsManageDataService_Driver {
+	public void drive(GoodsManageDataService goodsManageDataService){
+		
+	}
+
+	public static void main(String[] args){
+		GoodsManageDataService goodManageController =  new GoodsManageDataService_Controller();
+		GoodsManageDataService_Driver drive = new GoodsManageDataService_Driver();
+		drive.drive(goodManageController);
+	}
+
+}

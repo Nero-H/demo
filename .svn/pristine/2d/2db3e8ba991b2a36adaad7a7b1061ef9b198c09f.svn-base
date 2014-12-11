@@ -1,0 +1,39 @@
+package data.examingdata;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import po.ReceiptPO;
+import dataservice.examingdataservice.ExamingDataService;
+
+public class ExamingDataStub implements ExamingDataService{
+
+	ArrayList<ReceiptPO> receiptPOs=new ArrayList<ReceiptPO>();
+	
+	public boolean insert(ReceiptPO po) throws RemoteException {
+	
+		// TODO Auto-generated method stub
+		receiptPOs.add(new ReceiptPO());
+		return true;
+	}
+
+	public boolean delete(ReceiptPO po) throws RemoteException {
+		
+		// TODO Auto-generated method stub	
+		return true;
+	}
+
+	public boolean init() throws RemoteException {
+		// TODO Auto-generated method stub
+		receiptPOs=new ArrayList<ReceiptPO>();
+		return true;
+	}
+
+	public boolean finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	
+
+}

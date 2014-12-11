@@ -1,0 +1,110 @@
+package businesslogic.stockbl;
+
+
+import java.util.ArrayList;
+
+import utility.MyTreeNode;
+import vo.GoodsVO;
+import businesslogicservice.stockblservice.GoodsInterface;
+import data.databaseutility.SerializableDataFactory;
+import dataservice.stockdataservice.GoodsManageDataService;
+import dataservice.utility.DataFactory;
+
+public class GoodsManage implements GoodsInterface{
+
+	public MyTreeNode getRoot(){
+		return new SerializableDataFactory().getGoodsManageDataService().getRoot();
+	}
+
+	public void setRoot(MyTreeNode node){
+		new SerializableDataFactory().getGoodsManageDataService().setRoot(node);
+	}
+
+	public ArrayList<GoodsVO> getGoodsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean importGoods(String goodsID, int number, double unitPrice) {
+		// TODO Auto-generated method stub
+		GoodsManage goodsManage = new GoodsManage();
+		if (goodsManage.findGoods(goodsID)!=null) {
+			goodsManage.findGoods(goodsID).setStockNumber(goodsManage.findGoods(goodsID).getStockNumber()+number);
+			goodsManage.finish();
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	public boolean saleGoods(String goodsID, int number, double unitPrice) {
+		// TODO Auto-generated method stub
+		GoodsManage goodsManage = new GoodsManage();
+		if (goodsManage.findGoods(goodsID)!=null) {
+			goodsManage.findGoods(goodsID).setStockNumber(goodsManage.findGoods(goodsID).getStockNumber()-number);
+			goodsManage.finish();
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	public GoodsVO findGoods(String goodsID) {
+		DataFactory dataFactory = new SerializableDataFactory();
+		GoodsManageDataService goodsManageDataService = dataFactory.getGoodsManageDataService();
+		return (GoodsVO)goodsManageDataService.findGoods(goodsID);
+	}
+
+
+	public boolean saleReturnGoods(String goodsID, int number, double unitPrice) {
+		// TODO Auto-generated method stub
+		GoodsManage goodsManage = new GoodsManage();
+		if (goodsManage.findGoods(goodsID)!=null) {
+			goodsManage.findGoods(goodsID).setStockNumber(goodsManage.findGoods(goodsID).getStockNumber()+number);
+			goodsManage.finish();
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
+	public void finish(){
+		DataFactory dataFactory = new SerializableDataFactory();
+		GoodsManageDataService goodsManageDataService = dataFactory.getGoodsManageDataService();
+		goodsManageDataService.finish();
+	}
+	
+	public boolean importReturnGoods(String goodsID, int number, double unitPrice) {
+		// TODO Auto-generated method stub
+		GoodsManage goodsManage = new GoodsManage();
+		if (goodsManage.findGoods(goodsID)!=null) {
+			goodsManage.findGoods(goodsID).setStockNumber(goodsManage.findGoods(goodsID).getStockNumber()-number);
+			goodsManage.finish();
+			return true;
+		}else {
+			return false;
+		}
+		
+		
+	}
+
+	public boolean gift(String id, int number) {
+		// TODO Auto-generated method stub
+		GoodsManage goodsManage = new GoodsManage();
+		if (goodsManage.findGoods(id)!=null) {
+			goodsManage.findGoods(id).setStockNumber(goodsManage.findGoods(id).getStockNumber()-number);
+			goodsManage.finish();
+			return true;
+		}else {
+			return false;
+		}
+		
+		
+		
+	}
+	
+	
+}

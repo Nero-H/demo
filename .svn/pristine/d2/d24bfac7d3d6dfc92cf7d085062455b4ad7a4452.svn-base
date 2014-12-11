@@ -1,0 +1,19 @@
+package businesslogic.examingbl;
+
+
+import vo.ReceiptVO;
+import businesslogicservice.examingblservice.Examingblservice;
+
+public class ExamingManager_Driver {
+	
+	public void drive(Examingblservice examingblservice){
+		boolean result=examingblservice.modify(new ReceiptVO());
+		if(result==true)	System.out.println("success");
+		result=examingblservice.pass("1234" );
+		if(result==true)    System.out.println("success");
+		result=examingblservice.notPass("123123");
+		if(result=true)    System.err.println("Success");
+		
+	}
+
+}

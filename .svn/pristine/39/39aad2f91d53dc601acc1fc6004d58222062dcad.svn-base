@@ -1,0 +1,56 @@
+package businesslogic.importbl;
+
+import java.util.ArrayList;
+
+import po.GoodsInfoPO;
+
+
+public class ImportList {
+	private ArrayList<ImportLineItem> importList;
+	private double total;
+	
+	public ImportList() {
+		// TODO Auto-generated constructor stub
+		importList = new ArrayList<ImportLineItem>();
+	}
+	
+	
+	public ImportLineItem addOneGoods(String goodsNumber, int number, double unitPrice, String notes){
+		ImportLineItem lineItem = new ImportLineItem();
+		boolean isSuccess = lineItem.addGoods(goodsNumber, number, unitPrice, notes);
+		if (isSuccess) {
+			importList.add(lineItem);
+			return lineItem;
+		}
+		return null;
+	}
+	
+	public boolean removeGoods(int loc){
+		importList.remove(loc);
+		return true;
+	}
+	
+	public double getTotal(){
+		total = 0;
+		for (int i = 0; i < importList.size(); i++) {
+			total += importList.get(i).getTotal();
+		} 
+		
+		return total;
+	}
+
+
+	public ArrayList<ImportLineItem> getImportList() {
+		return importList;
+	}
+
+
+	public void setImportList(ArrayList<GoodsInfoPO> importList) {
+		ArrayList<ImportLineItem> temp = new ArrayList<ImportLineItem>();
+		for (int i = 0; i < importList.size(); i++) {
+			temp.add((ImportLineItem)importList.get(i));
+		}
+		this.importList = temp;
+	}
+	
+}

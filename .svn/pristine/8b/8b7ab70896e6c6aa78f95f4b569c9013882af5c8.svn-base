@@ -1,0 +1,55 @@
+package data.userdata;
+
+import po.UserPO;
+import utility.LikeHashMap;
+import dataservice.userdataservice.UserDataService;
+
+public class UserDataServiceSerializableIml implements UserDataService{
+	LikeHashMap<String,UserPO> userList = new LikeHashMap<String, UserPO>(); 
+	
+	public boolean addUser(UserPO po) {
+		// TODO Auto-generated method stub
+		boolean isIn = userList.containsValue(po);
+		if(isIn){
+			System.out.println("User already exist");
+		}else{
+			System.out.println("add User successfully");
+		}
+		return isIn;
+	}
+
+	public boolean deleteUser(UserPO po) {
+		// TODO Auto-generated method stub
+		UserPO user = userList.remove(po.getId());
+		return !(user == null);
+	}
+
+	public boolean updateUser(UserPO po) {
+		// TODO Auto-generated method stub
+		boolean isIn = userList.containsValue(po);
+		if(isIn){
+			userList.put(po.getId(), po);
+			System.out.println("update user successfully");
+		}else{
+			System.out.println("user not exist");
+		}
+			return isIn;
+	}
+
+	public UserPO findUser(String ID) {
+		// TODO Auto-generated method stub
+		UserPO user = userList.get(ID);
+		return user;
+	}
+
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void finish() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

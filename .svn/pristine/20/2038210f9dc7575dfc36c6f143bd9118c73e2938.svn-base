@@ -1,0 +1,131 @@
+package businesslogic.financialbl.stub;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import utility.TimePeriod;
+import vo.AccountVO;
+import vo.MoneyLineItemVO;
+import vo.MoneyVO;
+import vo.PayVO;
+import vo.PayVOLineItem;
+import vo.ReceiptType;
+import vo.ReceiveVO;
+import vo.ReceiveVOLineItem;
+import businesslogicservice.financialblservice.MoneyBLService;
+
+public class MoneyManagerStub implements MoneyBLService{
+	public boolean pay(PayVO vo){
+		System.out.println("Paying money succeed!");
+		return true;
+	}
+	
+	public boolean receive(ReceiveVO vo){
+		System.out.println("Receiving money succeed");
+		return true;
+	}
+
+	public MoneyLineItemVO findPay(String serialNumber) {
+		// TODO Auto-generated method stub
+		ArrayList<PayVOLineItem> list = new ArrayList<PayVOLineItem>();
+		list.add(new PayVOLineItem(new AccountVO("accountName",2131),1321,"comment"));
+		return new MoneyLineItemVO("accountId", 124, "1324");
+	}
+
+	public MoneyLineItemVO findReceive(String serialNumber) {
+		// TODO Auto-generated method stub
+		ArrayList<ReceiveVOLineItem> list = new ArrayList<ReceiveVOLineItem>();
+		list.add(new ReceiveVOLineItem(new AccountVO("accountName",21314),1321,"comment"));
+		return new MoneyLineItemVO("accountId", 124, "1324");
+	}
+
+	public ArrayList<PayVO> mutipleConditionFindPay(TimePeriod period,
+			String clientId, String userId) {
+		// TODO Auto-generated method stub
+		ArrayList<PayVOLineItem> list = new ArrayList<PayVOLineItem>();
+		list.add(new PayVOLineItem(new AccountVO("accountName",21314),1321,"comment"));
+		ArrayList<PayVO> mlist = new ArrayList<PayVO>();
+		return mlist;
+	}
+
+	public ArrayList<ReceiveVO> mutipleConditionFindReceive(TimePeriod period,
+			String clientId, String userId) {
+		// TODO Auto-generated method stub
+		ArrayList<ReceiveVOLineItem> list = new ArrayList<ReceiveVOLineItem>();
+		list.add(new ReceiveVOLineItem(new AccountVO("accountName",21314),1321,"comment"));
+		ArrayList<ReceiveVO> mlist = new ArrayList<ReceiveVO>();
+		return mlist;
+	}
+
+	public boolean addItem(MoneyLineItemVO vo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public String getSerialNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean setClient(String clientId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public String getUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public double getSum() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean finish(ReceiptType type) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean delItem(int row) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean updateItem(Object value, int row, int col) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ArrayList<MoneyVO> mutipleConditionFindPay(TimePeriod period,
+			String cliendName, String userName, String accountName) {
+		// TODO Auto-generated method stub
+		return new ArrayList<MoneyVO>();
+	}
+
+	public ArrayList<MoneyVO> mutipleConditionFindReceive(TimePeriod period,
+			String clientName, String userName, String acountName) {
+		// TODO Auto-generated method stub
+		return new ArrayList<MoneyVO>();
+	}
+
+	public ArrayList<MoneyVO> getList(ReceiptType type) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ArrayList<MoneyVO> getList() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean setUser(String userName) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

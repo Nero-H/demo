@@ -1,0 +1,71 @@
+package businesslogic.financialbl;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
+import utility.TimePeriod;
+import vo.CashRecordLineItemVO;
+import vo.CashRecordVO;
+import businesslogicservice.financialblservice.CashRecordBLService;
+
+public class CashRecordController extends UnicastRemoteObject implements CashRecordBLService{
+	CashRecord cashRecord;
+	
+	public CashRecordController() throws RemoteException{
+		cashRecord = new CashRecord();
+	}
+	
+	public double addItem(CashRecordLineItemVO vo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return cashRecord.addItem(vo);
+	}
+
+	public double delItem(int row) throws RemoteException {
+		// TODO Auto-generated method stub
+		return cashRecord.delItem(row);
+	}
+
+	public double updateItem(Object value,int row, int col) throws RemoteException {
+		// TODO Auto-generated method stub
+		return cashRecord.updateItem(value, row, col);
+	}
+
+	public boolean setAccount(String accountId) throws RemoteException {
+		// TODO Auto-generated method stub
+		return cashRecord.setAccount(accountId);
+	}
+
+	public boolean setUser(String userName){
+		return cashRecord.setUser(userName);
+	}
+	
+	public boolean finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		return cashRecord.finish();
+	}
+
+	public String getSerialNumber() {
+		return cashRecord.getSerialNumber();
+	}
+
+	public String getUserName() {
+		return cashRecord.getUserName();
+	}
+
+	public ArrayList<CashRecordVO> mutipleConditionFind(TimePeriod period,
+			String userName, String accountName) {
+		return cashRecord.mutipleConditionFind(period, userName, accountName);
+	}
+	
+	public ArrayList<CashRecordVO> getList(){
+		return cashRecord.getList();
+	}
+
+	@Override
+	public String getSerialNumberInitial() throws RemoteException {
+		// TODO Auto-generated method stub
+		return cashRecord.getSerialNumberInitial();
+	}
+
+}

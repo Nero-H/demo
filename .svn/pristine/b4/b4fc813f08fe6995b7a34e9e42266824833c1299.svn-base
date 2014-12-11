@@ -1,0 +1,48 @@
+package data.stockdata;
+
+import java.rmi.RemoteException;
+
+import dataservice.stockdataservice.StockDataService;
+
+public class StockDataService_Driver {
+
+	public void drive(StockDataService StockDataService){
+		try {
+			String time1 = " ";
+			String time2 = " ";
+			if(StockDataService.checkStock(time1,time2)== null){
+				System.out.println("Add Successfully!");
+			}
+			String date = " ";
+			if(StockDataService.checkDailyStock(date)== null){
+				System.out.println("Delete Successfully!");
+			}
+			
+			if(StockDataService.reportStock()== null){
+				System.out.println("Update Successfully!");
+			}
+			
+			String ID = " ";
+			int num = 0;
+			if(StockDataService.giveGift(ID,num)== null){
+				System.out.println("Find Successfully!");
+			}
+			
+			if(StockDataService.warning()== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void main(String[] args){
+		StockDataService StockDataController =  new StockDataService_Controller();
+		StockDataService_Driver drive = new StockDataService_Driver();
+		drive.drive(StockDataController);
+	}
+}
+

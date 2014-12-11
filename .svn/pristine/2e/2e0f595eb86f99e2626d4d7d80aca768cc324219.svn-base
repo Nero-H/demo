@@ -1,0 +1,34 @@
+package data.stockdata;
+
+import java.rmi.RemoteException;
+
+import po.GoodsSortPO;
+
+
+public class GoodsSortDataService_Stub {
+
+	public boolean addGoodsSort (GoodsSortPO po){
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public boolean deleteGoodsSort (GoodsSortPO po) {
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public boolean updateGoodsSort (GoodsSortPO po){
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public GoodsSortPO findGoodsSort (String ID) {
+		// TODO Auto-generated method stub
+		return new GoodsSortPO();
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+}

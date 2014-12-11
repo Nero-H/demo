@@ -1,0 +1,116 @@
+package businesslogic.importbl;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
+import utility.MyTreeNode;
+import vo.ClientVO;
+import vo.ImportInfoVO;
+import vo.ImportVO;
+import businesslogic.clientbl.Client;
+import businesslogic.stockbl.GoodsManage;
+import businesslogicservice.importblservice.ImportBLService;
+import businesslogicservice.stockblservice.GoodsInterface;
+
+public class ImportController extends UnicastRemoteObject implements ImportBLService{
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private Import import1;
+	private Client client;
+	private GoodsInterface goodsManage;
+	
+	
+	public ImportController() throws RemoteException {
+		super();
+		import1 = new Import();
+		client = new Client();
+		goodsManage = new GoodsManage();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	public ArrayList<ClientVO> showClientList() throws RemoteException {
+		// TODO Auto-generated method stub
+		return client.getClientVOList();
+	}
+
+
+	public boolean addClient(ClientVO vo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.addClient(vo);
+	}
+
+	public boolean addGoods(String loc, int number, double unitPrice, String notes) throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.addGoods(loc, number, unitPrice, notes);
+	}
+
+	public boolean addOtherInfo(ImportInfoVO vo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.addOtherInfo(vo);
+	}
+
+	public ArrayList<ImportVO> showImport() throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.showImport();
+	}
+
+	public boolean importReturn(int loc) throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.importReturn(loc);
+	}
+
+	public double getTotal() throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.getTotal();
+	}
+
+	public boolean creatImport() throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.creatImport();
+	}
+
+	public void endImport() throws RemoteException {
+		// TODO Auto-generated method stub
+		import1.endImport();
+	}
+
+	public boolean removeClient() throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.removeClient();
+	}
+
+
+	public boolean removeGoods(int loc) throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.removeGoods(loc);
+	}
+
+
+	public ArrayList<ImportVO> showImportReturn() throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.showImportReturn();
+	}
+
+
+	public boolean updateImport(boolean isPass) throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.updateImport(isPass);
+	}
+
+
+	public boolean updateImportReturn(String receiptsID, boolean isPass)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return import1.updateImportReturn(receiptsID, isPass);
+	}
+
+
+	public void updateStart(String receiptsID) throws RemoteException {
+		// TODO Auto-generated method stub
+		import1.updateStart(receiptsID);
+	}
+}

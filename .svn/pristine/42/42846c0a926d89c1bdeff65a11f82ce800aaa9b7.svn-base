@@ -1,0 +1,24 @@
+package businesslogic.promotionbl;
+
+import businesslogicservice.promotionblservice.PromotionBLService;
+
+public class PromotionBLDriver {
+
+	public void drive(PromotionBLService promotionBLService)
+	{
+		boolean result=true;
+		result=promotionBLService.addAccountVoucher();
+		if(result) System.out.println("Add successfully");
+		result=promotionBLService.addAccountGift();
+		if(result) System.out.println("Add successfully");
+		result=promotionBLService.addCustomerDiscount();
+		if(result) System.out.println("Add successfully");
+		result=promotionBLService.addCustomerGift();
+		if(result) System.out.println("Add  successfully");
+		result=promotionBLService.addGoodsDiscount();
+		if(result) System.out.println("Add  successfully");
+		
+		
+	}
+	
+}

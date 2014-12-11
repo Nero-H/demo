@@ -1,0 +1,34 @@
+package businesslogic.stockbl;
+
+
+import businesslogicservice.stockblservice.GoodsInterface;
+import utility.MyTreeNode;
+import data.databaseutility.SerializableDataFactory;
+
+public class GoodsManage implements GoodsInterface{
+
+	public MyTreeNode getRoot(){
+		return new SerializableDataFactory().getGoodsManageDataService().getRoot();
+	}
+
+	public void setRoot(MyTreeNode node){
+		new SerializableDataFactory().getGoodsManageDataService().setRoot(node);
+	}
+
+	public MyTreeNode getGoodsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean importGoods(String goodsID, int number, double unitPrice) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean saleGoods(String goodsID, int number, double unitPrice) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+}

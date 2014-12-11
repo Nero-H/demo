@@ -1,0 +1,48 @@
+package data.stockdata;
+
+import java.rmi.RemoteException;
+
+import po.GoodsPO;
+import utility.MyTreeNode;
+import dataservice.stockdataservice.GoodsManageDataService;
+
+public class GoodsManageDataService_Controller implements GoodsManageDataService{
+
+	public GoodsPO findGoods(GoodsPO ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new GoodsPO("X1","GN","X01",12,213,213,3432);
+	}
+	public GoodsPO findGoods(String ID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() {
+		// TODO Auto-generated method stub
+		
+	}
+	public boolean addGoods(GoodsPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean deleteGoods(GoodsPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean updateGoods(GoodsPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public MyTreeNode getRoot() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void setRoot(MyTreeNode node) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

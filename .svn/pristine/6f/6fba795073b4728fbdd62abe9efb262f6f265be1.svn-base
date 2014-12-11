@@ -1,0 +1,54 @@
+package presentaion.financialui;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class addAccountInfo extends JPanel {
+	private JTable table;
+
+	/**
+	 * Create the panel.
+	 */
+	public addAccountInfo() {
+		setLayout(null);
+		
+		JLabel label = new JLabel("添加银行账户信息");
+		label.setBounds(148, 29, 104, 15);
+		add(label);
+		
+		JButton button = new JButton("下一步");
+		button.setBounds(286, 244, 93, 23);
+		add(button);
+		
+		JButton button_1 = new JButton("上一步");
+		button_1.setBounds(169, 244, 93, 23);
+		add(button_1);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"New column"
+			}
+		));
+		table.setBounds(62, 63, 313, 168);
+		add(table);
+
+	}
+
+}

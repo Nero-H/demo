@@ -1,0 +1,31 @@
+package po;
+
+import data.databaseutility.SerializableDataFactory;
+import data.stockdata.GoodsManageDataService_Controller;
+import dataservice.stockdataservice.GoodsManageDataService;
+import dataservice.utility.DataFactory;
+
+public class GiftPO {
+
+	private String id ;
+	private int number ;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getNumber() {
+		return number;
+	}
+	public void setNumber(int number) {
+		this.number = number;
+	}
+	
+	public double getLatestImportPrice(){
+		DataFactory factory = new SerializableDataFactory();
+		GoodsManageDataService goodsManageData = new GoodsManageDataService_Controller();
+		GoodsPO po = goodsManageData.findGoods(id);
+		return po.getRecentPrice();
+	}
+}

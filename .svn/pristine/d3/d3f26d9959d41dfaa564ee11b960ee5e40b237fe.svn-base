@@ -1,0 +1,144 @@
+package presentaion.financialui;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+
+public class AccountUI {
+
+	private JFrame frame;
+	private JTable table;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					AccountUI window = new AccountUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public AccountUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 810, 484);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(138, 47, 623, 332);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("账户管理");
+		label.setFont(new Font("宋体", Font.PLAIN, 33));
+		label.setBounds(238, 0, 149, 55);
+		panel.add(label);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"\u8D26\u6237\u540D", "\u94F6\u884C\u8D26\u6237", "\u4F59\u989D"
+			}
+		));
+		table.setBounds(10, 77, 592, 257);
+		panel.add(table);
+		
+		textField = new JTextField();
+		textField.setBounds(397, 46, 124, 21);
+		panel.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("搜索");
+		btnNewButton.setBounds(531, 45, 59, 23);
+		panel.add(btnNewButton);
+		
+		JButton button_4 = new JButton("退出系统");
+		button_4.setBounds(425, 14, 93, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("软件帮助");
+		button_5.setBounds(299, 14, 93, 23);
+		frame.getContentPane().add(button_5);
+		
+		JLabel label_2 = new JLabel("当前用户");
+		label_2.setBounds(625, 4, 54, 15);
+		frame.getContentPane().add(label_2);
+		
+		JButton button_6 = new JButton("注销");
+		button_6.setBounds(680, 0, 64, 19);
+		frame.getContentPane().add(button_6);
+		
+		JButton button = new JButton("查看销售明细表");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		button.setBounds(10, 209, 118, 23);
+		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("查看经营历程表");
+		button_1.setBounds(10, 253, 118, 23);
+		frame.getContentPane().add(button_1);
+		
+		JButton button_2 = new JButton("查看经营情况表");
+		button_2.setBounds(10, 297, 118, 23);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("制定收付款单");
+		button_3.setBounds(10, 110, 118, 23);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_7 = new JButton("制定现金费用单");
+		button_7.setBounds(10, 160, 118, 23);
+		frame.getContentPane().add(button_7);
+		
+		JButton button_8 = new JButton("增加账户");
+		button_8.setBounds(286, 412, 93, 23);
+		frame.getContentPane().add(button_8);
+		
+		JButton button_9 = new JButton("删除账户");
+		button_9.setBounds(466, 412, 93, 23);
+		frame.getContentPane().add(button_9);
+	}
+}

@@ -1,0 +1,21 @@
+package businesslogicservice.importblservice;
+
+import java.util.ArrayList;
+
+import po.ImportPO;
+import po.ImportReturnPO;
+import po.Import_Sales_FatherPO;
+import utility.TimePeriod;
+import vo.ImportVO;
+
+public interface ImportInterface {
+	public ArrayList<ImportPO> getImportList();	//获得所有的进货单
+	public ArrayList<ImportReturnPO> getImportReturnList();	//获得所有的进货退货单
+	public ArrayList<ImportPO> multipleConditionFindImport(TimePeriod period,String goodsName,String clientId,String storehouse);
+	public ArrayList<ImportReturnPO> multipleConditionFindImportReturn(TimePeriod period,String goodsName,String clientId,String storehouse);
+	public double getAllPayout(TimePeriod period);	//一段时间内销售成本
+	public void transform_ImportPOs_to_ImportVOs(ArrayList<Import_Sales_FatherPO> temp, ArrayList<ImportVO> vos); 	//转换
+	public void transform_ImportPO_to_ImportVO(Import_Sales_FatherPO po, ImportVO vo);
+	public void importUpdatecase(String receiptsID , boolean isPass);
+	public void importReturnUpdatecase(String receiptsID , boolean isPass);
+}

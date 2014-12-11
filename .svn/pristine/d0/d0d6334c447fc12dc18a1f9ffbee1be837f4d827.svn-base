@@ -1,0 +1,12 @@
+package businesslogicservice.stockblservice;
+
+import java.sql.Date;
+
+public interface StockInterface {
+	
+	public boolean getStockCheckDate(Date d1,Date d2) ;
+	public boolean getStockDailyCheckDate(Date date) ;
+		
+	
+
+}

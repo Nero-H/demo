@@ -1,0 +1,77 @@
+package po;
+
+import java.sql.Date;
+
+public class StockCheckListPO {
+	
+	Date date;
+	String name ;
+	String id ;
+	int InNumber ;
+	double InPrice ;
+	int OutNumber ;
+	double OutPrice ;
+	
+	int totalNum ;
+	double totalMoney ;
+	
+	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getInNumber() {
+		return InNumber;
+	}
+	public void setInNumber(int inNumber) {
+		InNumber = inNumber;
+	}
+	public double getInPrice() {
+		return InPrice;
+	}
+	public void setInPrice(double inPrice) {
+		InPrice = inPrice;
+	}
+	public int getOutNumber() {
+		return OutNumber;
+	}
+	public void setOutNumber(int outNumber) {
+		OutNumber = outNumber;
+	}
+	public double getOutPrice() {
+		return OutPrice;
+	}
+	public void setOutPrice(double outPrice) {
+		OutPrice = outPrice;
+	}
+	public int getTotalNum() {
+		return totalNum;
+	}
+	public void setTotalNum(int totalNum) {
+		this.totalNum = totalNum;
+	}
+	public double getTotalMoney() {
+		return totalMoney;
+	}
+	public void setTotalMoney(double totalMoney) {
+		this.totalMoney = totalMoney;
+	}
+	
+	
+	
+
+}

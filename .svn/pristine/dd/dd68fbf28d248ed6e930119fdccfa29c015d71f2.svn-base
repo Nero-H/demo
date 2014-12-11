@@ -1,0 +1,35 @@
+package businesslogic.examingbl;
+
+import po.ReceiptPO;
+import po.ReceiptState;
+
+public class Examing {
+	
+
+	ReceiptPO po;
+	
+	public Examing(ReceiptPO po) {
+		// TODO Auto-generated constructor stub
+		this.po=po;
+	}
+	
+	public boolean pass() {
+		// TODO Auto-generated method stub
+		po.setState(ReceiptState.PASS);
+		return true;
+	}
+
+	public boolean notPass() {
+		// TODO Auto-generated method stub
+		po.setState(ReceiptState.NOTPASS);
+		return true;
+	}
+
+	public boolean modify(ReceiptPO p) {
+		// TODO Auto-generated method stub
+		po=p;
+		po.setState(ReceiptState.PASS);
+		return false;
+	}
+
+}

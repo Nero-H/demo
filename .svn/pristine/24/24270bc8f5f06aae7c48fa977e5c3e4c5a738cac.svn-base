@@ -1,0 +1,34 @@
+package businesslogic.examingbl;
+
+import java.util.ArrayList;
+
+import vo.ReceiptVO;
+import businesslogicservice.examingblservice.Examingblservice;
+
+public class ExamingController implements Examingblservice{
+
+	Examing examing=new Examing();
+	
+	public boolean pass(String id) {
+		// TODO Auto-generated method stub
+		return examing.pass(id);
+	}
+
+	public boolean notPass(String id) {
+		// TODO Auto-generated method stub
+		return examing.notPass(id);
+	}
+
+	public boolean modify(ReceiptVO vo) {
+		// TODO Auto-generated method stub
+		return examing.modify(vo);
+	}
+
+
+	public ArrayList<ReceiptVO> getReceipts() {
+		// TODO Auto-generated method stub
+		return examing.getReceipts();
+	}
+
+	
+}

@@ -1,0 +1,111 @@
+package businesslogic.promotionbl;
+
+import businesslogicservice.promotionblservice.PromotionBLService;
+
+public class PromotionController implements PromotionBLService{
+
+	Promotion promotion=new Promotion();;
+	AccountGiftPromotionController accountGiftPromotionController;
+	AccountVoucherPromotionController accountVoucherPromotionController;
+	CustomerGiftPromotionController customerGiftPromotionController;
+	CustomerDiscountPromotionController customerDiscountPromotionController;
+	GoodsDiscountPromotionController goodsDiscountPromotionController;
+	CustomerVoucherPromotionController customerVoucherPromotionController;
+	
+	
+	public boolean addCustomerDiscount() {
+		// TODO Auto-generated method stub
+		
+	    customerDiscountPromotionController=new CustomerDiscountPromotionController(promotion);
+	    promotion=new Promotion();
+		return true;
+		
+	}
+	
+	public boolean addCustomerGift() {
+		// TODO Auto-generated method stub
+		customerGiftPromotionController=new CustomerGiftPromotionController(promotion);
+		promotion=new Promotion();
+		return true;
+	}
+
+	public boolean addGoodsDiscount() {
+		// TODO Auto-generated method stub
+		goodsDiscountPromotionController=new GoodsDiscountPromotionController(promotion);
+		promotion=new Promotion();
+		return false;
+	}
+
+
+	public boolean addAccountGift() {
+		// TODO Auto-generated method stub
+		accountGiftPromotionController =new AccountGiftPromotionController(promotion);
+		promotion=new Promotion();
+		return false;
+	}
+
+
+	public boolean addAccountVoucher() {
+		// TODO Auto-generated method stub
+		accountVoucherPromotionController=new AccountVoucherPromotionController(promotion);
+		promotion=new Promotion();
+		return false;
+	}
+
+	public boolean addCustomerVoucher() {
+		// TODO Auto-generated method stub
+		customerVoucherPromotionController=new CustomerVoucherPromotionController(promotion);
+		promotion=new Promotion();
+		return false;
+	}
+
+
+	public AccountGiftPromotionController getAccountGiftPromotionController() {
+		return accountGiftPromotionController;
+	}
+
+	public void setAccountGiftPromotionController(
+			AccountGiftPromotionController accountGiftPromotionController) {
+		this.accountGiftPromotionController = accountGiftPromotionController;
+	}
+
+	public AccountVoucherPromotionController getAccountDiscountPromotionController() {
+		return accountVoucherPromotionController;
+	}
+
+	public void setAccountDiscountPromotionController(
+			AccountVoucherPromotionController accountVoucherPromotionController) {
+		this.accountVoucherPromotionController = accountVoucherPromotionController;
+	}
+
+	public CustomerGiftPromotionController getCustomerGiftPromotionController() {
+		return customerGiftPromotionController;
+	}
+
+	public void setCustomerGiftPromotionController(
+			CustomerGiftPromotionController customerGiftPromotionController) {
+		this.customerGiftPromotionController = customerGiftPromotionController;
+	}
+
+	public CustomerDiscountPromotionController getCustomerDiscountPromotionController() {
+		return customerDiscountPromotionController;
+	}
+
+	public void setCustomerDiscountPromotionController(
+			CustomerDiscountPromotionController customerDiscountPromotionController) {
+		this.customerDiscountPromotionController = customerDiscountPromotionController;
+	}
+
+	public GoodsDiscountPromotionController getGoodsDiscountPromotionController() {
+		return goodsDiscountPromotionController;
+	}
+
+	public void setGoodsDiscountPromotionController(
+			GoodsDiscountPromotionController goodsDiscountPromotionController) {
+		this.goodsDiscountPromotionController = goodsDiscountPromotionController;
+	}
+
+	
+	
+	
+}

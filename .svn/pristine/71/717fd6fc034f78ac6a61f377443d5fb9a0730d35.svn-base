@@ -1,0 +1,68 @@
+package businesslogic.salebl;
+
+import businesslogic.stockbl.GoodsManage;
+import businesslogicservice.stockblservice.GoodsInterface;
+import po.GoodsInfoPO;
+import vo.GoodsVO;
+
+
+public class SalesLineItem extends GoodsInfoPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String goodsName;
+	private String type;
+	private String notes;
+	private int number;
+	private double unitPrice;
+	private double total;
+	
+	
+	public double getTotal(){
+		total = number*unitPrice;
+		return total;
+	}
+	
+	public boolean addGoods(String goodsNumber, int number, double unitPrice, String notes){
+		this.number = number;
+		this.unitPrice = unitPrice;
+		this.notes = notes;
+		GoodsInterface goodsInterface = new GoodsManage();
+		GoodsVO goods = goodsInterface.findGoods(goodsNumber);
+		this.goodsName = goods.getGoodsName();
+		this.type = goods.getGoodsModelNumber();
+		int currentGoodsNumber = goods.getStockNumber();
+		if (currentGoodsNumber < number) {
+			return false;
+		}else {
+			goodsInterface.saleGoods(goodsNumber, number, unitPrice);
+			return true;
+		}
+	}
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+	
+}

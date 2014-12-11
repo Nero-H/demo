@@ -1,0 +1,258 @@
+package businesslogic.salebl;
+
+import java.util.ArrayList;
+
+import po.ClientPO;
+import po.GiftPO;
+import po.SalesPO;
+import po.SalesReturnPO;
+import utility.SerialNumber;
+import utility.TimePeriod;
+import vo.ClientVO;
+import vo.GoodsInfoVO;
+import vo.SalesInfoVO;
+import vo.SalesVO;
+import businesslogic.promotionbl.Promotion;
+import businesslogic.utilitybl.Import_Sales_MultipleFind;
+import businesslogic.utilitybl.TransForm_GoodsInfo;
+import businesslogicservice.saleblservice.SalesInterface;
+import data.databaseutility.SerializableDataFactory;
+import dataservice.clientdataservice.ClientDataService;
+import dataservice.saledataservice.SalesDataService;
+import dataservice.saledataservice.SalesReturnDataService;
+import dataservice.utility.DataFactory;
+
+public class Sales implements SalesInterface{
+	private SalesPO salesPO;
+	private SalesList salesList;
+	private ArrayList<SalesPO> salesPOs;
+	private Promotion promotion;
+	private DataFactory factory;
+	private int salesReceiptNumber;
+	private int salesReturnReceiptNumber;
+	
+	public Sales() {
+		// TODO Auto-generated constructor stub
+		factory = new SerializableDataFactory();
+		salesPO = new SalesPO();
+		salesList = new SalesList();
+		SalesDataService salesData = factory.getSalesDataService();
+		salesPOs = salesData.getSalesList();
+		salesReceiptNumber = salesData.getTodayNum();
+		SalesReturnDataService salesReturnData = factory.getSalesReturnDataService();
+		salesReturnReceiptNumber = salesReturnData.getTodayNum();
+		promotion = new Promotion();
+	}
+	
+	//根据条件查找的对应的销售单
+	public ArrayList<SalesPO> multipleConditionFindSales(TimePeriod period,String goodsName,String clientId,String salesman,String storehouse){
+		ArrayList<SalesPO> findsPOs = new ArrayList<SalesPO>();
+		for (int i = 0; i < salesPOs.size(); i++) {
+			SalesPO temp = salesPOs.get(i);
+			if (new Import_Sales_MultipleFind(temp, period, goodsName, clientId, salesman, storehouse).check()) {
+				findsPOs.add(temp);
+			}
+		}
+		return findsPOs;
+	}
+	
+	//根据条件查找对应的销售退货单
+	public ArrayList<SalesReturnPO> multipleConditionFindSalesReturn(TimePeriod period,String goodsName,String clientId,String salesman,String storehouse){
+		SalesReturnDataService salesReturnData = factory.getSalesReturnDataService();
+		ArrayList<SalesReturnPO> salesReturnPOs = salesReturnData.getSalesReturnList();
+		ArrayList<SalesReturnPO> findsPOs = new ArrayList<SalesReturnPO>();
+		for (int i = 0; i < salesReturnPOs.size(); i++) {
+			SalesReturnPO temp = salesReturnPOs.get(i);
+			if (new Import_Sales_MultipleFind(salesPO, period, goodsName, clientId, salesman, storehouse).check()) {
+				findsPOs.add(temp);
+			}
+		}
+		return findsPOs;
+	}
+	
+	public ArrayList<SalesPO> getSalesList() {
+		// TODO Auto-generated method stub
+		SalesDataService salesData = factory.getSalesDataService();
+		return salesData.getSalesList();
+	}
+
+	public ArrayList<SalesReturnPO> getSalesReturnList() {
+		// TODO Auto-generated method stub
+		SalesReturnDataService salesReturnData = factory.getSalesReturnDataService();
+		return salesReturnData.getSalesReturnList();
+	}
+	
+	public double getSalesIncome(TimePeriod period) {
+		// TODO Auto-generated method stub
+		double income = 0;
+		for (int i = 0; i < salesPOs.size(); i++) {
+			SalesPO temp = salesPOs.get(i);
+			if (period.timeCheck(temp.getDate())) {
+				income += temp.getTotal();
+			}
+		}
+		return income;
+	}
+
+	public double getIncomeOfVoucherAndGain(TimePeriod period) {
+		// TODO Auto-generated method stub
+		double income = 0;
+		for (int i = 0; i < salesPOs.size(); i++) {
+			SalesPO temp = salesPOs.get(i);
+			if (period.timeCheck(temp.getDate())) {
+				double substract = temp.getTicketsPrice() - temp.getTotal();
+				if (substract > 0) {
+					income += substract;
+				}
+			}
+		}
+		return income;
+	}
+
+	public double getGiftPayout(TimePeriod period) {
+		// TODO Auto-generated method stub
+		double payout = 0;
+		for (int i = 0; i < salesPOs.size(); i++) {
+			SalesPO temp = salesPOs.get(i);
+			if (period.timeCheck(temp.getDate())) {
+				ArrayList<GiftPO> giftPOs = temp.getGiftGoods();
+				for (int j = 0; j < giftPOs.size(); j++) {
+					GiftPO giftGoods = giftPOs.get(j);
+					payout += giftGoods.getLatestImportPrice() * giftGoods.getNumber();
+				}
+			}
+		}
+		return payout;
+	}
+
+	
+	//添加此次销售的客户
+	public boolean addClient(ClientVO vo) {
+		// TODO Auto-generated method stub
+		ClientDataService clientData = factory.getClientDataService();
+		ClientPO po = clientData.findByNum(vo.getNum());
+		salesPO.setClient(po);
+		return true;
+	}
+
+	//添加一项商品
+	public boolean addGoods(String goodsNumber, int number, double unitPrice, String notes) {
+		// TODO Auto-generated method stub
+		return salesList.addOneGoods(goodsNumber, number, unitPrice, notes);
+	}
+
+	//添加销售的其他信息
+	public boolean addOtherInfo(SalesInfoVO vo) {
+		// TODO Auto-generated method stub
+		salesPO.setOperatorID(vo.getOperator());
+		salesPO.setSalesman(vo.getSalesman());
+		salesPO.setStorehouse(vo.getStorehouse());
+		salesPO.setReceiptsID(SerialNumber.getSerialNumber("XSD", salesReceiptNumber));
+		salesPO.setVoucher(vo.getVoucher());
+		salesPO.setNotes(vo.getNotes());
+		return false;	//receiptID
+	}
+
+	//获得所有的销售单
+	public ArrayList<SalesVO> showSales() {
+		// TODO Auto-generated method stub
+		ArrayList<SalesVO> vos = new ArrayList<SalesVO>();
+		ArrayList<SalesPO> pos = factory.getSalesDataService().getSalesList();
+		transform_SalesPOs_to_SalesVOs(pos, vos);
+		return vos;
+	}
+
+	//销售退货
+	public boolean salesReturn(int loc) {
+		// TODO Auto-generated method stub
+		SalesReturnDataService salesReturnData = factory.getSalesReturnDataService();
+		SalesReturnPO po = new SalesReturnPO(salesPOs.get(loc), SerialNumber.getSerialNumber("XSTHD", salesReturnReceiptNumber));
+		salesReturnData.insert(po);
+		return false;
+	}
+
+	//计算总价
+	public double getTotal() {
+		// TODO Auto-generated method stub
+		promotion.test(salesPO);			//判断是否满足销售策略
+		return salesList.getTotal();
+	}
+
+	//创建销售单
+	public boolean creatSales() {
+		// TODO Auto-generated method stub
+		SalesDataService salesData = factory.getSalesDataService();
+		return salesData.insert(salesPO);
+	}
+
+	//结束此次销售
+	public void endSales() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	//添加赠品列表
+	public void addGift(ArrayList<GiftPO> goodsList){
+		salesPO.setGiftGoods(goodsList);;
+	}
+	/*
+	//设置此次销售赠送的代金券
+	public void setVoucher(double price){
+		salesPO.setVoucher(price);
+	}
+	
+	//设置此次销售应有的折让
+	public void setDiscount(double discount){
+		salesPO.setDiscount(discount);
+	}
+	*/
+	//删除此次销售的客户
+	public boolean removeClient() {
+		// TODO Auto-generated method stub
+		salesPO.setClient(null);
+		return true;
+	}
+
+	//删除此次销售的一项商品
+	public boolean removeGoods(int loc) {
+		// TODO Auto-generated method stub
+		return salesList.removeGoods(loc);
+	}
+	
+	
+	//转换方法
+	public void transform_SalesPO_to_SalesVO(SalesPO po, SalesVO vo){
+		vo.setClient(po.getClient().getName());
+		ArrayList<GoodsInfoVO> vos = new TransForm_GoodsInfo(po.getGoodsPOs()).transPOs_to_VOs();
+		vo.setGoodsVOs(vos);
+		vo.setNotes(po.getNotes());
+		vo.setOperator(po.getOperatorID());
+		vo.setReceiptsID(po.getReceiptsID());
+		vo.setStorehouse(po.getStorehouse());
+		vo.setSalesman(po.getSalesman());
+		vo.setGiftList(null);
+		vo.setBeforeDiscount(po.getBeforeDiscount());
+		vo.setDiscount(po.getDiscount());
+		vo.setAfterDiscount(po.getAfterDiscount());
+		vo.setVoucher(po.getVoucher());
+		vo.setTicketPrice(po.getTicketsPrice());
+		vo.setTotal(po.getTotal());
+		vo.setDate(po.getDate());
+	}
+	
+	public void transform_SalesPOs_to_SalesVOs(ArrayList<SalesPO> pos,
+			ArrayList<SalesVO> vos) {
+		// TODO Auto-generated method stub
+		if (vos.size() != 0) {
+			return;
+		}
+		for (int i = 0; i < pos.size(); i++) {
+			SalesVO vo = new SalesVO();
+			transform_SalesPO_to_SalesVO(pos.get(i), vo);
+			vos.add(vo);
+		}
+	}
+
+
+
+}

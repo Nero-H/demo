@@ -1,0 +1,39 @@
+package businesslogic.userbl;
+
+import java.rmi.RemoteException;
+
+import data.userdata.UserDataServiceSerializableIml;
+import dataservice.userdataservice.UserDataService;
+import po.UserPO;
+import businesslogicservice.userblservice.LoginBLService;
+
+public class LoginController implements LoginBLService{
+
+	UserPO po;
+	UserDataService dataService;
+	
+	public LoginController() {
+		dataService=UserDataServiceSerializableIml.getInstance();
+	}
+	public boolean login(String id, String password) throws RemoteException {
+		// TODO Auto-generated method stub
+		po=dataService.findUser(id);
+		if(po==null)
+			return false;
+		else {
+			if(!po.getPassward().equals(password))
+				return false;
+		}
+		
+		return true;
+	}
+	public String getUserName() throws RemoteException {
+		return po.getName();
+	}
+	public String getUserIdentity() throws RemoteException {
+		// TODO Auto-generated method stub
+		return po.getIdentity().toString();
+	}
+
+	
+}

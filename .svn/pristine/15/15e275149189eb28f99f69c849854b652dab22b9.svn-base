@@ -1,0 +1,15 @@
+package dataservice.stockdataservice;
+
+import java.rmi.RemoteException;
+
+import po.GoodsPO;
+
+public interface GoodsManageDataService {
+	public boolean addGoods(GoodsPO po);
+	public boolean deleteGoods(GoodsPO po);
+	public boolean updateGoods (GoodsPO po);
+	public GoodsPO findGoods(String ID);
+	public void init();
+	public void finish();
+
+}

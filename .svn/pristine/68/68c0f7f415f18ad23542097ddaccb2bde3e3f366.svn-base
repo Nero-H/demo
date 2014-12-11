@@ -1,0 +1,160 @@
+package businesslogic.salebl;
+
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
+import utility.MyTreeNode;
+import vo.ClientVO;
+import vo.GiftVO;
+import vo.GoodsInfoVO;
+import vo.SalesInfo;
+import vo.SalesInfoVO;
+import vo.SalesVO;
+import businesslogicservice.saleblservice.SalesBLService;
+
+public class SalesBLService_Stub extends UnicastRemoteObject implements SalesBLService{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public SalesBLService_Stub() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	//基本的属性
+	String receiptsID;	//单据编号
+	String client;		//销售商
+	String operator;	//操作员
+	String salesman;	//业务员
+	String storehouse;	//仓库
+	ArrayList<GoodsInfoVO> goodsVOs = new ArrayList<GoodsInfoVO>();		//出货商品列表
+	double beforeDiscount;	//折让前总额
+	double Discount;		//折让
+	double afterDiscount;	//折让后总额
+	double ticketsPrice;	//代金券金额
+	String notes;		//备注
+	double total;		//总额
+		
+	//销售界面得到的客户列表
+	public ArrayList<ClientVO> showClientList() throws RemoteException{
+		// TODO Auto-generated method stub
+		ClientVO client1 = new ClientVO();
+		ArrayList<ClientVO> clientList = new ArrayList<ClientVO>();
+		clientList.add(client1);
+		return clientList;
+	}
+
+	//销售界面得到的商品列表
+	public MyTreeNode showGoodsList() throws RemoteException{
+		// TODO Auto-generated method stub
+		return new MyTreeNode("");
+	}
+	
+	//销售界面得到的销售单列表
+	public ArrayList<SalesVO> showSales() throws RemoteException{
+		// TODO Auto-generated method stub
+		SalesVO sales1 = new SalesVO();
+		ArrayList<SalesVO> salesList = new ArrayList<SalesVO>();
+		salesList.add(sales1);
+		return salesList;
+	}
+	
+	public boolean salesReturn(int loc) throws RemoteException{
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	//销售步骤
+	public boolean addClient(ClientVO vo) throws RemoteException{
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean addGoods(String loc, int number, double unitPrice, String notes) throws RemoteException{
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean addOtherInfo(SalesInfoVO vo) throws RemoteException{
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public double getTotal() throws RemoteException{
+		// TODO Auto-generated method stub
+		return total;
+	}
+	
+	public boolean creatSales() throws RemoteException{
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public void endSales() throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean removeClient() throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean removeGoods(int loc) throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public ArrayList<SalesVO> showSalesReturn() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+	public boolean updateSalesReturn(String receiptsID, boolean isPass)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public ArrayList<GiftVO> getGiftList() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public SalesInfo getSalesInfo() throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean updateSales(boolean isPass) throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean updateSales(String receiptsID, boolean isPass)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateSales() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateSalesStart(String receiptsID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

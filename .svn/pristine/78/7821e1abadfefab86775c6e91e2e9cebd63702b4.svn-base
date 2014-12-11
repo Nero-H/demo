@@ -1,0 +1,80 @@
+package businesslogic.examingbl;
+
+import java.nio.file.attribute.PosixFilePermission;
+import java.util.ArrayList;
+
+import businesslogic.importbl.Import;
+import businesslogic.salebl.Sales;
+import po.ReceiptPO;
+import po.ReceiptType;
+import vo.ReceiptVO;
+import data.examingdata.ExamingDataServiceImpl;
+import dataservice.examingdataservice.ExamingDataService;
+
+public class Examing {
+
+	ArrayList<ReceiptPO> receiptPOs;
+	ExamingDataService dataService;
+	
+	
+	public Examing(){
+		dataService=ExamingDataServiceImpl.getInstance();
+		receiptPOs=dataService.getReceiptPOs();
+	}
+	
+	
+	public boolean pass(String id) {
+		// TODO Auto-generated method stub
+		ReceiptType receiptType = null;
+		for(ReceiptPO po:receiptPOs){
+			if(po.getId().equals(id)){
+				receiptType=po.getType();
+				break;
+			}
+		}
+		switch (receiptType) {
+		case Sales:
+			new Sales().updatecase(id, true);
+			break;
+		case SalesReturn:
+			new Sales().updateSalesReturn(id, true);
+			break;
+		case Imoprt:
+			new Import().updateImportReturn(id, true);
+
+		default:
+			break;
+		}
+		dataService.delete(id);
+		receiptPOs=dataService.getReceiptPOs();
+		return true;
+	}
+
+	public boolean notPass(String id) {
+		// TODO Auto-generated method stub
+		dataService.delete(id);
+		receiptPOs=dataService.getReceiptPOs();
+		return true;
+	}
+
+	public boolean modify(ReceiptVO vo) {
+		// TODO Auto-generated method stub
+		dataService.delete(vo.getId());
+		receiptPOs=dataService.getReceiptPOs();
+		return true;
+	}
+
+
+
+	public ArrayList<ReceiptVO> getReceipts() {
+		// TODO Auto-generated method stub
+		ArrayList<ReceiptVO> receiptVOs=new ArrayList<ReceiptVO>();
+		return receiptVOs;
+	}
+
+	public boolean addReceiptPO(ReceiptPO po){
+		dataService.insert(po);
+		dataService.getReceiptPOs();
+		return true;
+	}
+}

@@ -1,0 +1,21 @@
+package businesslogic.userbl;
+
+import java.rmi.RemoteException;
+
+import vo.UserIdentity;
+import vo.UserVO;
+
+public class Tset {
+
+	public static void main(String[] args) throws RemoteException {
+		UserController userController=new UserController();
+		UserVO vo=new UserVO("Smile", "M9999", "00000", UserIdentity.Manager);
+		userController.addUser(vo);
+		UserVO vo2=new UserVO("Nero", "F8888", "00000", UserIdentity.FinancialManager);
+		userController.addUser(vo2);
+		UserVO vo3=new UserVO("Stupid", "S7777", "00000", UserIdentity.StockManager);
+		userController.addUser(vo3);
+		UserVO vo4=new UserVO("Wang", "S6666", "00000", UserIdentity.SalesManager);
+		userController.addUser(vo4);
+	}
+}

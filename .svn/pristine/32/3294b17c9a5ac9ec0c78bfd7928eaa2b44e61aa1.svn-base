@@ -1,0 +1,222 @@
+package data.financialdata;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import po.MoneyPO;
+import po.PayReceiptPO;
+import po.ReceiveReceiptPO;
+import utility.LikeHashMap;
+import utility.TimePeriod;
+import vo.ReceiptType;
+import businesslogic.financialbl.RecordController;
+import dataservice.financialdataservice.MoneyDataService;
+
+public class MoneyDataServiceSerializableImpl implements MoneyDataService {
+	LikeHashMap<String, PayReceiptPO> payList;
+	LikeHashMap<String, ReceiveReceiptPO> receiveList;
+	File payListFile, receiveListFile;
+
+	static MoneyDataServiceSerializableImpl unique;
+
+	public static MoneyDataServiceSerializableImpl getInstance() {
+		if (unique != null) {
+			return unique;
+		} else {
+			return unique = new MoneyDataServiceSerializableImpl();
+		}
+	}
+
+	private MoneyDataServiceSerializableImpl() {
+		init();
+	}
+
+	public boolean addPay(PayReceiptPO po) {
+		payList.put(po.getSerialNumber(), po);
+		finish(ReceiptType.Pay);
+		return true;
+	}
+
+	public boolean addReceive(ReceiveReceiptPO po) {
+		receiveList.put(po.getSerialNumber(), po);
+		finish(ReceiptType.Receive);
+		return true;
+	}
+
+	public PayReceiptPO findPay(String id) {
+		// TODO Auto-generated method stub
+		return payList.get(id);
+	}
+
+	public ReceiveReceiptPO findReceive(String id) {
+		// TODO Auto-generated method stub
+		return receiveList.get(id);
+	}
+
+	public ArrayList<MoneyPO> mutipleConditionFindPay(TimePeriod period,
+			String clientName, String userName,String accountName) {
+		ArrayList<MoneyPO> list = new ArrayList<MoneyPO>();
+		for (PayReceiptPO receipt : payList.values()) {
+			if (period.timeCheck(receipt.getSerialNumber().substring(3, 11))
+					&& (receipt.getClientName().equals(clientName)||(clientName.equals("")))
+					&& (receipt.getUserName().equals(userName))||userName.equals("")) {
+				list.add(receipt);
+			}
+		}
+		return list;
+	}
+
+	public ArrayList<MoneyPO> mutipleConditionFindReceive(
+			TimePeriod period, String clientName, String userName,String accountName) {
+		ArrayList<MoneyPO> list = new ArrayList<MoneyPO>();
+		for (MoneyPO receipt : receiveList.values()) {
+			if (period.timeCheck(receipt.getSerialNumber().substring(3, 11))
+					&& (receipt.getClientName().equals(clientName)||clientName.equals(""))
+					|| (receipt.getUserName().equals(userName)||userName.equals(""))) {
+				list.add(receipt);
+			}
+		}
+		return list;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void init() {
+		payListFile = new File("data/" + new RecordController().getRecordName()
+				+ "/payList.ser");
+		receiveListFile = new File("data/"
+				+ new RecordController().getRecordName() + "/receiveList.ser");
+		File dir = new File("data/" + new RecordController().getRecordName());
+		if (!dir.exists()) {
+			dir.mkdirs();
+		}
+		if (payListFile.exists()) {
+			try {
+				ObjectInputStream ois = new ObjectInputStream(
+						new FileInputStream(payListFile));
+				if (payListFile.length() > 0) {
+					payList = (LikeHashMap<String, PayReceiptPO>) ois
+							.readObject();
+				} else {
+					payList = new LikeHashMap<String, PayReceiptPO>();
+				}
+				ois.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				payListFile.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			payList = new LikeHashMap<String, PayReceiptPO>();
+		}
+
+		if (receiveListFile.exists()) {
+			try {
+				ObjectInputStream ois = new ObjectInputStream(
+						new FileInputStream(receiveListFile));
+				if (receiveListFile.length() > 0) {
+					receiveList = (LikeHashMap<String, ReceiveReceiptPO>) ois
+							.readObject();
+				} else {
+					receiveList = new LikeHashMap<String, ReceiveReceiptPO>();
+				}
+				ois.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				receiveListFile.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			receiveList = new LikeHashMap<String, ReceiveReceiptPO>();
+		}
+	}
+
+	public void finish(ReceiptType type) {
+		if (type == ReceiptType.Pay) {
+			try {
+				ObjectOutputStream oos = new ObjectOutputStream(
+						new FileOutputStream(payListFile));
+				oos.writeObject(payList);
+				oos.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			try {
+				ObjectOutputStream oos = new ObjectOutputStream(
+						new FileOutputStream(receiveListFile));
+				oos.writeObject(receiveList);
+				oos.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void writeLog(String log) {
+		try {
+			PrintWriter pw = new PrintWriter(new FileWriter("data/"
+					+ new RecordController().getRecordName()
+					+ "/MoneyManageLog.txt", true));
+			pw.println(log);
+			pw.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public ArrayList<MoneyPO> getPayList() {
+		ArrayList<MoneyPO> list = new ArrayList<MoneyPO>();
+		list.addAll(payList.values());
+		return list;
+	}
+
+	public ArrayList<MoneyPO> getReceiveList() {
+		// TODO Auto-generated method stub
+		ArrayList<MoneyPO> list = new ArrayList<MoneyPO>();
+		list.addAll(receiveList.values());
+		return list;
+		}
+}

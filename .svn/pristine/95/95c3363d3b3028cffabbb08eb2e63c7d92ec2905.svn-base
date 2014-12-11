@@ -1,0 +1,43 @@
+package data.examingdata;
+
+import java.util.ArrayList;
+
+import po.ReceiptPO;
+import dataservice.examingdataservice.ExamingDataService;
+
+public class ExamingDataStub implements ExamingDataService{
+
+	ArrayList<ReceiptPO> receiptPOs=new ArrayList<ReceiptPO>();
+	
+	public boolean insert(ReceiptPO po) {
+	
+		// TODO Auto-generated method stub
+		receiptPOs.add(new ReceiptPO());
+		return true;
+	}
+
+	public boolean delete(String id) {
+		
+		// TODO Auto-generated method stub	
+		return true;
+	}
+
+	public boolean init() {
+		// TODO Auto-generated method stub
+		receiptPOs=new ArrayList<ReceiptPO>();
+		return true;
+	}
+
+	public boolean finish() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public ArrayList<ReceiptPO> getReceiptPOs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+
+}

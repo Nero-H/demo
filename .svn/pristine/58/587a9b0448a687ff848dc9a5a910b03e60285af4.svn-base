@@ -1,0 +1,16 @@
+package businesslogicservice.stockblservice;
+
+import java.sql.Date;
+import java.util.ArrayList;
+
+import businesslogic.stockbl.StockCheckListVO;
+import businesslogic.stockbl.StockDailyCheckListVO;
+
+public interface StockInterface {
+	
+	public ArrayList<StockCheckListVO> getStockCheck(Date d1,Date d2) ;
+	public ArrayList<StockDailyCheckListVO> getStockDailyCheck(Date date,int n) ;
+		
+	
+
+}

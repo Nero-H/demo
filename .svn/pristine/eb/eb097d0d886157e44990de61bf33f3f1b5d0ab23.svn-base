@@ -1,0 +1,43 @@
+package po;
+
+import java.io.Serializable;
+
+import utility.Containsable;
+
+public class AccountPO implements Serializable,Containsable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String name;
+	double balance;
+
+	public AccountPO(String name, double balance) {
+		this.name = name;
+		this.balance = balance;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	public boolean contains(String key) {
+		// TODO Auto-generated method stub
+		return name.contains(key)||((balance - Integer.parseInt(key)) < 0.001);
+	}
+	
+	
+
+}

@@ -1,0 +1,140 @@
+package presentaion.clientui;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+
+public class ClientUI {
+
+	private JFrame frame;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ClientUI window = new ClientUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ClientUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 848, 481);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(187, 53, 623, 360);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JButton button_8 = new JButton("添加客户");
+		button_8.setBounds(43, 60, 93, 23);
+		panel.add(button_8);
+		
+		JLabel label_1 = new JLabel("客户管理");
+		label_1.setBounds(238, 0, 149, 55);
+		panel.add(label_1);
+		label_1.setFont(new Font("宋体", Font.PLAIN, 33));
+		
+		JButton button_9 = new JButton("删除客户");
+		button_9.setBounds(186, 60, 93, 23);
+		panel.add(button_9);
+		
+		JButton button_10 = new JButton("修改客户");
+		button_10.setBounds(335, 60, 93, 23);
+		panel.add(button_10);
+		
+		JButton button_11 = new JButton("查找客户");
+		button_11.setBounds(485, 60, 93, 23);
+		panel.add(button_11);
+		
+		JLabel label_2 = new JLabel("客户列表");
+		label_2.setBounds(44, 93, 54, 15);
+		panel.add(label_2);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(39, 116, 557, 234);
+		panel.add(scrollPane);
+		
+		table = new JTable(15,12);
+		table.setRowHeight(20);
+		DefaultTableCellRenderer render = new DefaultTableCellRenderer();
+		render.setHorizontalAlignment(SwingConstants.CENTER);
+		for (int i = 0; i < 12; i++) {  
+			table.getColumnModel().getColumn(i).setMinWidth(80);
+			table.getColumnModel().getColumn(i).setCellRenderer(render);
+		}  
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		scrollPane.setViewportView(table);
+		
+		JButton button_1 = new JButton("退出系统");
+		button_1.setBounds(474, 20, 93, 23);
+		frame.getContentPane().add(button_1);
+		
+		JButton button = new JButton("软件帮助");
+		button.setBounds(348, 20, 93, 23);
+		frame.getContentPane().add(button);
+		
+		JLabel label = new JLabel("当前用户");
+		label.setBounds(674, 10, 54, 15);
+		frame.getContentPane().add(label);
+		
+		JButton button_2 = new JButton("注销");
+		button_2.setBounds(729, 6, 64, 19);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("客户管理");
+		button_3.setBounds(49, 91, 105, 33);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_4 = new JButton("销售管理");
+		button_4.setBounds(49, 148, 105, 33);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("销售退货管理");
+		button_5.setBounds(49, 205, 105, 33);
+		frame.getContentPane().add(button_5);
+		
+		JButton button_6 = new JButton("进货管理");
+		button_6.setBounds(49, 261, 105, 33);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("进货退货管理");
+		button_7.setBounds(49, 320, 105, 33);
+		frame.getContentPane().add(button_7);
+		
+		JButton button_12 = new JButton("返回主界面");
+		button_12.setBounds(49, 380, 105, 33);
+		frame.getContentPane().add(button_12);
+	}
+}

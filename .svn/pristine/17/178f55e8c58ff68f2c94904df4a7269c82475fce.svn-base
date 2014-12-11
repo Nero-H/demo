@@ -1,0 +1,58 @@
+package businesslogic.examingbl;
+
+import java.util.ArrayList;
+
+import po.ReceiptPO;
+import vo.ReceiptVO;
+import data.examingdata.ExamingDataServiceImpl;
+import dataservice.examingdataservice.ExamingDataService;
+
+public class Examing {
+
+	ArrayList<ReceiptPO> receiptPOs;
+	ExamingDataService dataService;
+	
+	
+	public Examing(){
+		dataService=ExamingDataServiceImpl.getInstance();
+		receiptPOs=dataService.getReceiptPOs();
+	}
+	
+	
+	public boolean pass(String id) {
+		// TODO Auto-generated method stub
+		
+		
+		dataService.delete(id);
+		receiptPOs=dataService.getReceiptPOs();
+		return true;
+	}
+
+	public boolean notPass(String id) {
+		// TODO Auto-generated method stub
+		dataService.delete(id);
+		receiptPOs=dataService.getReceiptPOs();
+		return true;
+	}
+
+	public boolean modify(ReceiptVO vo) {
+		// TODO Auto-generated method stub
+		dataService.delete(vo.getId());
+		receiptPOs=dataService.getReceiptPOs();
+		return true;
+	}
+
+
+
+	public ArrayList<ReceiptVO> getReceipts() {
+		// TODO Auto-generated method stub
+		ArrayList<ReceiptVO> receiptVOs=new ArrayList<ReceiptVO>();
+		return receiptVOs;
+	}
+
+	public boolean addReceiptPO(ReceiptPO po){
+		dataService.insert(po);
+		dataService.getReceiptPOs();
+		return true;
+	}
+}

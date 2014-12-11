@@ -1,0 +1,19 @@
+
+package businesslogic.stockbl;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Test;
+
+import po.GoodsPO;
+
+public class CheckWarning {
+
+	@Test
+	public void test() {
+		GoodsPO goodsPO = new GoodsPO("12","sada","A23",12,100,120,15);
+		assertTrue(new MockWarning().compare(goodsPO));
+	}
+
+	
+}

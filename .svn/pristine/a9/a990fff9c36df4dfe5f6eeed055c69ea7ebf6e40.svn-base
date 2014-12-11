@@ -1,0 +1,54 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+
+import utility.MyTreeNode;
+import vo.GoodsVO;
+import businesslogicservice.stockblservice.GoodsManageBLService;
+
+public class GoodsManageBLService_Controller implements GoodsManageBLService{
+
+	public boolean addGoods(GoodsVO vo) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public boolean deleteGoods(GoodsVO vo ) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public boolean updateGoods (GoodsVO vo) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public GoodsVO findGoods(GoodsVO ID) {
+		// TODO Auto-generated method stub
+		try {
+			return new GoodsVO("goodsNumber", "goodsName", "goodsModelNumber", 324, 234);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public GoodsVO findGoods(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public MyTreeNode getRoot() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void setRoot(MyTreeNode node) throws RemoteException {
+		// TODO Auto-generated method stub
+	}
+	
+	
+}

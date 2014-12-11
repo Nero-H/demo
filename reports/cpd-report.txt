@@ -1,0 +1,3539 @@
+Found a 85 line (378 tokens) duplication in the following files: 
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportController.java
+Starting at line 47 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/Import.java
+
+	}
+
+	public boolean addOtherInfo(ImportInfoVO vo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ArrayList<ImportVO> showImport() {
+		// TODO Auto-generated method stub
+		ArrayList<ImportVO> vos = new ArrayList<ImportVO>();
+		ArrayList<ImportPO> pos = new ImportDataController().getImportList();
+		for (int i = 0; i < pos.size(); i++) {
+			vos.add(transformImportPO(pos.get(i)));
+		}
+		return vos;
+	}
+
+	public boolean importReturn(int loc) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public double getTotal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean creatImport() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void endImport() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	//????????????
+	
+	//???po?????????vo
+	private ImportVO transformImportPO(ImportPO po){
+		ImportVO vo = new ImportVO();
+		vo.setClient(po.getClient().getName());
+		vo.setGoodsVOs(transformImportGoodsVO(po.getGoodsPOs()));
+		vo.setNotes(po.getNotes());
+		vo.setOperator(po.getOperator());
+		vo.setReceiptsID(po.getReceiptsID());
+		vo.setStorehouse(po.getStorehouse());
+		vo.setTotal(po.getTotal());
+		
+		return vo;
+	}
+	
+	private ArrayList<ImportGoodsVO> transformImportGoodsVO(ArrayList<ImportGoodsPO> pos){
+		ArrayList<ImportGoodsVO> vos = new ArrayList<ImportGoodsVO>();
+		//?????????po????????????
+		for (int i = 0; i < pos.size(); i++) {
+			ImportGoodsVO vo = new ImportGoodsVO();
+			ImportGoodsPO po = pos.get(i);
+			vo.setModel(po.getModel());
+			vo.setName(po.getName());
+			vo.setNotes(po.getNotes());
+			vo.setNum(po.getNum());
+			vo.setNumber(po.getNumber());
+			vo.setSum(po.getSum());
+			vo.setUnitPrice(po.getUnitPrice());
+			//??????
+			vos.add(vo);
+		}
+		
+		return vos;
+	}
+
+
+	public boolean removeClient() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public boolean removeGoods(int loc) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+=====================================================================
+Found a 120 line (333 tokens) duplication in the following files: 
+Starting at line 8 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ClientVO.java
+Starting at line 6 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ClientPO.java
+
+public class ClientVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String num;
+	private ClientClassification classification;	//????????????
+	private ClientLevel level;		//????????????
+	private String name;
+	private String telephone;
+	private String address;
+	private String postCode;	//??????
+	private String email;	//??????
+	private double quota;	//????????????
+	private double receivable;	//??????
+	private double payable;		//??????
+	private String defaultSalesman;		//???????????????
+	
+	
+	public String getNum() {
+		return num;
+	}
+	
+	public ClientClassification getClassification() {
+		return classification;
+	}
+	
+	public ClientLevel getLevel() {
+		return level;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getTelephone() {
+		return telephone;
+	}
+	
+	public String getAddress() {
+		return address;
+	}
+	
+	public String getPostCode() {
+		return postCode;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public double getQuota() {
+		return quota;
+	}
+	
+	public double getReceivable() {
+		return receivable;
+	}
+	
+	public double getPayable() {
+		return payable;
+	}
+	
+	public String getDefaultSalesman() {
+		return defaultSalesman;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setNum(String num) {
+		this.num = num;
+	}
+
+	public void setClassification(ClientClassification classification) {
+		this.classification = classification;
+	}
+
+	public void setLevel(ClientLevel level) {
+		this.level = level;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setQuota(double quota) {
+		this.quota = quota;
+	}
+
+	public void setReceivable(double receivable) {
+		this.receivable = receivable;
+	}
+
+	public void setPayable(double payable) {
+		this.payable = payable;
+	}
+
+	public void setDefaultSalesman(String defaultSalesman) {
+		this.defaultSalesman = defaultSalesman;
+	}
+	
+}
+=====================================================================
+Found a 40 line (172 tokens) duplication in the following files: 
+Starting at line 10 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePOLineItem.java
+Starting at line 10 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPOLineItem.java
+
+	public ReceivePOLineItem(String accountId, double sum, String comment) {
+		this.accountId = accountId;
+		this.sum = sum;
+		this.comment = comment;
+	}
+
+	public void set(String accountId, double sum, String comment) {
+		this.accountId = accountId;
+		this.sum = sum;
+		this.comment = comment;
+	}
+
+	public String getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public boolean match(String accountId, double sum, String comment){
+		return (this.accountId.equals(accountId))&&(this.sum == sum)&&(this.comment.equals(comment));
+	}
+}
+=====================================================================
+Found a 44 line (168 tokens) duplication in the following files: 
+Starting at line 57 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesReturnPO.java
+Starting at line 58 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesPO.java
+
+		this.operator = operator;
+	}
+	public ArrayList<SalesGoodsPO> getGoodsPOs() {
+		return goodsPOs;
+	}
+	public void setGoodsPOs(ArrayList<SalesGoodsPO> goodsPOs) {
+		this.goodsPOs = goodsPOs;
+	}
+	public double getBeforeDiscount() {
+		return beforeDiscount;
+	}
+	public void setBeforeDiscount(double beforeDiscount) {
+		this.beforeDiscount = beforeDiscount;
+	}
+	public double getDiscount() {
+		return Discount;
+	}
+	public void setDiscount(double discount) {
+		Discount = discount;
+	}
+	public double getAfterDiscount() {
+		return afterDiscount;
+	}
+	public void setAfterDiscount(double afterDiscount) {
+		this.afterDiscount = afterDiscount;
+	}
+	public double getTicketsPrice() {
+		return ticketsPrice;
+	}
+	public void setTicketsPrice(double ticketsPrice) {
+		this.ticketsPrice = ticketsPrice;
+	}
+	public String getNotes() {
+		return notes;
+	}
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
+=====================================================================
+Found a 20 line (134 tokens) duplication in the following files: 
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		frame.setBounds(100, 100, 775, 454);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(138, 57, 623, 332);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("???????????????");
+		label.setBounds(10, 52, 74, 15);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("?????????????????????");
+		label_1.setFont(new Font("??????", Font.PLAIN, 33));
+		label_1.setBounds(167, 0, 279, 38);
+		panel.add(label_1);
+		
+		table = new JTable();
+		table.setBounds(10, 103, 592, 231);
+=====================================================================
+Found a 19 line (127 tokens) duplication in the following files: 
+Starting at line 113 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 81 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		textField_4.setColumns(10);
+		
+		JButton button = new JButton("????????????");
+		button.setBounds(425, 24, 93, 23);
+		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("????????????");
+		button_1.setBounds(299, 24, 93, 23);
+		frame.getContentPane().add(button_1);
+		
+		JLabel label_2 = new JLabel("????????????");
+		label_2.setBounds(625, 14, 54, 15);
+		frame.getContentPane().add(label_2);
+		
+		JButton button_2 = new JButton("??????");
+		button_2.setBounds(680, 10, 64, 19);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("??????????????????");
+=====================================================================
+Found a 16 line (111 tokens) duplication in the following files: 
+Starting at line 132 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 100 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button_3.setBounds(10, 163, 118, 23);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_4 = new JButton("?????????????????????");
+		button_4.setBounds(10, 263, 118, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("?????????????????????");
+		button_5.setBounds(10, 307, 118, 23);
+		frame.getContentPane().add(button_5);
+		
+		JButton button_6 = new JButton("????????????");
+		button_6.setBounds(10, 120, 118, 23);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("?????????????????????");
+=====================================================================
+Found a 43 line (111 tokens) duplication in the following files: 
+Starting at line 6 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ImportReturnPO.java
+Starting at line 7 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ImportPO.java
+
+public class ImportReturnPO extends ReceiptPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//???????????????
+	private	String receiptsID;	//????????????
+	private	ClientPO client;		//?????????
+	private	String storehouse;	//??????
+	private	String operator;	//?????????
+	private	ArrayList<ImportGoodsPO> goodsPOs = new ArrayList<ImportGoodsPO>();		//??????????????????
+	private	String notes;		//??????
+	private	double total;		//??????
+
+	public String getReceiptsID() {
+		return receiptsID;
+	}
+		
+	public ClientPO getClient() {
+		return client;
+	}
+	
+	public String getStorehouse() {
+		return storehouse;
+	}
+		
+	public String getOperator() {
+		return operator;
+	}
+		
+	public ArrayList<ImportGoodsPO> getGoodsPOs() {
+		return goodsPOs;
+	}
+		
+	public String getNotes() {
+		return notes;
+	}
+	
+	public double getTotal() {
+		return total;
+	}
+
+}
+=====================================================================
+Found a 17 line (105 tokens) duplication in the following files: 
+Starting at line 157 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 134 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		scrollPane_1.setViewportView(table_1);
+		
+		JButton button = new JButton("????????????");
+		button.setBounds(392, 112, 93, 23);
+		panel.add(button);
+		
+		JButton button_1 = new JButton("????????????");
+		button_1.setBounds(495, 112, 93, 23);
+		panel.add(button_1);
+		
+		JButton button_2 = new JButton("????????????");
+		button_2.setBounds(10, 94, 93, 23);
+		panel.add(button_2);
+		
+		JButton button_3 = new JButton("????????????");
+		button_3.setBounds(112, 94, 93, 23);
+		panel.add(button_3);
+=====================================================================
+Found a 29 line (96 tokens) duplication in the following files: 
+Starting at line 8 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/UserVO.java
+Starting at line 9 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/UserPO.java
+
+	public UserVO(String name, String id, String passward) {
+		this.name = name;
+		this.id = id;
+		this.passward = passward;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPassward() {
+		return passward;
+	}
+
+	public void setPassward(String passward) {
+		this.passward = passward;
+	}
+=====================================================================
+Found a 44 line (95 tokens) duplication in the following files: 
+Starting at line 5 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesGoodsPO.java
+Starting at line 5 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ImportGoodsPO.java
+
+public class SalesGoodsPO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	
+	private int num;		//??????
+	private String name;	//??????
+	private String model;	//??????
+	private int number;		//??????
+	private double unitPrice;	//??????
+	private double sum;		//??????
+	private String notes;	//??????
+	
+	
+	public int getNum() {
+		return num;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getModel() {
+		return model;
+	}
+	
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+	
+	public double getSum() {
+		return sum;
+	}
+	
+	public String getNotes() {
+		return notes;
+	}
+}
+=====================================================================
+Found a 41 line (94 tokens) duplication in the following files: 
+Starting at line 5 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ImportGoodsVO.java
+Starting at line 5 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesGoodsPO.java
+Starting at line 5 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ImportGoodsPO.java
+
+public class ImportGoodsVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int num;		//??????
+	private String name;	//??????
+	private String model;	//??????
+	private int number;		//??????
+	private double unitPrice;	//??????
+	private double sum;		//??????
+	private String notes;	//??????
+	
+	
+	public int getNum() {
+		return num;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getModel() {
+		return model;
+	}
+	
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+	
+	public double getSum() {
+		return sum;
+	}
+	
+	public String getNotes() {
+		return notes;
+	}
+=====================================================================
+Found a 31 line (92 tokens) duplication in the following files: 
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/StockDataService_Stub.java
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/StockDataService_Controller.java
+
+public class StockDataService_Stub {
+
+	public StockPO checkStock (String time1, String time2) {
+		// TODO Auto-generated method stub
+		return new StockPO();
+	}
+	public DailyStockPO checkDailyStock (String date) {
+		// TODO Auto-generated method stub
+		return new DailyStockPO();
+	}
+	public StatePO reportStock() {
+		// TODO Auto-generated method stub
+		return new StatePO();
+	}
+	public GiftlistPO giveGift(String ID ,int num) {
+		// TODO Auto-generated method stub
+		return new GiftlistPO();
+	}
+	public WarningPO warning () {
+		
+		return new WarningPO();
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+}
+=====================================================================
+Found a 33 line (92 tokens) duplication in the following files: 
+Starting at line 15 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/StockBLService_Stub.java
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/StockBLService_Controller.java
+
+public class StockBLService_Stub implements StockBLService{
+	public StockVO checkStock (String time1, String time2) {
+		// TODO Auto-generated method stub
+		return new StockVO();
+	}
+	public DailyStockVO checkDailyStock () {
+		// TODO Auto-generated method stub
+		return new DailyStockVO();
+	}
+	public StateVO reportStock() {
+		// TODO Auto-generated method stub
+		return new StateVO();
+	}
+	public GiftlistVO giveGift(String ID ,int num) {
+		// TODO Auto-generated method stub
+		return new GiftlistVO();
+	}
+	public WarningVO warning () {
+		
+		return new WarningVO();
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+}
+=====================================================================
+Found a 33 line (88 tokens) duplication in the following files: 
+Starting at line 7 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Stub.java
+Starting at line 8 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Controller.java
+
+public class GoodsManageDataService_Stub {
+	
+	
+	public GoodsPO findGoods(GoodsPO ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new GoodsPO();
+	}
+	public GoodsPO findGoods(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public boolean addGoods(GoodsPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean deleteGoods(GoodsPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	public boolean updateGoods(GoodsPO po) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}
+=====================================================================
+Found a 11 line (85 tokens) duplication in the following files: 
+Starting at line 54 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+
+		panel.setBounds(168, 57, 623, 384);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("??????????????????");
+		label.setFont(new Font("??????", Font.PLAIN, 33));
+		label.setBounds(235, 10, 204, 38);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("???????????????");
+		label_1.setBounds(22, 93, 92, 15);
+		panel.add(label_1);
+=====================================================================
+Found a 13 line (84 tokens) duplication in the following files: 
+Starting at line 62 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 61 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		panel.setBounds(159, 47, 623, 372);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("????????????");
+		label.setFont(new Font("??????", Font.PLAIN, 33));
+		label.setBounds(243, 12, 132, 38);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("?????????");
+		label_1.setBounds(41, 52, 54, 15);
+		panel.add(label_1);
+		
+		JLabel label_3 = new JLabel("???????????????");
+=====================================================================
+Found a 19 line (83 tokens) duplication in the following files: 
+Starting at line 35 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesBLService_Stub.java
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportBLService_Stub.java
+
+	public ArrayList<ClientVO> showClientList() throws RemoteException{
+		// TODO Auto-generated method stub
+		ClientVO client1 = new ClientVO();
+		ArrayList<ClientVO> clientList = new ArrayList<ClientVO>();
+		clientList.add(client1);
+		return clientList;
+	}
+
+	//?????????????????????????????????
+	public ArrayList<GoodsVO> showGoodsList() throws RemoteException{
+		// TODO Auto-generated method stub
+		GoodsVO goods1 = new GoodsVO();
+		ArrayList<GoodsVO> goodsList = new ArrayList<GoodsVO>();
+		goodsList.add(goods1);
+		return goodsList;
+	}
+	
+	//????????????????????????????????????
+	public ArrayList<SalesVO> showSales() throws RemoteException{
+=====================================================================
+Found a 13 line (81 tokens) duplication in the following files: 
+Starting at line 59 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 64 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 55 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("???????????????");
+		label.setBounds(10, 52, 74, 15);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("?????????????????????");
+		label_1.setFont(new Font("??????", Font.PLAIN, 33));
+		label_1.setBounds(167, 0, 279, 38);
+		panel.add(label_1);
+		
+		table = new JTable();
+		table.setBounds(10, 103, 592, 231);
+=====================================================================
+Found a 12 line (75 tokens) duplication in the following files: 
+Starting at line 125 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 94 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		frame.getContentPane().add(label_2);
+		
+		JButton button_2 = new JButton("??????");
+		button_2.setBounds(680, 10, 64, 19);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("??????????????????");
+		button_3.setBounds(10, 163, 118, 23);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_4 = new JButton("?????????????????????");
+		button_4.setBounds(10, 263, 118, 23);
+=====================================================================
+Found a 30 line (74 tokens) duplication in the following files: 
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountGiftPromotionPO.java
+Starting at line 17 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountDiscountPromotionPO.java
+
+	public AccountGiftPromotionPO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public double getAccount() {
+		return account;
+	}
+
+	public void setAccount(double account) {
+		this.account = account;
+	}
+
+	public DiscountType getType() {
+=====================================================================
+Found a 8 line (70 tokens) duplication in the following files: 
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/saleblservice/SalesBLService.java
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/importblservice/ImportBLService.java
+
+public interface SalesBLService extends Remote{
+	public ArrayList<ClientVO> showClientList() throws RemoteException;	//??????????????????
+	public ArrayList<GoodsVO> showGoodsList() throws RemoteException;	//??????????????????
+	public boolean addClient(ClientVO vo) throws RemoteException;	//???????????????
+	public boolean removeClient() throws RemoteException;			//remove client
+	public boolean addGoods(String loc, int number, double unitPrice, String notes) throws RemoteException;	//??????????????????
+	public boolean removeGoods(int loc) throws RemoteException;
+	public boolean addOtherInfo(SalesInfoVO vo) throws RemoteException;
+=====================================================================
+Found a 16 line (69 tokens) duplication in the following files: 
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+
+		button_1.setBounds(165, 241, 93, 23);
+		add(button_1);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 27 line (69 tokens) duplication in the following files: 
+Starting at line 9 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsSortBLService_Stub.java
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsSortBLService_Controller.java
+
+public class GoodsSortBLService_Stub implements  GoodsSortBLService{
+
+	public boolean addGoodsSort (GoodsSortVO vo){
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public boolean deleteGoodsSort (GoodsSortVO vo ) {
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public boolean updateGoodsSort (GoodsSortVO vo){
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public GoodsSortVO findGoodsSort (String ID) {
+		// TODO Auto-generated method stub
+		return new GoodsSortVO();
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+}
+=====================================================================
+Found a 27 line (67 tokens) duplication in the following files: 
+Starting at line 8 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsSortDataService_Stub.java
+Starting at line 7 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsSortDataService_Controller.java
+
+public class GoodsSortDataService_Stub {
+
+	public boolean addGoodsSort (GoodsSortPO po){
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public boolean deleteGoodsSort (GoodsSortPO po) {
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public boolean updateGoodsSort (GoodsSortPO po){
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public GoodsSortPO findGoodsSort (String ID) {
+		// TODO Auto-generated method stub
+		return new GoodsSortPO();
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+}
+=====================================================================
+Found a 11 line (66 tokens) duplication in the following files: 
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		frame.setBounds(100, 100, 775, 454);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(138, 57, 623, 332);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("???????????????");
+		label.setBounds(10, 52, 74, 15);
+=====================================================================
+Found a 16 line (65 tokens) duplication in the following files: 
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 47 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+		add(button_1);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 28 line (62 tokens) duplication in the following files: 
+Starting at line 19 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/SalesGoodsVO.java
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesGoodsPO.java
+Starting at line 19 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ImportGoodsPO.java
+
+	public String getNum() {
+		return num;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getModel() {
+		return model;
+	}
+	
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+	
+	public double getSum() {
+		return sum;
+	}
+	
+	public String getNotes() {
+		return notes;
+	}
+}
+=====================================================================
+Found a 11 line (62 tokens) duplication in the following files: 
+Starting at line 113 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 82 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 81 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		textField_4.setColumns(10);
+		
+		JButton button = new JButton("????????????");
+		button.setBounds(425, 24, 93, 23);
+		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("????????????");
+		button_1.setBounds(299, 24, 93, 23);
+		frame.getContentPane().add(button_1);
+		
+		JLabel label_2 = new JLabel("????????????");
+=====================================================================
+Found a 27 line (61 tokens) duplication in the following files: 
+Starting at line 19 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/SalesGoodsVO.java
+Starting at line 19 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ImportGoodsVO.java
+
+	public String getNum() {
+		return num;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getModel() {
+		return model;
+	}
+	
+	public double getUnitPrice() {
+		return unitPrice;
+	}
+	
+	public int getNumber() {
+		return number;
+	}
+	
+	public double getSum() {
+		return sum;
+	}
+	
+	public String getNotes() {
+		return notes;
+	}
+=====================================================================
+Found a 15 line (61 tokens) duplication in the following files: 
+Starting at line 29 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 47 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+		add(button_1);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 15 line (60 tokens) duplication in the following files: 
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/ReportBLService_Driver.java
+Starting at line 44 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/ReportBLService_Driver.java
+
+		HistoryReportVO historyReportVO = new HistoryReportVO(1,period);
+		try {
+			reportBLService.viewHistoryReport(historyReportVO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		historyReportVO = new HistoryReportVO(1,period);
+		try {
+			reportBLService.viewHistoryReport(historyReportVO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+=====================================================================
+Found a 9 line (59 tokens) duplication in the following files: 
+Starting at line 140 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 109 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		button_5.setBounds(10, 307, 118, 23);
+		frame.getContentPane().add(button_5);
+		
+		JButton button_6 = new JButton("????????????");
+		button_6.setBounds(10, 120, 118, 23);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("?????????????????????");
+		button_7.setBounds(10, 212, 118, 23);
+=====================================================================
+Found a 17 line (59 tokens) duplication in the following files: 
+Starting at line 33 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 56 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"New column"
+			}
+		));
+		table.setBounds(62, 63, 313, 168);
+=====================================================================
+Found a 21 line (58 tokens) duplication in the following files: 
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesWriteLogTest.java
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportWriteLogTest.java
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/clientbl/ClientWriteLogTest.java
+
+public class SalesWriteLogTest {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void test() {
+		String log = "SalesWriteLogTest";
+=====================================================================
+Found a 22 line (57 tokens) duplication in the following files: 
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePO.java
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPO.java
+
+	public ReceivePO(String clientId, ReceiveList list, double sum, String userId) {
+		super();
+		this.clientId = clientId;
+		this.list = list;
+		this.sum = sum;
+		this.userId = userId;
+	}
+
+
+	public String getClientId() {
+		return clientId;
+	}
+
+
+
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
+
+
+
+	public ReceiveList getList() {
+=====================================================================
+Found a 4 line (57 tokens) duplication in the following files: 
+Starting at line 56 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/clientdata/ClientDataController.java
+Starting at line 105 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/clientdata/ClientDataController.java
+
+		ArrayList<ClientPO> clientPOs = new ArrayList<ClientPO>();
+		Iterator iterator = clientList.entrySet().iterator();
+		while (iterator.hasNext()) {
+			java.util.Map.Entry entry = (java.util.Map.Entry) iterator.next();
+=====================================================================
+Found a 12 line (56 tokens) duplication in the following files: 
+Starting at line 70 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 68 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		panel.add(radioButton_2);
+		
+		table = new JTable();
+		table.setBounds(10, 77, 592, 257);
+		panel.add(table);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(225, 48, 124, 21);
+		panel.add(textField);
+		
+		JRadioButton radioButton = new JRadioButton("?????????");
+=====================================================================
+Found a 31 line (56 tokens) duplication in the following files: 
+Starting at line 38 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePO.java
+Starting at line 38 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPO.java
+
+	public void setList(ReceiveList list) {
+		this.list = list;
+	}
+
+
+
+	public double getSum() {
+		return sum;
+	}
+
+
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
+
+	public boolean contains(String key) {
+=====================================================================
+Found a 16 line (56 tokens) duplication in the following files: 
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportController.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/Import.java
+
+	public ArrayList<ClientVO> showClientList() {
+		// TODO Auto-generated method stub
+		return client.getClientVOList();
+	}
+
+	public ArrayList<GoodsVO> showGoodsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean addClient(ClientVO vo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addGoods(String loc, int number, double unitPrice, String notes) {
+=====================================================================
+Found a 10 line (55 tokens) duplication in the following files: 
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 50 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		frame.setBounds(100, 100, 775, 454);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(138, 57, 623, 332);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("???????????????");
+=====================================================================
+Found a 16 line (55 tokens) duplication in the following files: 
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 57 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"New column"
+			}
+		));
+		table.setBounds(58, 60, 313, 168);
+=====================================================================
+Found a 20 line (55 tokens) duplication in the following files: 
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesWriteLogTest.java
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesGetTotalTest.java
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportWriteLogTest.java
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/clientbl/ClientWriteLogTest.java
+
+public class SalesWriteLogTest {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void test() {
+=====================================================================
+Found a 19 line (52 tokens) duplication in the following files: 
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePOLineItem.java
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPOLineItem.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordLineItem.java
+
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public boolean match(String accountId, double sum, String comment){
+=====================================================================
+Found a 23 line (52 tokens) duplication in the following files: 
+Starting at line 18 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/GoodsDiscountPromotionPO.java
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountGiftPromotionPO.java
+Starting at line 17 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountDiscountPromotionPO.java
+
+	public GoodsDiscountPromotionPO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+
+	public double getDiscount() {
+=====================================================================
+Found a 8 line (51 tokens) duplication in the following files: 
+Starting at line 109 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 108 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button_5.setBounds(10, 247, 118, 23);
+		frame.getContentPane().add(button_5);
+		
+		JButton button_6 = new JButton("????????????");
+		button_6.setBounds(10, 120, 118, 23);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("?????????????????????");
+=====================================================================
+Found a 23 line (51 tokens) duplication in the following files: 
+Starting at line 18 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/GoodsDiscountPromotionPO.java
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CustomerGiftPromotionPO.java
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountGiftPromotionPO.java
+Starting at line 17 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountDiscountPromotionPO.java
+
+	public GoodsDiscountPromotionPO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+
+	public double getDiscount() {
+=====================================================================
+Found a 14 line (49 tokens) duplication in the following files: 
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesReportInfoPO.java
+Starting at line 36 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/HistoryReportInfoPO.java
+
+	}
+	public ClientPO getClient() {
+		return client;
+	}
+	public void setClient(ClientPO client) {
+		this.client = client;
+	}
+	public UserPO getUser() {
+		return user;
+	}
+	public void setUser(UserPO user) {
+		this.user = user;
+	}
+	public String getStoreHouse() {
+=====================================================================
+Found a 20 line (49 tokens) duplication in the following files: 
+Starting at line 23 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CustomerGiftPromotionPO.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CustomerDiscountPromotionPO.java
+
+	}
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+	public int getCustomerlevel() {
+=====================================================================
+Found a 17 line (49 tokens) duplication in the following files: 
+Starting at line 61 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesBLService_Stub.java
+Starting at line 61 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportBLService_Stub.java
+
+	public boolean salesReturn(int loc) throws RemoteException{
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	//????????????
+	public boolean addClient(ClientVO vo) throws RemoteException{
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean addGoods(String loc, int number, double unitPrice, String notes) throws RemoteException{
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean addOtherInfo(SalesInfoVO vo) throws RemoteException{
+=====================================================================
+Found a 6 line (48 tokens) duplication in the following files: 
+Starting at line 69 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+Starting at line 75 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+=====================================================================
+Found a 21 line (48 tokens) duplication in the following files: 
+Starting at line 20 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/GoodsDiscountPromotionPO.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CustomerDiscountPromotionPO.java
+Starting at line 23 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountGiftPromotionPO.java
+Starting at line 19 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountDiscountPromotionPO.java
+
+	}
+	
+	
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
+	}
+
+
+	public double getDiscount() {
+=====================================================================
+Found a 18 line (46 tokens) duplication in the following files: 
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CustomerGiftPromotionPO.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountGiftPromotionPO.java
+
+	}
+
+	public DiscountType getType() {
+		return type;
+	}
+
+	public void setType(DiscountType type) {
+		this.type = type;
+	}
+
+	public void delGoods(GoodsPO po){
+		
+	}
+	
+	public void addGoods(GoodsPO po,Integer i){
+		
+	}
+}
+=====================================================================
+Found a 6 line (45 tokens) duplication in the following files: 
+Starting at line 62 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 67 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 58 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 58 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		label.setBounds(10, 52, 74, 15);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("?????????????????????");
+		label_1.setFont(new Font("??????", Font.PLAIN, 33));
+		label_1.setBounds(167, 0, 279, 38);
+=====================================================================
+Found a 11 line (44 tokens) duplication in the following files: 
+Starting at line 33 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 53 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 54 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 55 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 10 line (43 tokens) duplication in the following files: 
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsSortDataService_Driver.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsSortBLService_Driver.java
+
+			if(goodsSortDataService.findGoodsSort(ID)== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args){
+=====================================================================
+Found a 12 line (43 tokens) duplication in the following files: 
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Driver.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsManageBLService_Driver.java
+
+			if(goodsManageDataService.findGoods(ID)== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void main(String[] args){
+=====================================================================
+Found a 12 line (42 tokens) duplication in the following files: 
+Starting at line 31 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/StockDataService_Driver.java
+Starting at line 31 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/StockBLService_Driver.java
+
+			if(StockDataService.warning()== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void main(String[] args){
+=====================================================================
+Found a 9 line (41 tokens) duplication in the following files: 
+Starting at line 64 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 70 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 68 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		panel.add(label_1);
+		
+		table = new JTable();
+		table.setBounds(10, 77, 592, 257);
+		panel.add(table);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(84, 49, 126, 21);
+=====================================================================
+Found a 5 line (41 tokens) duplication in the following files: 
+Starting at line 15 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceiveList.java
+Starting at line 32 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayList.java
+
+		ReceivePOLineItem item = find(accountId,sum,comment);
+		return list.remove(item);
+	}
+	
+	public boolean update(String accountId, double sum, String comment,String newAccountId, double newSum, String newComment){
+=====================================================================
+Found a 10 line (41 tokens) duplication in the following files: 
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsSortDataService_Driver.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Driver.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsSortBLService_Driver.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsManageBLService_Driver.java
+
+			if(goodsSortDataService.findGoodsSort(ID)== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args){
+=====================================================================
+Found a 18 line (41 tokens) duplication in the following files: 
+Starting at line 46 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesController.java
+Starting at line 61 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/Sales.java
+
+	}
+
+	public boolean addOtherInfo(SalesInfoVO vo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ArrayList<SalesVO> showSales() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean salesReturn(int loc) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public double getTotal() {
+=====================================================================
+Found a 16 line (41 tokens) duplication in the following files: 
+Starting at line 42 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/Sales.java
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportController.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/Import.java
+
+	}
+
+	//???????????????????????????
+	public ArrayList<GoodsVO> showGoodsList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	//???????????????????????????
+	public boolean addClient(ClientVO vo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	//??????????????????
+	public boolean addGoods(String loc, int number, double unitPrice, String notes) {
+=====================================================================
+Found a 10 line (40 tokens) duplication in the following files: 
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 53 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 54 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 55 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 56 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 10 line (40 tokens) duplication in the following files: 
+Starting at line 33 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 57 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 10 line (40 tokens) duplication in the following files: 
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 5 line (40 tokens) duplication in the following files: 
+Starting at line 69 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+Starting at line 76 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+=====================================================================
+Found a 6 line (39 tokens) duplication in the following files: 
+Starting at line 62 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 61 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+Starting at line 58 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		panel.setBounds(159, 47, 623, 372);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("????????????");
+		label.setFont(new Font("??????", Font.PLAIN, 33));
+		label.setBounds(243, 12, 132, 38);
+=====================================================================
+Found a 12 line (39 tokens) duplication in the following files: 
+Starting at line 31 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/StockDataService_Driver.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsSortDataService_Driver.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Driver.java
+Starting at line 31 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/StockBLService_Driver.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsSortBLService_Driver.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsManageBLService_Driver.java
+
+			if(StockDataService.warning()== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void main(String[] args){
+=====================================================================
+Found a 7 line (38 tokens) duplication in the following files: 
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 50 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		frame.setBounds(100, 100, 775, 454);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(138, 57, 623, 332);
+=====================================================================
+Found a 9 line (38 tokens) duplication in the following files: 
+Starting at line 71 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 76 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 67 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		table.setBounds(10, 103, 592, 231);
+		panel.add(table);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(84, 49, 126, 21);
+		panel.add(textField);
+		
+		JLabel label_4 = new JLabel("????????????");
+=====================================================================
+Found a 13 line (38 tokens) duplication in the following files: 
+Starting at line 16 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 18 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+public class MoneyUI {
+
+	private JFrame frame;
+	private JTable table;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+=====================================================================
+Found a 7 line (37 tokens) duplication in the following files: 
+Starting at line 94 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 93 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		frame.getContentPane().add(label_6);
+		
+		JButton button_2 = new JButton("??????");
+		button_2.setBounds(680, 10, 64, 19);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("??????????????????");
+=====================================================================
+Found a 20 line (37 tokens) duplication in the following files: 
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsManageBLService_Stub.java
+Starting at line 10 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsManageBLService_Controller.java
+
+public class GoodsManageBLService_Stub implements GoodsManageService {
+
+	
+	
+	
+	
+	public boolean addGoods(GoodMVO vo) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public boolean deleteGoods(GoodMVO vo ) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public boolean updateGoods (GoodMVO vo) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public GoodsVO findGoods(String ID)  {
+=====================================================================
+Found a 15 line (37 tokens) duplication in the following files: 
+Starting at line 4 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesLineItem.java
+Starting at line 5 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportLineItem.java
+
+public class SalesLineItem {
+	private String goodsName;
+	private String type;
+	private String notes;
+	private int number;
+	private double unitPrice;
+	private double total;
+	
+	
+	public double getTotal(){
+		total = number*unitPrice;
+		return total;
+	}
+	
+	public void addGoods(String loc, int number, double unitPrice, String notes){
+=====================================================================
+Found a 4 line (37 tokens) duplication in the following files: 
+Starting at line 22 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/financialbl/stub/MoneyManagerStub.java
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/financialbl/stub/MoneyManagerStub.java
+
+	public PayVO findPay(String serialNumber) {
+		// TODO Auto-generated method stub
+		ArrayList<PayVOLineItem> list = new ArrayList<PayVOLineItem>();
+		list.add(new PayVOLineItem(new AccountVO("accountName",21314,"accountId"),1321,"comment"));
+=====================================================================
+Found a 4 line (37 tokens) duplication in the following files: 
+Starting at line 29 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/financialbl/stub/MoneyManagerStub.java
+Starting at line 47 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/financialbl/stub/MoneyManagerStub.java
+
+	public ReceiveVO findReceive(String serialNumber) {
+		// TODO Auto-generated method stub
+		ArrayList<ReceiveVOLineItem> list = new ArrayList<ReceiveVOLineItem>();
+		list.add(new ReceiveVOLineItem(new AccountVO("accountName",21314,"accountId"),1321,"comment"));
+=====================================================================
+Found a 7 line (36 tokens) duplication in the following files: 
+Starting at line 56 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 55 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+Starting at line 46 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 53 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 50 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		frame.setBounds(100, 100, 807, 468);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(159, 47, 623, 372);
+=====================================================================
+Found a 9 line (36 tokens) duplication in the following files: 
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 35 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 58 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 9 line (36 tokens) duplication in the following files: 
+Starting at line 35 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 33 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 21 line (36 tokens) duplication in the following files: 
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePO.java
+Starting at line 64 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordPO.java
+
+	}
+
+
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+
+
+	public boolean contains(String key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}
+=====================================================================
+Found a 17 line (35 tokens) duplication in the following files: 
+Starting at line 22 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/SalesVO.java
+Starting at line 17 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ImportVO.java
+
+	private String notes;		//??????
+	private double total;		//??????
+	
+//--------------------------------------------------------
+	public String getReceiptsID() {
+		return receiptsID;
+	}
+
+	public String getClient() {
+		return client;
+	}
+
+	public String getStorehouse() {
+		return storehouse;
+	}
+
+	public String getSalesman() {
+=====================================================================
+Found a 11 line (35 tokens) duplication in the following files: 
+Starting at line 7 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/CaseReportVO.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CaseReportInfoPO.java
+
+	public CaseReportVO(TimePeriod period){
+		this.period = period;
+	}
+	
+	public TimePeriod getPeriod() {
+		return period;
+	}
+	public void setPeriod(TimePeriod period) {
+		this.period = period;
+	}
+}
+=====================================================================
+Found a 8 line (35 tokens) duplication in the following files: 
+Starting at line 113 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 112 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		textField_4.setColumns(10);
+		
+		JLabel label_6 = new JLabel("?????????");
+		label_6.setBounds(170, 77, 54, 15);
+		panel.add(label_6);
+		
+		textField_5 = new JTextField();
+		textField_5.setBounds(220, 72, 66, 21);
+=====================================================================
+Found a 8 line (35 tokens) duplication in the following files: 
+Starting at line 122 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 121 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		textField_5.setColumns(10);
+		
+		JLabel label_7 = new JLabel("???????????????");
+		label_7.setBounds(296, 77, 65, 15);
+		panel.add(label_7);
+		
+		textField_6 = new JTextField();
+		textField_6.setBounds(357, 72, 66, 21);
+=====================================================================
+Found a 12 line (35 tokens) duplication in the following files: 
+Starting at line 15 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 18 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/clientui/ClientUI.java
+
+public class SalesReturnUI {
+
+	private JFrame frame;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+=====================================================================
+Found a 9 line (34 tokens) duplication in the following files: 
+Starting at line 20 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceiveList.java
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayList.java
+
+		ReceivePOLineItem item = find(accountId,sum,comment);
+		if(item != null){
+			item.set(newAccountId, newSum, newComment);
+			return true;
+		}
+		return false;
+	}
+	
+	public ReceivePOLineItem find(String accountId, double sum, String comment){
+=====================================================================
+Found a 7 line (33 tokens) duplication in the following files: 
+Starting at line 72 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 62 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		JButton button = new JButton("??????");
+		button.setBounds(520, 72, 93, 23);
+		panel.add(button);
+		
+		JLabel label_2 = new JLabel("???????????????XSTHD-20141008-00001");
+=====================================================================
+Found a 10 line (33 tokens) duplication in the following files: 
+Starting at line 38 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesReturnPO.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesPO.java
+
+	public void setClient(String client) {
+		this.client = client;
+	}
+	public String getStorehouse() {
+		return storehouse;
+	}
+	public void setStorehouse(String storehouse) {
+		this.storehouse = storehouse;
+	}
+	public ClientPO getSalesman() {
+=====================================================================
+Found a 9 line (32 tokens) duplication in the following files: 
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/PayVO.java
+Starting at line 38 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePO.java
+Starting at line 38 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPO.java
+
+	public void setList(ArrayList<PayVOLineItem> list) {
+		this.list = list;
+	}
+	public double getSum() {
+		return sum;
+	}
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+=====================================================================
+Found a 8 line (32 tokens) duplication in the following files: 
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 36 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 59 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 8 line (32 tokens) duplication in the following files: 
+Starting at line 36 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 33 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 4 line (32 tokens) duplication in the following files: 
+Starting at line 69 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+Starting at line 77 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+=====================================================================
+Found a 6 line (32 tokens) duplication in the following files: 
+Starting at line 9 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceiveList.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayList.java
+
+	public boolean add(ReceivePOLineItem item){
+		total += item.getSum();
+		return list.add(item);
+	}
+
+	public boolean delete(String accountId, double sum, String comment){
+=====================================================================
+Found a 9 line (31 tokens) duplication in the following files: 
+Starting at line 18 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+Starting at line 16 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 15 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/clientui/ClientUI.java
+
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+=====================================================================
+Found a 9 line (31 tokens) duplication in the following files: 
+Starting at line 22 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 23 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+
+	private JTextField textField_4;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+=====================================================================
+Found a 16 line (31 tokens) duplication in the following files: 
+Starting at line 92 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesBLService_Stub.java
+Starting at line 93 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportBLService_Stub.java
+
+	public void endSales() throws RemoteException{
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean removeClient() throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean removeGoods(int loc) throws RemoteException {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+}
+=====================================================================
+Found a 11 line (30 tokens) duplication in the following files: 
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesReturnPO.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesPO.java
+
+	private String notes;		//??????
+	private double total;		//??????
+	
+//--------------------------------------------------------
+	public String getReceiptsID() {
+		return receiptsID;
+	}
+	public void setReceiptsID(String receiptsID) {
+		this.receiptsID = receiptsID;
+	}
+	public String getClient() {
+=====================================================================
+Found a 7 line (30 tokens) duplication in the following files: 
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/ReportBLService_Driver.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/ReportBLService_Driver.java
+
+		HistoryReportVO historyReportVO = new HistoryReportVO(1,period);
+		try {
+			reportBLService.viewHistoryReport(historyReportVO);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 176 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 99 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		button_4.setBounds(446, 14, 93, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("????????????");
+		button_5.setBounds(320, 14, 93, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 180 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 103 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		button_5.setBounds(320, 14, 93, 23);
+		frame.getContentPane().add(button_5);
+		
+		JLabel label_2 = new JLabel("????????????");
+		label_2.setBounds(646, 4, 54, 15);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 184 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 107 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		label_2.setBounds(646, 4, 54, 15);
+		frame.getContentPane().add(label_2);
+		
+		JButton button_6 = new JButton("??????");
+		button_6.setBounds(701, 0, 64, 19);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 55 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 53 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 61 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("??????????????????");
+		label.setFont(new Font("??????", Font.PLAIN, 33));
+		label.setBounds(235, 10, 204, 38);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 83 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 161 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_4.setBounds(455, 24, 93, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("????????????");
+		button_5.setBounds(329, 24, 93, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 87 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 165 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_5.setBounds(329, 24, 93, 23);
+		frame.getContentPane().add(button_5);
+		
+		JLabel label_10 = new JLabel("????????????");
+		label_10.setBounds(655, 14, 54, 15);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 91 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 169 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		label_10.setBounds(655, 14, 54, 15);
+		frame.getContentPane().add(label_10);
+		
+		JButton button_6 = new JButton("??????");
+		button_6.setBounds(710, 10, 64, 19);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 95 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 173 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_6.setBounds(710, 10, 64, 19);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("????????????");
+		button_7.setBounds(30, 95, 105, 33);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 99 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 177 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_7.setBounds(30, 95, 105, 33);
+		frame.getContentPane().add(button_7);
+		
+		JButton button_8 = new JButton("????????????");
+		button_8.setBounds(30, 152, 105, 33);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 103 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 181 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_8.setBounds(30, 152, 105, 33);
+		frame.getContentPane().add(button_8);
+		
+		JButton button_9 = new JButton("??????????????????");
+		button_9.setBounds(30, 209, 105, 33);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 107 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 185 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_9.setBounds(30, 209, 105, 33);
+		frame.getContentPane().add(button_9);
+		
+		JButton button_10 = new JButton("????????????");
+		button_10.setBounds(30, 265, 105, 33);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 111 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 189 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_10.setBounds(30, 265, 105, 33);
+		frame.getContentPane().add(button_10);
+		
+		JButton button_11 = new JButton("??????????????????");
+		button_11.setBounds(30, 324, 105, 33);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 115 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 193 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_11.setBounds(30, 324, 105, 33);
+		frame.getContentPane().add(button_11);
+		
+		JButton button_12 = new JButton("???????????????");
+		button_12.setBounds(30, 384, 105, 33);
+=====================================================================
+Found a 10 line (29 tokens) duplication in the following files: 
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 41 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+
+	public ImportReturnUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 833, 511);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 81 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 86 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+
+		button_1.setBounds(449, 24, 93, 23);
+		frame.getContentPane().add(button_1);
+		
+		JButton button_2 = new JButton("????????????");
+		button_2.setBounds(323, 24, 93, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 116 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 133 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 85 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 84 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button.setBounds(425, 24, 93, 23);
+		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("????????????");
+		button_1.setBounds(299, 24, 93, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 128 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 145 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 97 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		button_2.setBounds(680, 10, 64, 19);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("??????????????????");
+		button_3.setBounds(10, 163, 118, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 132 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 149 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 101 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		button_3.setBounds(10, 163, 118, 23);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_4 = new JButton("?????????????????????");
+		button_4.setBounds(10, 263, 118, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 136 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 105 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 102 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 104 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button_4.setBounds(10, 263, 118, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("?????????????????????");
+		button_5.setBounds(10, 307, 118, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 144 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 161 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 113 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		button_6.setBounds(10, 120, 118, 23);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("?????????????????????");
+		button_7.setBounds(10, 212, 118, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 153 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 105 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		button_4.setBounds(0, 290, 118, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("?????????????????????");
+		button_5.setBounds(0, 247, 118, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 157 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 109 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+
+		button_5.setBounds(0, 247, 118, 23);
+		frame.getContentPane().add(button_5);
+		
+		JButton button_6 = new JButton("????????????");
+		button_6.setBounds(0, 120, 118, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 101 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 100 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button_3.setBounds(10, 163, 118, 23);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_4 = new JButton("?????????????????????");
+		button_4.setBounds(10, 290, 118, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 116 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 135 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		button_7.setBounds(10, 170, 118, 23);
+		frame.getContentPane().add(button_7);
+		
+		JButton button_8 = new JButton("????????????");
+		button_8.setBounds(286, 422, 93, 23);
+=====================================================================
+Found a 5 line (29 tokens) duplication in the following files: 
+Starting at line 120 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 139 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		button_8.setBounds(286, 422, 93, 23);
+		frame.getContentPane().add(button_8);
+		
+		JButton button_9 = new JButton("????????????");
+		button_9.setBounds(466, 422, 93, 23);
+=====================================================================
+Found a 12 line (29 tokens) duplication in the following files: 
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Stub.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Controller.java
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsManageBLService_Controller.java
+
+	public GoodsPO findGoods(String ID) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+=====================================================================
+Found a 17 line (29 tokens) duplication in the following files: 
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/CustomerGiftPromotionController.java
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/AccountGiftPromotionController.java
+
+    public boolean add(CustomerDiscountPromotionVO vo) {
+		
+		return false;
+		
+	}
+    
+    public boolean addGoods(GoodsPO po) {
+		return false;
+		
+	}
+
+    public boolean  delGoods(GoodsPO po) {
+		return false;
+		
+	}
+
+}
+=====================================================================
+Found a 17 line (29 tokens) duplication in the following files: 
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/CustomerGiftPromotion.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/AccountGiftPromotion.java
+
+    public boolean add(CustomerDiscountPromotionPO po) {
+		
+		return false;
+		
+	}
+    
+    public boolean addGoods(GoodsPO po) {
+		return false;
+		
+	}
+
+    public boolean  delGoods(GoodsPO po) {
+		return false;
+		
+	}
+
+}
+=====================================================================
+Found a 6 line (28 tokens) duplication in the following files: 
+Starting at line 8 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ReceiveVOLineItem.java
+Starting at line 8 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/PayVOLineItem.java
+
+	public ReceiveVOLineItem(AccountVO account, double money, String comment) {
+		this.account = account;
+		this.money = money;
+		this.comment = comment;
+	}
+}
+=====================================================================
+Found a 13 line (28 tokens) duplication in the following files: 
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ImportVO.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ImportReturnPO.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ImportPO.java
+
+	public String getClient() {
+		return client;
+	}
+	
+	public String getStorehouse() {
+		return storehouse;
+	}
+		
+	public String getOperator() {
+		return operator;
+	}
+		
+	public ArrayList<ImportGoodsVO> getGoodsVOs() {
+=====================================================================
+Found a 7 line (28 tokens) duplication in the following files: 
+Starting at line 8 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/AccountVO.java
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/financialbl/stub/AccountManagerStub.java
+
+	public AccountVO(String name,double balance,String id){
+		this.name = name;
+		this.balance = balance;
+		this.id = id;
+	}
+
+	public String getName() {
+=====================================================================
+Found a 11 line (28 tokens) duplication in the following files: 
+Starting at line 15 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 15 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+public class SalesUI {
+
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTable table;
+=====================================================================
+Found a 4 line (28 tokens) duplication in the following files: 
+Starting at line 31 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 23 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 30 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 23 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 20 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 23 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/clientui/ClientUI.java
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+=====================================================================
+Found a 13 line (28 tokens) duplication in the following files: 
+Starting at line 35 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 31 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 32 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 29 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 31 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+Starting at line 30 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/clientui/ClientUI.java
+
+					SalesUI window = new SalesUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public SalesUI() {
+=====================================================================
+Found a 6 line (28 tokens) duplication in the following files: 
+Starting at line 56 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 55 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+Starting at line 46 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 53 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 50 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+Starting at line 51 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/clientui/ClientUI.java
+
+		frame.setBounds(100, 100, 807, 468);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+=====================================================================
+Found a 7 line (28 tokens) duplication in the following files: 
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 60 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 7 line (28 tokens) duplication in the following files: 
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addClient.java
+Starting at line 33 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/addAccountInfo.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+=====================================================================
+Found a 7 line (28 tokens) duplication in the following files: 
+Starting at line 10 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePOLineItem.java
+Starting at line 16 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePOLineItem.java
+Starting at line 10 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPOLineItem.java
+Starting at line 16 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPOLineItem.java
+
+	public ReceivePOLineItem(String accountId, double sum, String comment) {
+		this.accountId = accountId;
+		this.sum = sum;
+		this.comment = comment;
+	}
+
+	public void set(String accountId, double sum, String comment) {
+=====================================================================
+Found a 7 line (28 tokens) duplication in the following files: 
+Starting at line 7 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordLineItem.java
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordLineItem.java
+
+	public CashRecordLineItem(String name, double sum, String comment) {
+		this.name = name;
+		this.sum = sum;
+		this.comment = comment;
+	}
+	
+	public void set(String name, double sum, String comment) {
+=====================================================================
+Found a 6 line (28 tokens) duplication in the following files: 
+Starting at line 18 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesLineItem.java
+Starting at line 19 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportLineItem.java
+
+	public void addGoods(String loc, int number, double unitPrice, String notes){
+		this.number = number;
+		this.unitPrice = unitPrice;
+		this.notes = notes;
+	}
+}
+=====================================================================
+Found a 15 line (28 tokens) duplication in the following files: 
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/GoodsDiscountPromotionController.java
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/GoodsDiscountPromotion.java
+
+	public boolean add(GoodsDiscountPromotionVO vo) {
+		return true;
+		
+	}
+	
+	public boolean addGoods(GoodsPO po) {
+		return true;
+		
+	}
+	
+	public boolean delGoods(GoodsPO po){
+		return true;
+	}
+
+}
+=====================================================================
+Found a 17 line (28 tokens) duplication in the following files: 
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/CustomerGiftPromotionController.java
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/CustomerGiftPromotion.java
+Starting at line 11 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/AccountGiftPromotionController.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/promotionbl/AccountGiftPromotion.java
+
+    public boolean add(CustomerDiscountPromotionVO vo) {
+		
+		return false;
+		
+	}
+    
+    public boolean addGoods(GoodsPO po) {
+		return false;
+		
+	}
+
+    public boolean  delGoods(GoodsPO po) {
+		return false;
+		
+	}
+
+}
+=====================================================================
+Found a 9 line (27 tokens) duplication in the following files: 
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ReceiveVO.java
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/PayVO.java
+
+	}
+	
+	public int getClient() {
+		return clientNum;
+	}
+	public void setClient(int clientNum) {
+		this.clientNum = clientNum;
+	}
+	public ArrayList<ReceiveVOLineItem> getList() {
+=====================================================================
+Found a 10 line (27 tokens) duplication in the following files: 
+Starting at line 47 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 46 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 43 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 44 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 36 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/RecordUI.java
+Starting at line 41 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 43 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+Starting at line 42 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/clientui/ClientUI.java
+
+	public SalesUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 807, 468);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 131 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 130 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		textField_6.setColumns(10);
+		
+		JLabel label_8 = new JLabel("??????????????????");
+		label_8.setBounds(10, 120, 85, 15);
+		panel.add(label_8);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 176 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 83 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 161 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+Starting at line 99 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		button_4.setBounds(446, 14, 93, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("????????????");
+		button_5.setBounds(320, 14, 93, 23);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 188 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 95 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 173 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_6.setBounds(701, 0, 64, 19);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("????????????");
+		button_7.setBounds(21, 85, 105, 33);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 192 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 99 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 177 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_7.setBounds(21, 85, 105, 33);
+		frame.getContentPane().add(button_7);
+		
+		JButton button_8 = new JButton("????????????");
+		button_8.setBounds(21, 142, 105, 33);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 196 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 103 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 181 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_8.setBounds(21, 142, 105, 33);
+		frame.getContentPane().add(button_8);
+		
+		JButton button_9 = new JButton("??????????????????");
+		button_9.setBounds(21, 199, 105, 33);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 200 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 107 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 185 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_9.setBounds(21, 199, 105, 33);
+		frame.getContentPane().add(button_9);
+		
+		JButton button_10 = new JButton("????????????");
+		button_10.setBounds(21, 255, 105, 33);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 204 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 111 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 189 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_10.setBounds(21, 255, 105, 33);
+		frame.getContentPane().add(button_10);
+		
+		JButton button_11 = new JButton("??????????????????");
+		button_11.setBounds(21, 314, 105, 33);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 208 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesUI.java
+Starting at line 115 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/saleui/SalesReturnUI.java
+Starting at line 193 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportUI.java
+
+		button_11.setBounds(21, 314, 105, 33);
+		frame.getContentPane().add(button_11);
+		
+		JButton button_12 = new JButton("???????????????");
+		button_12.setBounds(21, 374, 105, 33);
+=====================================================================
+Found a 6 line (27 tokens) duplication in the following files: 
+Starting at line 80 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 94 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+
+		label_4.setBounds(20, 75, 54, 15);
+		panel.add(label_4);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(84, 72, 87, 21);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 136 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 153 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 102 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 104 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button_4.setBounds(10, 263, 118, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("?????????????????????");
+		button_5.setBounds(10, 307, 118, 23);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 140 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 157 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 108 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button_5.setBounds(10, 307, 118, 23);
+		frame.getContentPane().add(button_5);
+		
+		JButton button_6 = new JButton("????????????");
+		button_6.setBounds(10, 120, 118, 23);
+=====================================================================
+Found a 5 line (27 tokens) duplication in the following files: 
+Starting at line 149 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewHistoryReportUI.java
+Starting at line 100 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button_3.setBounds(0, 163, 118, 23);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_4 = new JButton("?????????????????????");
+		button_4.setBounds(0, 290, 118, 23);
+=====================================================================
+Found a 6 line (27 tokens) duplication in the following files: 
+Starting at line 66 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 72 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 70 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 85 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		table = new JTable();
+		table.setBounds(10, 77, 592, 257);
+		panel.add(table);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+=====================================================================
+Found a 8 line (27 tokens) duplication in the following files: 
+Starting at line 29 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceiveList.java
+Starting at line 46 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayList.java
+
+		for(ReceivePOLineItem item : list){
+			if(item.match(accountId, sum, comment)){
+				return item;
+			}
+		}
+		return null;
+	}
+}
+=====================================================================
+Found a 7 line (27 tokens) duplication in the following files: 
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/StockDataService_Driver.java
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/StockBLService_Driver.java
+
+			if(StockDataService.reportStock()== null){
+				System.out.println("Update Successfully!");
+			}
+			
+			String ID = " ";
+			int num = 0;
+			if(StockDataService.giveGift(ID,num)== null){
+=====================================================================
+Found a 11 line (27 tokens) duplication in the following files: 
+Starting at line 32 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/StockDataService_Driver.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsSortDataService_Driver.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Driver.java
+Starting at line 49 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/userblservice/driver/UserBLService_Driver.java
+Starting at line 32 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/StockBLService_Driver.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsSortBLService_Driver.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsManageBLService_Driver.java
+
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void main(String[] args){
+=====================================================================
+Found a 7 line (27 tokens) duplication in the following files: 
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/RecordBLService_Driver.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/MoneyBLService_Driver.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/CashRecordBLService_Driver.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/AccountBLService_Driver.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/AccountBLService_Driver.java
+
+			result = recordBLService.buildNewRecord(vo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(result){
+			System.out.println("build new record pass");
+=====================================================================
+Found a 10 line (26 tokens) duplication in the following files: 
+Starting at line 22 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ReceiveVO.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/PayVO.java
+
+		return list;
+	}
+	
+	public double getSum() {
+		return sum;
+	}
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+}
+=====================================================================
+Found a 11 line (26 tokens) duplication in the following files: 
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/AccountVO.java
+Starting at line 17 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordLineItem.java
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountPO.java
+
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getBalance() {
+=====================================================================
+Found a 5 line (26 tokens) duplication in the following files: 
+Starting at line 77 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/importui/ImportReturnUI.java
+Starting at line 99 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/clientui/ClientUI.java
+
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		scrollPane.setViewportView(table);
+		
+		JButton button_1 = new JButton("????????????");
+		button_1.setBounds(449, 24, 93, 23);
+=====================================================================
+Found a 11 line (26 tokens) duplication in the following files: 
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePOLineItem.java
+Starting at line 40 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePO.java
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPOLineItem.java
+Starting at line 40 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPO.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordLineItem.java
+
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public String getComment() {
+=====================================================================
+Found a 14 line (26 tokens) duplication in the following files: 
+Starting at line 69 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/financialdata/stub/AccountDataServiceSerializableImplStub.java
+Starting at line 35 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/financialbl/stub/AccountManagerStub.java
+
+	}
+
+	public void in(String accountId, double sum) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void out(String accountId, double sum) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+}
+=====================================================================
+Found a 5 line (26 tokens) duplication in the following files: 
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/saleblservice/SalesBLService_Driver.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/importblservice/ImportBLService_Driver.java
+
+		boolean resultOfAddGoods = salesBLService.addGoods("", 1, 1, "test");
+		if(resultOfAddGoods)
+			System.out.println("Add goods successfully!");
+		
+		boolean resultOfAddOtherInfo = salesBLService.addOtherInfo(new SalesInfoVO());
+=====================================================================
+Found a 6 line (26 tokens) duplication in the following files: 
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesLog.java
+Starting at line 16 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportLog.java
+
+	public void writeLog(SalesOperation operation, ClientVO vo){
+		this.operation = operation;
+		ClientDataService clientDataController = new ClientDataController();
+		clientDataController.writeLog("");
+	}
+}
+=====================================================================
+Found a 13 line (26 tokens) duplication in the following files: 
+Starting at line 76 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesController.java
+Starting at line 113 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/Sales.java
+Starting at line 124 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/ImportController.java
+
+	}
+
+	public boolean removeClient() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean removeGoods(int loc) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/UserVO.java
+Starting at line 12 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/AccountVO.java
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/UserPO.java
+Starting at line 17 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordLineItem.java
+Starting at line 13 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountPO.java
+
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getId() {
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 20 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/UserVO.java
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/UserPO.java
+Starting at line 29 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountPO.java
+
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPassward() {
+=====================================================================
+Found a 9 line (25 tokens) duplication in the following files: 
+Starting at line 22 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ReceiveVO.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePO.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPO.java
+
+		return list;
+	}
+	
+	public double getSum() {
+		return sum;
+	}
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+=====================================================================
+Found a 9 line (25 tokens) duplication in the following files: 
+Starting at line 23 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ReceiveVO.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/PayVO.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/CashRecordVO.java
+
+	}
+	
+	public double getSum() {
+		return sum;
+	}
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+}
+=====================================================================
+Found a 13 line (25 tokens) duplication in the following files: 
+Starting at line 3 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/ReceiptVO.java
+Starting at line 5 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/examingbl/MockReceipt.java
+
+public class ReceiptVO {
+	
+	boolean whetherPass;
+	
+	public boolean getWhetherPass() {
+		return whetherPass;
+	}
+	
+	public void setWhetherPass(boolean result){
+		whetherPass=result;
+	}
+
+}
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 15 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/vo/CashRecordVO.java
+Starting at line 20 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePOLineItem.java
+Starting at line 20 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPOLineItem.java
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordPO.java
+
+	}
+
+	public String getAccountId() {
+		return accountId;
+	}
+
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
+	}
+
+	public String getItemName() {
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 128 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 97 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 127 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		button_2.setBounds(680, 10, 64, 19);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("??????????????????");
+		button_3.setBounds(10, 163, 118, 23);
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 132 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/viewSalesReportUI.java
+Starting at line 101 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/ViewCaseReportUI.java
+Starting at line 98 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 100 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+
+		button_3.setBounds(10, 163, 118, 23);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_4 = new JButton("?????????????????????");
+		button_4.setBounds(10, 263, 118, 23);
+=====================================================================
+Found a 5 line (25 tokens) duplication in the following files: 
+Starting at line 122 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/MoneyUI.java
+Starting at line 120 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/CashRecordUI.java
+Starting at line 139 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/presentaion/financialui/AccountUI.java
+
+		button_8.setBounds(10, 170, 118, 23);
+		frame.getContentPane().add(button_8);
+		
+		JButton button_9 = new JButton("????????????");
+		button_9.setBounds(286, 422, 93, 23);
+=====================================================================
+Found a 8 line (25 tokens) duplication in the following files: 
+Starting at line 25 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesReportInfoPO.java
+Starting at line 20 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/HistoryReportInfoPO.java
+
+	}
+	public TimePeriod getPeriod() {
+		return period;
+	}
+	public void setPeriod(TimePeriod period) {
+		this.period = period;
+	}
+	public GoodsPO getGood() {
+=====================================================================
+Found a 8 line (25 tokens) duplication in the following files: 
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesReportInfoPO.java
+Starting at line 35 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesPO.java
+Starting at line 36 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/HistoryReportInfoPO.java
+
+	}
+	public ClientPO getClient() {
+		return client;
+	}
+	public void setClient(ClientPO client) {
+		this.client = client;
+	}
+	public UserPO getUser() {
+=====================================================================
+Found a 9 line (25 tokens) duplication in the following files: 
+Starting at line 95 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/SalesPO.java
+Starting at line 16 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayList.java
+
+	}
+	public double getTotal() {
+		return total;
+	}
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	
+	public String getOperatorID() {
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePOLineItem.java
+Starting at line 40 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/ReceivePO.java
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPOLineItem.java
+Starting at line 40 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPO.java
+Starting at line 41 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordPO.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordLineItem.java
+
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public String getComment() {
+=====================================================================
+Found a 15 line (25 tokens) duplication in the following files: 
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPO.java
+Starting at line 64 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordPO.java
+
+	}
+
+
+
+	public String getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public SerialNumber getSerialNumber() {
+=====================================================================
+Found a 13 line (25 tokens) duplication in the following files: 
+Starting at line 64 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/PayPO.java
+Starting at line 52 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CashRecordPO.java
+
+	}
+
+	public SerialNumber getSerialNumber() {
+		return serialNumber;
+	}
+
+
+	public void setSerialNumber(SerialNumber serialNumber) {
+		this.serialNumber = serialNumber;
+	}
+
+
+	public boolean contains(String key) {
+=====================================================================
+Found a 12 line (25 tokens) duplication in the following files: 
+Starting at line 37 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/GoodsDiscountPromotionPO.java
+Starting at line 50 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CustomerDiscountPromotionPO.java
+
+	}
+
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+	
+	public void delGoods(GoodsPO po){
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/CustomerGiftPromotionPO.java
+Starting at line 48 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountGiftPromotionPO.java
+Starting at line 51 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountDiscountPromotionPO.java
+
+	}
+
+	public DiscountType getType() {
+		return type;
+	}
+
+	public void setType(DiscountType type) {
+		this.type = type;
+	}
+
+	public void delGoods(GoodsPO po){
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 21 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountPO.java
+Starting at line 43 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/po/AccountDiscountPromotionPO.java
+
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
+	}
+
+	public String getId() {
+=====================================================================
+Found a 9 line (25 tokens) duplication in the following files: 
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/StockDataService_Driver.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsSortDataService_Driver.java
+Starting at line 28 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/data/stockdata/GoodsManageDataService_Driver.java
+Starting at line 53 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/userblservice/driver/UserBLService_Driver.java
+Starting at line 70 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/ReportBLService_Driver.java
+Starting at line 34 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/StockBLService_Driver.java
+Starting at line 29 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsSortBLService_Driver.java
+Starting at line 27 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/stockbl/GoodsManageBLService_Driver.java
+
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void main(String[] args){
+=====================================================================
+Found a 7 line (25 tokens) duplication in the following files: 
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/RecordBLService_Driver.java
+Starting at line 24 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/MoneyBLService_Driver.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/MoneyBLService_Driver.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/CashRecordBLService_Driver.java
+Starting at line 14 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/AccountBLService_Driver.java
+Starting at line 26 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/AccountBLService_Driver.java
+Starting at line 39 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogicservice/financialblservice/driver/AccountBLService_Driver.java
+
+			result = recordBLService.buildNewRecord(vo);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(result){
+			System.out.println("build new record pass");
+=====================================================================
+Found a 11 line (25 tokens) duplication in the following files: 
+Starting at line 76 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/SalesController.java
+Starting at line 113 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/Sales.java
+Starting at line 119 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/Import.java
+
+	}
+
+	public boolean removeClient() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean removeGoods(int loc) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+=====================================================================
+Found a 6 line (25 tokens) duplication in the following files: 
+Starting at line 29 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/salebl/Sales.java
+Starting at line 132 of /Users/administrasion/Documents/workspace/SoftwareEngineering/demo/src/main/java/businesslogic/importbl/Import.java
+
+	public ArrayList<SalesPO> multipleConditionFindSales(TimePeriod period,String goodsName,String clientId,String salesman,String storehouse){
+		return null;
+	}
+	
+	//??????????????????????????????????????????
+	public ArrayList<SalesReturnPO> multipleConditionFindSalesReturn(TimePeriod period,String goodsName,String clientId,String salesman,String storehouse){

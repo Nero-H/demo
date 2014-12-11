@@ -1,0 +1,25 @@
+package po;
+
+
+
+
+public class ImportPO extends Import_Sales_FatherPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/*
+	 * 属性同Import_Sales_FatherPO
+	 */
+	
+	ReceiptType type=ReceiptType.Imoprt;
+
+	public ReceiptType getType() {
+		return type;
+	}
+
+	public void setType(ReceiptType type) {
+		this.type = type;
+	}
+
+}

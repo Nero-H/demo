@@ -1,0 +1,121 @@
+package presentaion.saleui;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+public class SalesReturnUI {
+
+	private JFrame frame;
+	private JTable table;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SalesReturnUI window = new SalesReturnUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public SalesReturnUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 821, 510);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(168, 57, 623, 384);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("销售退货管理");
+		label.setFont(new Font("宋体", Font.PLAIN, 33));
+		label.setBounds(235, 10, 204, 38);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("销售单列表");
+		label_1.setBounds(22, 93, 92, 15);
+		panel.add(label_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(55, 117, 558, 257);
+		panel.add(scrollPane);
+		
+		table = new JTable(20,12);
+		scrollPane.setViewportView(table);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		
+		JButton button = new JButton("退货");
+		button.setBounds(520, 72, 93, 23);
+		panel.add(button);
+		
+		JLabel label_2 = new JLabel("单据编号：XSTHD-20141008-00001");
+		label_2.setBounds(283, 93, 227, 15);
+		panel.add(label_2);
+		
+		JButton button_4 = new JButton("退出系统");
+		button_4.setBounds(455, 24, 93, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("软件帮助");
+		button_5.setBounds(329, 24, 93, 23);
+		frame.getContentPane().add(button_5);
+		
+		JLabel label_10 = new JLabel("当前用户");
+		label_10.setBounds(655, 14, 54, 15);
+		frame.getContentPane().add(label_10);
+		
+		JButton button_6 = new JButton("注销");
+		button_6.setBounds(710, 10, 64, 19);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("客户管理");
+		button_7.setBounds(30, 95, 105, 33);
+		frame.getContentPane().add(button_7);
+		
+		JButton button_8 = new JButton("销售管理");
+		button_8.setBounds(30, 152, 105, 33);
+		frame.getContentPane().add(button_8);
+		
+		JButton button_9 = new JButton("销售退货管理");
+		button_9.setBounds(30, 209, 105, 33);
+		frame.getContentPane().add(button_9);
+		
+		JButton button_10 = new JButton("进货管理");
+		button_10.setBounds(30, 265, 105, 33);
+		frame.getContentPane().add(button_10);
+		
+		JButton button_11 = new JButton("进货退货管理");
+		button_11.setBounds(30, 324, 105, 33);
+		frame.getContentPane().add(button_11);
+		
+		JButton button_12 = new JButton("返回主界面");
+		button_12.setBounds(30, 384, 105, 33);
+		frame.getContentPane().add(button_12);
+	}
+
+}

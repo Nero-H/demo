@@ -1,0 +1,65 @@
+package businesslogic.financialbl.stub;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import utility.TimePeriod;
+import vo.CashRecordLineItemVO;
+import vo.CashRecordVO;
+import businesslogicservice.financialblservice.CashRecordBLService;
+
+public class CashRecordManagerStub implements CashRecordBLService{
+
+	public double addItem(CashRecordLineItemVO vo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double delItem(int row) throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public double updateItem(Object value, int row, int col)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean setAccount(String accountId) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public String getSerialNumber() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getUserName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<CashRecordVO> mutipleConditionFind(TimePeriod period,
+			String userName, String accountName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ArrayList<CashRecordVO> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean setUser(String userName) throws RemoteException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+}

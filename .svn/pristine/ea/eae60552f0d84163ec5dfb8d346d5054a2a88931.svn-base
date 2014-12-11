@@ -1,0 +1,5 @@
+package vo;
+
+public enum HistoryReoportType {
+	SALES,IMPORT,FINANCIAL,STOCK;
+}

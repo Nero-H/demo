@@ -1,0 +1,87 @@
+package data.saledata;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+
+import po.SalesReturnPO;
+import data.databaseutility.FileOperate;
+import data.databaseutility.TimeNumber;
+import dataservice.saledataservice.SalesReturnDataService;
+
+public class SalesReturnDataImpl implements SalesReturnDataService{
+	private static SalesReturnDataService salesReturnDatabase;
+	HashMap<String, SalesReturnPO> salesReturnList;
+	private int todayNumber;
+	
+	private SalesReturnDataImpl() {
+		// TODO Auto-generated constructor stub
+		init();
+	}
+	
+	public static SalesReturnDataService getInstance(){
+		if (salesReturnDatabase == null) {
+			salesReturnDatabase = new SalesReturnDataImpl();
+		}
+		return salesReturnDatabase;
+	}
+	public boolean insert(SalesReturnPO po) {
+		// TODO Auto-generated method stub
+		if (salesReturnList.containsKey(po.getReceiptsID())) {
+			return false;
+		}
+		salesReturnList.put(po.getReceiptsID(), po);
+		todayNumber++;
+		return true;
+	}
+
+	public void delete(String receipts) {
+		// TODO Auto-generated method stub
+		salesReturnList.remove(receipts);
+	}
+
+	public void update(SalesReturnPO po) {
+		// TODO Auto-generated method stub
+		salesReturnList.put(po.getReceiptsID(), po);
+	}
+
+	public SalesReturnPO find(String receiptsID) {
+		// TODO Auto-generated method stub
+		return salesReturnList.get(receiptsID);
+	}
+
+	public ArrayList<SalesReturnPO> getSalesReturnList() {
+		// TODO Auto-generated method stub
+		ArrayList<SalesReturnPO> salesReturnPOs = new ArrayList<SalesReturnPO>();
+		salesReturnPOs.addAll(salesReturnList.values());
+		return salesReturnPOs;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void init() {
+		// TODO Auto-generated method stub
+		TimeNumber timeNumber = (TimeNumber) new FileOperate("salesReturnNumber.txt").read();
+		if (timeNumber == null || timeNumber.isBeforeToday(Calendar.getInstance())) {
+			todayNumber = 0;
+		}else {
+			todayNumber = timeNumber.getTodayNumber();
+		}
+		salesReturnList = (HashMap<String, SalesReturnPO>)new FileOperate("src/salesReturn.ser").read();
+		if (salesReturnList == null) {
+			salesReturnList = new HashMap<String, SalesReturnPO>();
+		}
+	}
+
+	public void finish() {
+		// TODO Auto-generated method stub
+		TimeNumber timeNumber = new TimeNumber(todayNumber, Calendar.getInstance());
+		new FileOperate("salesReturnNumber.txt").write(timeNumber);
+		new FileOperate("src/salesReturn.ser").write(salesReturnList);
+	}
+
+	public int getTodayNum() {
+		// TODO Auto-generated method stub
+		return todayNumber;
+	}
+
+}

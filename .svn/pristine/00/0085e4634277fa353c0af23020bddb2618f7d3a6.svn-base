@@ -1,0 +1,91 @@
+package po;
+
+import java.io.Serializable;
+import java.sql.Date;
+
+public class AccountVoucherPromotionPO extends PromotionPO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	Date startDate;
+	Date endDate;
+	double account;
+	double voucher;
+	Promotiontype ptype=Promotiontype.AccountVoucher;
+
+	public Promotiontype getPtype() {
+		return ptype;
+	}
+
+	public void setPtype(Promotiontype ptype) {
+		this.ptype = ptype;
+	}
+
+	public AccountVoucherPromotionPO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public double getAccount() {
+		return account;
+	}
+
+	public void setAccount(double account) {
+		this.account = account;
+	}
+
+	
+
+
+	public double getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(double voucher) {
+		this.voucher = voucher;
+	}
+
+	public AccountVoucherPromotionPO(Date start,Date end,double a,double m){
+		startDate=start;
+		endDate=end;
+		account=a;
+		voucher=m;
+
+	}
+	
+	@Override
+	public boolean test(SalesPO po) {
+		if(po.getBeforeDiscount()>=account)
+			if(po.getDate().compareTo(endDate)<=0){
+				po.setVoucher(voucher);
+			}
+		return true;
+	}
+
+	public int compare(PromotionPO po){
+		AccountVoucherPromotionPO temp=(AccountVoucherPromotionPO)po;
+		if(account==temp.getAccount())
+			if(startDate.compareTo(po.getStartDate())<=0)
+				if(endDate.compareTo(po.endDate)>=0)
+					return -1;
+		return 0;
+		
+	}
+}

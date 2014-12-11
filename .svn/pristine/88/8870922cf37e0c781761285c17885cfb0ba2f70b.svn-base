@@ -1,0 +1,39 @@
+package data.stockdata;
+
+import java.rmi.RemoteException;
+
+import po.GoodsSortPO;
+import dataservice.stockdataservice.GoodsSortDataService;
+
+public class GoodsSortDataService_Driver {
+	public void drive(GoodsSortDataService goodsSortDataService){
+		try {
+			if(goodsSortDataService.addGoodsSort(new GoodsSortPO())== true){
+				System.out.println("Add Successfully!");
+			}
+			
+			if(goodsSortDataService.deleteGoodsSort(new GoodsSortPO())== true){
+				System.out.println("Delete Successfully!");
+			}
+			
+			if(goodsSortDataService.updateGoodsSort(new GoodsSortPO())== true){
+				System.out.println("Update Successfully!");
+			}
+			
+			String ID = " ";
+			if(goodsSortDataService.findGoodsSort(ID)== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args){
+		GoodsSortDataService goodsSortController =   (GoodsSortDataService) new GoodsSortDataService_Controller();
+		GoodsSortDataService_Driver drive = new GoodsSortDataService_Driver();
+		drive.drive(goodsSortController);
+	}
+
+}

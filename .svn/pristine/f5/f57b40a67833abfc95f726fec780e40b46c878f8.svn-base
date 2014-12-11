@@ -1,0 +1,58 @@
+package businesslogic.promotionbl;
+
+import vo.CustomerDiscountPromotionVO;
+import businesslogicservice.promotionblservice.PromotionBLService;
+
+public class PromotionManagerStub implements PromotionBLService{
+
+	
+	public PromotionManagerStub() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public boolean addCustomerDiscount(CustomerDiscountPromotionVO cdpv) {
+		// TODO Auto-generated method stub
+		System.out.println("Add a CustomerDiscountPromotion successfully");
+		return true;
+	}
+
+
+
+	public boolean addCustomerDiscount() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addCustomerGift() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addGoodsDiscount() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addAccountDiscount() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addAccountGift() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addAccountVoucher() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean addCustomerVoucher() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+
+}

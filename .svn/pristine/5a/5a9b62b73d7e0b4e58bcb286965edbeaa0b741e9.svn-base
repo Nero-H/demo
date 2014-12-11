@@ -1,0 +1,103 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import data.databaseutility.SerializableDataFactory;
+import dataservice.stockdataservice.Stock_controller_dataService;
+import dataservice.utility.DataFactory;
+import po.StockCheckListPO;
+import po.StockDailyCheckListPO;
+import po.StockPO;
+import businesslogicservice.stockblservice.StockInterface;
+
+public class Stock implements StockInterface{
+	ArrayList<StockPO> stockPOs ;
+	ArrayList<StockCheckListPO> stockCheckListPOs;
+	ArrayList<StockDailyCheckListPO> stockDailyCheckListPOs ;
+	DataFactory factory;
+	Stock_controller_dataService stockData ;
+	
+	public Stock() throws RemoteException {
+		super();
+		factory = new SerializableDataFactory();
+		
+		stockData = factory.getsStockDataService();
+		
+		
+		
+	}
+
+	public ArrayList<StockCheckListPO> getStockCheck(Date d1, Date d2) {
+							
+		stockCheckListPOs.add(stockData.checkStock(d1, d2));
+		// TODO Auto-generated method stub
+		return stockCheckListPOs;
+	}
+
+	
+	public ArrayList<StockDailyCheckListPO> getStockDailyCheck(Date date,int n) {
+		
+		stockDailyCheckListPOs.add(stockData.checkDailyStock(date,n));
+	 	
+		// TODO Auto-generated method stub
+		return stockDailyCheckListPOs;
+	}
+
+	
+	
+	
+	
+	/*
+     
+    public boolean renew(String goodsID, int number, double unitPrice,char c){
+    	StockPO po = new StockPO();
+ 		if (c == '1'){
+ 			po.setState(true);
+ 		}else if(c == '2'){
+ 			
+ 		}else if (c == '3') {
+			
+		}else if (c == '4') {
+			
+		}
+    	 
+    	 
+ 		return false;
+ 	}
+      
+    public ArrayList<StockCheckListVO> check(Date d1 ,Date d2) {
+		  //遍历list，存储状态。 
+    	 
+    	  
+    	  return list2 ;
+	}
+      
+      
+    public ArrayList<StockDailyCheckListVO> dailyCheck(Date date,int n) {
+    	   
+    	  
+    	   
+    	   
+    	  return list3 ;
+	}
+
+	public void StockChange(StockVO stockVO) throws RemoteException {
+		// TODO Auto-generated method stub
+		StockList stockList = new StockList();
+		stockList.date = stockVO.getDate();
+		stockList.nameString = stockVO.getNameString();
+		stockList.modelNum = stockVO.getModelNum(); 
+		stockList.number = stockVO.getNumber();
+		stockList.perPrice = stockVO.getPerPrice();
+		stockList.state = stockVO.isState();
+		List.add(stockList);
+		
+		
+		
+	}
+
+	
+	*/
+}

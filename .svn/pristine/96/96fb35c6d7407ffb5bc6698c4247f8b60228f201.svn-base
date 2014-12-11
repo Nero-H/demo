@@ -1,0 +1,8 @@
+package dataservice.stockdataservice;
+
+public interface GoodsManagerInterface {
+	public boolean salesGoods(String goodsID, int number, double unitPrice);
+	public boolean salesReturnGoods(String goodsID, int number);
+	public boolean importGoods(String goodsID, int number, double unitPrice);
+	public boolean importReturnGoods(String goodsID, int number);
+}

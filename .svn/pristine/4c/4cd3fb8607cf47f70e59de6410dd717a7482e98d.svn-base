@@ -1,0 +1,105 @@
+package data.financialdata.stub;
+
+
+import java.util.ArrayList;
+
+import po.AccountPO;
+import po.UpdateAccountPO;
+import utility.LikeHashMap;
+import dataservice.financialdataservice.AccountDataService;
+
+public class AccountDataServiceSerializableImplStub implements AccountDataService{
+	LikeHashMap<String,AccountPO> accountList = new LikeHashMap<String,AccountPO>();
+	ArrayList<AccountPO> list = new ArrayList<AccountPO>();
+	
+	public boolean addAccount(AccountPO po) {
+		// TODO Auto-generated method stub
+		boolean isIn = accountList.containsKey(po.getName()); 
+		if(isIn){
+			accountList.put(po.getName(),po);
+			System.out.println("add account successfully");
+		}else{
+			System.out.println("add account failed");
+		}
+		return isIn;
+	}
+
+	public AccountPO findAccount(String id) {
+		// TODO Auto-generated method stub
+		AccountPO account = accountList.get(id);
+		System.out.println("find account successfully");
+		return account;
+	}
+
+	public boolean delAccount(String name) {
+		// TODO Auto-generated method stub
+		System.out.println("delete account successfully");
+		return true;
+	}
+
+	public boolean updateAccount(AccountPO po) {
+		// TODO Auto-generated method stub
+		
+		System.out.println("update account successfully");
+		return true;
+	}
+
+	public ArrayList<AccountPO> getAccountList() {
+		return (ArrayList<AccountPO>)accountList.values();
+	}
+	
+	public ArrayList<AccountPO> fuzzySearch(String id) {
+		// TODO Auto-generated method stub
+		return accountList.fuzzySearch(id);
+	}
+	
+
+	public ArrayList<AccountPO> fuzzySearch() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void finish() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean updateAccount(UpdateAccountPO po) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean in(String accountName, double sum) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public boolean out(String accountName, double sum) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void writeLog(String log) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<AccountPO> getList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getIndexOf(String name) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
+
+	
+}

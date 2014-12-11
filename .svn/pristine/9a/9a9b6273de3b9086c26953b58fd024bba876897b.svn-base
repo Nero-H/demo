@@ -1,0 +1,16 @@
+package businesslogic.userbl;
+
+import java.rmi.RemoteException;
+
+import businesslogic.userbl.stub.UserManagerStub;
+
+public class UserController {
+
+	public String getUserIdentity() throws RemoteException{
+		return new UserManagerStub().getUserIdentity();
+	}
+	
+	public String getUserName() throws RemoteException{
+		return new UserManagerStub().getUserName();
+	}
+}

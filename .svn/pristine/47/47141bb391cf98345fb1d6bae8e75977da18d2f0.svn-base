@@ -1,0 +1,27 @@
+package businesslogic.userbl;
+
+import java.rmi.RemoteException;
+import dataservice.userdataservice.UserDataService;
+import po.UserPO;
+import vo.UserVO;
+import businesslogicservice.userblservice.LoginBLService;
+
+public class LoginController implements LoginBLService{
+
+	UserPO po;
+	UserDataService dataService;
+	
+	public LoginController() {
+		// TODO Auto-generated constructor stub
+		
+	}
+	public UserVO login(String name, String password) throws RemoteException {
+		// TODO Auto-generated method stub
+		po=dataService.findUser(name);
+		if(po.getPassward().equals(password))
+			return new Transform().po_to_vo(po);
+		return null;
+	}
+
+	
+}

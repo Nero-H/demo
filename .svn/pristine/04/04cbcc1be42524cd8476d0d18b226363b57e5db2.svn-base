@@ -1,0 +1,20 @@
+package po;
+
+
+public class SalesPO extends SalesFatherPO{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	ReceiptType type=ReceiptType.Sales;
+	
+	public ReceiptType getType() {
+		return type;
+	}
+	public void setType(ReceiptType type) {
+		this.type = type;
+	}
+	
+
+}

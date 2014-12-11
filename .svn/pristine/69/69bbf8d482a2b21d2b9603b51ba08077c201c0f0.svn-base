@@ -1,0 +1,15 @@
+package dataservice.stockdataservice;
+
+
+import po.GoodsPO;
+import utility.MyTreeNode;
+
+
+public interface GoodsManageDataService {
+	public MyTreeNode getRoot();
+	public void setRoot(MyTreeNode node);
+	public GoodsPO findGoods(String id);
+	public void init();
+	public void finish();
+
+}

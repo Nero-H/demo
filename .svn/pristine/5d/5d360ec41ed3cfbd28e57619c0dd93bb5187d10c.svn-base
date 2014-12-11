@@ -1,0 +1,42 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+
+import vo.GoodsVO;
+import businesslogicservice.stockblservice.GoodsManageService;
+
+public class GoodsManageBLService_Driver {
+	public void drive(GoodsManageService goodsManageService){
+		try {
+			if(goodsManageService.addGoods(new GoodsVO())== true){
+				System.out.println("Add Successfully!");
+			}
+			
+			if(goodsManageService.deleteGoods(new GoodsVO())== true){
+				System.out.println("Delete Successfully!");
+			}
+			
+			if(goodsManageService.updateGoods(new GoodsVO())== true){
+				System.out.println("Update Successfully!");
+			}
+			
+			String ID = " ";
+			if(goodsManageService.findGoods(ID)== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void main(String[] args){
+		GoodsManageService goodManageController =  new GoodsManageBLService_Controller();
+		GoodsManageBLService_Driver drive = new GoodsManageBLService_Driver();
+		drive.drive(goodManageController);
+	}
+
+	
+}

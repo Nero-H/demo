@@ -1,0 +1,53 @@
+package presentaion.financialui;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+public class addClient extends JPanel {
+	private JTable table;
+
+	/**
+	 * Create the panel.
+	 */
+	public addClient() {
+		setLayout(null);
+		
+		JLabel label = new JLabel("添加客户信息");
+		label.setBounds(144, 26, 104, 15);
+		add(label);
+		
+		JButton button = new JButton("下一步");
+		button.setBounds(282, 241, 93, 23);
+		add(button);
+		
+		JButton button_1 = new JButton("上一步");
+		button_1.setBounds(165, 241, 93, 23);
+		add(button_1);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+				{null},
+			},
+			new String[] {
+				"New column"
+			}
+		));
+		table.setBounds(58, 60, 313, 168);
+		add(table);
+
+	}
+
+}

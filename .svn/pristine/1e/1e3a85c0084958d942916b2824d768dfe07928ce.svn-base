@@ -1,0 +1,20 @@
+package data.examingdata;
+
+import java.rmi.RemoteException;
+
+import po.SalesPO;
+
+public class ExamingDataDriver {
+
+	public void drive(ExamingDataStub examingDataStub) throws RemoteException{
+		
+		boolean result=examingDataStub.delete("1234");
+		if(result) System.out.println("Success delete");
+		result=examingDataStub.insert(new SalesPO());
+		if(result) System.out.println("Success insert");
+		result=examingDataStub.finish();
+		if(result) System.out.println("Success finish");
+		result=examingDataStub.init();
+		if(result) System.out.println("Success init");
+	}
+}

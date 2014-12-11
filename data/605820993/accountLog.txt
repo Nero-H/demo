@@ -1,0 +1,40 @@
+Mon Nov 17 23:52:46 CST 2014	userIdentity userName addAccount Nero with initial balance 123124.0
+Mon Nov 17 23:52:46 CST 2014	userIdentity userName updateAccount Nero's name to H
+Mon Nov 17 23:52:46 CST 2014	userIdentity userName delAccount H‹Tue Nov 18 00:41:09 CST 2014	userIdentity userName addAccount Nero with initial balance 123124.0
+Tue Nov 18 00:41:09 CST 2014	userIdentity userName updateAccount Nero's name to H
+Tue Nov 18 00:41:09 CST 2014	userIdentity userName delAccount H
+Mon Dec 01 23:06:35 CST 2014	DefaultIdentity DefaultName 添加账户 黄崇和 并初始化余额为9.9999999E7
+Mon Dec 01 23:06:49 CST 2014	DefaultIdentity DefaultName 删除账户 黄崇和
+Mon Dec 01 23:07:01 CST 2014	DefaultIdentity DefaultName 添加账户 黄崇和 并初始化余额为1.0E18
+Mon Dec 01 23:09:22 CST 2014	DefaultIdentity DefaultName 添加账户 sdas 并初始化余额为21321.0
+Mon Dec 01 23:14:23 CST 2014	DefaultIdentity DefaultName 删除账户 sdas
+Mon Dec 01 23:14:26 CST 2014	DefaultIdentity DefaultName 删除账户 sad
+Mon Dec 01 23:14:27 CST 2014	DefaultIdentity DefaultName 删除账户 fucj
+Mon Dec 01 23:14:40 CST 2014	DefaultIdentity DefaultName 添加账户 sa 并初始化余额为231.0
+Mon Dec 01 23:16:41 CST 2014	DefaultIdentity DefaultName 更新账户名称从 sa为 sa123
+Mon Dec 01 23:17:21 CST 2014	DefaultIdentity DefaultName 删除账户 黄崇和
+Mon Dec 01 23:17:33 CST 2014	DefaultIdentity DefaultName 添加账户 黄崇和 并初始化余额为1.0E10
+Mon Dec 01 23:17:38 CST 2014	DefaultIdentity DefaultName 删除账户 sa123
+Mon Dec 01 23:17:42 CST 2014	DefaultIdentity DefaultName 添加账户 阿萨德 并初始化余额为123123.0
+Mon Dec 01 23:17:49 CST 2014	DefaultIdentity DefaultName 删除账户 黄崇和
+Mon Dec 01 23:17:54 CST 2014	DefaultIdentity DefaultName 添加账户 阿什顿 并初始化余额为3243242.0
+Mon Dec 01 23:17:58 CST 2014	DefaultIdentity DefaultName 删除账户 阿什顿
+Mon Dec 01 23:18:05 CST 2014	DefaultIdentity DefaultName 添加账户 ASF 并初始化余额为123214.0
+Mon Dec 01 23:18:07 CST 2014	DefaultIdentity DefaultName 删除账户 ASF
+Mon Dec 01 23:18:12 CST 2014	DefaultIdentity DefaultName 添加账户 DSA 并初始化余额为213123.0
+Mon Dec 01 23:18:15 CST 2014	DefaultIdentity DefaultName 删除账户 DSA
+Mon Dec 01 23:19:27 CST 2014	DefaultIdentity DefaultName 添加账户 sf 并初始化余额为21312.0
+Mon Dec 01 23:19:31 CST 2014	DefaultIdentity DefaultName 删除账户 sf
+Mon Dec 01 23:22:06 CST 2014	DefaultIdentity DefaultName 添加账户 撒旦 并初始化余额为214.0
+Mon Dec 01 23:22:11 CST 2014	DefaultIdentity DefaultName 删除账户 阿萨德
+Mon Dec 01 23:23:21 CST 2014	DefaultIdentity DefaultName 删除账户 撒旦
+Mon Dec 01 23:23:28 CST 2014	DefaultIdentity DefaultName 添加账户 黄崇和 并初始化余额为1.0E10
+Tue Dec 02 20:03:39 CST 2014	DefaultIdentity DefaultName 添加账户 洪传旺 并初始化余额为0.0
+Sat Dec 06 22:01:46 CST 2014	DefaultIdentity DefaultName 更新账户名称从 黄崇和为 黄崇
+Sat Dec 06 22:01:50 CST 2014	DefaultIdentity DefaultName 更新账户名称从 黄崇为 黄崇和
+Sun Dec 07 15:09:19 CST 2014	DefaultIdentity DefaultName 删除账户 洪传旺
+Sun Dec 07 15:09:22 CST 2014	DefaultIdentity DefaultName 删除账户 黄崇和
+Sun Dec 07 15:09:31 CST 2014	DefaultIdentity DefaultName 添加账户 账户1 并初始化余额为1000.0
+Sun Dec 07 15:09:40 CST 2014	DefaultIdentity DefaultName 添加账户 账户2 并初始化余额为100000.0
+Sun Dec 07 15:09:45 CST 2014	DefaultIdentity DefaultName 更新账户名称从 账户2为 账户2
+Sun Dec 07 15:27:49 CST 2014	DefaultIdentity DefaultName 添加账户 黄崇和 并初始化余额为2.132131242E9

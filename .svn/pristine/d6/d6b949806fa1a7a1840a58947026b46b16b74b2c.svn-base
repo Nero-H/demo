@@ -1,0 +1,36 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import dataservice.stockdataservice.StockChangeRecord;
+import po.StockCheckListPO;
+import po.StockDailyCheckListPO;
+import po.StockPO;
+
+public class Stock implements StockChangeRecord{
+	 ArrayList<StockPO> List = new ArrayList<StockPO>(); //库存单子
+     ArrayList<StockCheckListPO> list2 = new ArrayList<StockCheckListPO>();//库存查看单
+     ArrayList<StockDailyCheckListPO> list3 = new ArrayList<StockDailyCheckListPO>();//库存盘点单
+     StockCheckListPO stockCheckListPO = new StockCheckListPO();
+     
+      
+      public ArrayList<StockCheckListPO> check(Date d1 ,Date d2) {
+		  //遍历list，存储状态。
+    	  return list2 ;
+	}
+      int batch;
+      public ArrayList<StockDailyCheckListPO> dailyCheck(Date date) {
+		return list3 ;
+	}
+
+	public void StockChange(Date date, String name, String id, Boolean IOstate,
+			int IOnumber, int IOprice) throws RemoteException {
+		// TODO Auto-generated method stub
+		//tian jia kucun gaibian
+	}
+
+	
+	
+}

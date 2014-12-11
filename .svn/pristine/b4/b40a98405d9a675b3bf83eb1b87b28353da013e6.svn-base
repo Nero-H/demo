@@ -1,0 +1,75 @@
+package businesslogic.promotionbl;
+
+import java.util.ArrayList;
+
+import dataservice.promotiondataservice.PromotionDataService;
+import po.AccountVoucherPromotionPO;
+import po.AccountGiftPromotionPO;
+import po.ClientLevel;
+import po.CustomerDiscountPromotionPO;
+import po.CustomerGiftPromotionPO;
+import po.CustomerVoucherPromotionPO;
+import po.GoodsDiscountPromotionPO;
+import po.PromotionPO;
+import po.SalesPO;
+
+public class Promotion {
+	
+     ArrayList<PromotionPO> promotions;
+     PromotionDataService dataService;
+     
+     public Promotion() {
+		// TODO Auto-generated constructor stub
+    	 
+	}
+	
+	public boolean addCustomerDiscount(CustomerDiscountPromotionPO po) {
+		// TODO Auto-generated method stub
+		promotions.add(po);
+		return true;
+	}
+
+	public boolean addCustomerGift(CustomerGiftPromotionPO po) {
+		// TODO Auto-generated method stub
+		promotions.add(po);
+		return true;
+	}
+
+	public boolean addGoodsDiscount(GoodsDiscountPromotionPO po) {
+		// TODO Auto-generated method stub
+		promotions.add(po);
+		return true;
+	}
+
+	public boolean addAccountVoucher(AccountVoucherPromotionPO po) {
+		// TODO Auto-generated method stub
+		promotions.add(po);
+		return true;
+	}
+
+	public boolean addAccountGift(AccountGiftPromotionPO po) {
+		// TODO Auto-generated method stub
+		promotions.add(po);
+		return true;
+	}
+	
+	public boolean addCustomerVoucher(CustomerVoucherPromotionPO po) {
+		promotions.add(po);
+		return true;
+	}
+
+	public boolean test(SalesPO po) {
+		// TODO Auto-generated method stub
+		for(PromotionPO promotionPO:promotions){
+			promotionPO.test(po);
+		}
+		return true;
+		
+	}
+
+	public ClientLevel getCustomerLevel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

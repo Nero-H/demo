@@ -1,0 +1,46 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+
+import po.StockCheckListPO;
+import vo.DailyStockVO;
+import vo.GiftlistVO;
+import vo.StateVO;
+import vo.WarningVO;
+import businesslogicservice.stockblservice.StockBLService;
+
+
+
+public class StockBLService_Stub implements StockBLService{
+	public StockCheckListPO checkStock (String time1, String time2) {
+		// TODO Auto-generated method stub
+		return new StockCheckListPO();
+	}
+	public DailyStockVO checkDailyStock () {
+		// TODO Auto-generated method stub
+		return new DailyStockVO();
+	}
+	public StateVO reportStock() {
+		// TODO Auto-generated method stub
+		return new StateVO();
+	}
+	public GiftlistVO giveGift(String ID ,int num) {
+		// TODO Auto-generated method stub
+		return new GiftlistVO();
+	}
+	public WarningVO warning () {
+		
+		return new WarningVO();
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
+}

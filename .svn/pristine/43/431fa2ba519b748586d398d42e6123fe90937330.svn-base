@@ -1,0 +1,189 @@
+package businesslogic.promotionbl;
+
+import java.util.ArrayList;
+
+import po.AccountGiftPromotionPO;
+import po.AccountVoucherPromotionPO;
+import po.CustomerDiscountPromotionPO;
+import po.CustomerGiftPromotionPO;
+import po.CustomerVoucherPromotionPO;
+import po.GiftPO;
+import po.GoodsDiscountPromotionPO;
+import po.PromotionPO;
+import vo.AccountGiftPromotionVO;
+import vo.AccountVoucherPromotionVO;
+import vo.CustomerDiscountPromotionVO;
+import vo.CustomerGiftPromotionVO;
+import vo.CustomerVoucherPromotionVO;
+import vo.GiftVO;
+import vo.GoodsDiscountPromotionVO;
+import vo.PromotionVO;
+
+public class TransformPromotionPV {
+
+	public PromotionPO transform_vo_to_po(PromotionVO vo){
+		switch (vo.getType()) {
+		case CustomerDiscount:
+			CustomerDiscountPromotionPO promotionPO=new CustomerDiscountPromotionPO();
+			CustomerDiscountPromotionVO promotionVO=(CustomerDiscountPromotionVO)vo;
+			promotionPO.setCustomerLevel(po.ClientLevel.valueOf(promotionVO.getCustomerLevel().toString()));
+			promotionPO.setStartDate(promotionVO.getStartDate());
+			promotionPO.setEndDate(promotionVO.getEndDate());
+			promotionPO.setDiscount(promotionVO.getDiscount());
+			promotionPO.setUsername(promotionVO.getUsername());
+			return promotionPO;
+		case CustomerGift:
+			CustomerGiftPromotionPO promotionPO2=new CustomerGiftPromotionPO();
+			CustomerGiftPromotionVO promotionVO2=(CustomerGiftPromotionVO)vo;
+			promotionPO2.setCustomerlevel(po.ClientLevel.valueOf(promotionVO2.getCustomerlevel().toString()));
+			promotionPO2.setStartDate(promotionVO2.getStartDate());
+			promotionPO2.setEndDate(promotionVO2.getEndDate());
+			promotionPO2.setGifts(transformGift_vo_to_po(promotionVO2.getGifts()));
+			promotionPO2.setUsername(promotionVO2.getUsername());
+			return promotionPO2;
+		case CustomerVoucher:
+			CustomerVoucherPromotionPO promotionPO3=new CustomerVoucherPromotionPO();
+			CustomerVoucherPromotionVO promotionVO3=(CustomerVoucherPromotionVO)vo;
+			promotionPO3.setCustomerLevel(po.ClientLevel.valueOf(promotionVO3.getCustomerLevel().toString()));
+			promotionPO3.setStartDate(promotionVO3.getStartDate());
+			promotionPO3.setEndDate(promotionVO3.getEndDate());
+			promotionPO3.setVoucher(promotionVO3.getVoucher());
+			promotionPO3.setUsername(promotionVO3.getUsername());
+			return promotionPO3;
+		case AccountGift:
+			AccountGiftPromotionPO promotionPO4=new AccountGiftPromotionPO();
+			AccountGiftPromotionVO promotionVO4=(AccountGiftPromotionVO)vo;
+			promotionPO4.setStartDate(promotionVO4.getStartDate());
+			promotionPO4.setEndDate(promotionVO4.getEndDate());
+			promotionPO4.setGifts(transformGift_vo_to_po(promotionVO4.getGifts()));
+			promotionPO4.setAccount(promotionVO4.getAccount());
+			promotionPO4.setUsername(promotionVO4.getUsername());
+			return promotionPO4;
+		case AccountVoucher:
+			AccountVoucherPromotionPO promotionPO5=new AccountVoucherPromotionPO();
+			AccountVoucherPromotionVO promotionVO5=(AccountVoucherPromotionVO)vo;
+			promotionPO5.setStartDate(promotionVO5.getStartDate());
+			promotionPO5.setEndDate(promotionVO5.getEndDate());
+			promotionPO5.setVoucher(promotionVO5.getVoucher());
+			promotionPO5.setAccount(promotionVO5.getAccount());
+			promotionPO5.setUsername(promotionVO5.getUsername());
+			return promotionPO5;
+		case GoodsDiscount:
+			GoodsDiscountPromotionPO promotionPO6=new GoodsDiscountPromotionPO();
+			GoodsDiscountPromotionVO promotionVO6=(GoodsDiscountPromotionVO)vo;
+			promotionPO6.setStartDate(promotionVO6.getStartDate());
+			promotionPO6.setEndDate(promotionVO6.getEndDate());
+			promotionPO6.setGoods(transformGift_vo_to_po(promotionVO6.getGoods()));
+			promotionPO6.setDiscount(promotionVO6.getDiscount());
+			promotionPO6.setUsername(promotionVO6.getUsername());
+			return promotionPO6;
+		default:
+			break;
+		}
+		return null;
+		
+	}
+	
+	public ArrayList<GiftPO> transformGift_vo_to_po(ArrayList<GiftVO> giftVOs){
+		ArrayList<GiftPO> giftPOs=new ArrayList<GiftPO>();
+		for(GiftVO vo:giftVOs){
+			GiftPO po=new GiftPO();
+			po.setId(vo.getId());
+			po.setNumber(vo.getNumber());
+			giftPOs.add(po);
+		}
+		return giftPOs;
+	}
+	
+	public ArrayList<GiftVO> transformGift_po_to_vo(ArrayList<GiftPO> giftPOs){
+		ArrayList<GiftVO> giftVOs=new ArrayList<GiftVO>();
+		for(GiftPO po:giftPOs){
+			GiftVO vo=new GiftVO();
+			vo.setId(po.getId());
+			vo.setNumber(po.getNumber());
+			giftVOs.add(vo);
+		}
+		return giftVOs;
+	}
+	
+	
+	public ArrayList<PromotionPO> transArrayList_promotion_vo_to_po(ArrayList<PromotionVO> vos){
+		ArrayList<PromotionPO> pos=new ArrayList<PromotionPO>();
+		for(PromotionVO vo:vos){
+			PromotionPO po=transform_vo_to_po(vo);
+			pos.add(po);
+		}
+		return pos;
+	}
+	
+	public PromotionVO transform_po_to_vo(PromotionPO po){
+		switch (po.getType()) {
+		case CustomerDiscount:
+			CustomerDiscountPromotionVO promotionVO=new CustomerDiscountPromotionVO();
+			CustomerDiscountPromotionPO promotionPO=(CustomerDiscountPromotionPO)po;
+			promotionVO.setCustomerLevel(vo.ClientLevel.valueOf(promotionPO.getCustomerLevel().toString()));
+			promotionVO.setStartDate(promotionPO.getStartDate());
+			promotionVO.setEndDate(promotionPO.getEndDate());
+			promotionVO.setDiscount(promotionPO.getDiscount());
+			promotionVO.setUsername(promotionPO.getUsername());
+			return promotionVO;
+		case CustomerGift:
+			CustomerGiftPromotionVO promotionVO2=new CustomerGiftPromotionVO();
+			CustomerGiftPromotionPO promotionPO2=(CustomerGiftPromotionPO)po;
+			promotionVO2.setCustomerlevel(vo.ClientLevel.valueOf(promotionPO2.getCustomerlevel().toString()));
+			promotionVO2.setStartDate(promotionPO2.getStartDate());
+			promotionVO2.setEndDate(promotionPO2.getEndDate());
+			promotionVO2.setGifts(transformGift_po_to_vo(promotionPO2.getGifts()));
+			promotionVO2.setUsername(promotionPO2.getUsername());
+			return promotionVO2;
+		case CustomerVoucher:
+			CustomerVoucherPromotionVO promotionVO3=new CustomerVoucherPromotionVO();
+			CustomerVoucherPromotionPO promotionPO3=(CustomerVoucherPromotionPO)po;
+			promotionVO3.setCustomerLevel(vo.ClientLevel.valueOf(promotionPO3.getCustomerLevel().toString()));
+			promotionVO3.setStartDate(promotionPO3.getStartDate());
+			promotionVO3.setEndDate(promotionPO3.getEndDate());
+			promotionVO3.setUsername(promotionPO3.getUsername());
+			promotionVO3.setVoucher(promotionPO3.getVoucher());
+			return promotionVO3;
+		case AccountGift:
+			AccountGiftPromotionVO promotionVO4=new AccountGiftPromotionVO();
+			AccountGiftPromotionPO promotionPO4=(AccountGiftPromotionPO)po;
+			promotionVO4.setStartDate(promotionPO4.getStartDate());
+			promotionVO4.setEndDate(promotionPO4.getEndDate());
+			promotionVO4.setGifts(transformGift_po_to_vo(promotionPO4.getGifts()));
+			promotionVO4.setAccount(promotionPO4.getAccount());
+			promotionVO4.setUsername(promotionPO4.getUsername());
+			return promotionVO4;
+		case AccountVoucher:
+			AccountVoucherPromotionVO promotionVO5=new AccountVoucherPromotionVO();
+			AccountVoucherPromotionPO promotionPO5=(AccountVoucherPromotionPO)po;
+			promotionVO5.setStartDate(promotionPO5.getStartDate());
+			promotionVO5.setEndDate(promotionPO5.getEndDate());
+			promotionVO5.setVoucher(promotionPO5.getVoucher());
+			promotionVO5.setAccount(promotionPO5.getAccount());
+			promotionVO5.setUsername(promotionPO5.getUsername());
+			return promotionVO5;
+		case GoodsDiscount:
+			GoodsDiscountPromotionVO promotionVO6=new GoodsDiscountPromotionVO();
+			GoodsDiscountPromotionPO promotionPO6=(GoodsDiscountPromotionPO)po;
+			promotionVO6.setStartDate(promotionPO6.getStartDate());
+			promotionVO6.setEndDate(promotionPO6.getEndDate());
+			promotionVO6.setGoods(transformGift_po_to_vo(promotionPO6.getGoods()));
+			promotionVO6.setDiscount(promotionPO6.getDiscount());
+			promotionVO6.setUsername(promotionPO6.getUsername());
+			return promotionVO6;
+		default:
+			break;
+		}
+		return null;
+	}
+	
+	public ArrayList<PromotionVO> transformArrayList_promotion_po_to_vo(ArrayList<PromotionPO> pos){
+		ArrayList<PromotionVO> vos=new ArrayList<PromotionVO>();
+		for(PromotionPO po:pos){
+			PromotionVO vo=transform_po_to_vo(po);
+			vos.add(vo);
+		}
+		return vos;
+	}
+}

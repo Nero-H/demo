@@ -1,0 +1,41 @@
+package businesslogic.financialbl;
+
+import java.rmi.RemoteException;
+
+import vo.AccountVO;
+import vo.UpdateAccountVO;
+import businesslogicservice.financialblservice.AccountBLService;
+
+public class AccountController implements AccountBLService{
+
+	public boolean addAccount(AccountVO vo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new Account().addAccount(vo);
+	}
+
+	public boolean delAccount(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new Account().delAccount(id);
+	}
+
+	public boolean updateAccount(UpdateAccountVO vo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new Account().updateAccount(vo);
+	}
+
+	public AccountVO findAccount(String id) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new Account().findAccount(id);
+	}
+
+	public boolean in(String accountName, double sum) {
+		// TODO Auto-generated method stub
+		return new Account().in(accountName, sum);
+	}
+
+	public boolean out(String accountName, double sum) {
+		// TODO Auto-generated method stub
+		return new Account().out(accountName, sum);
+	}
+
+}

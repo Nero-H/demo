@@ -1,0 +1,50 @@
+package businesslogic.examingbl;
+
+import java.util.ArrayList;
+
+import dataservice.examingdataservice.ExamingDataService;
+import vo.ReceiptVO;
+import vo.SalesVO;
+import businesslogicservice.examingblservice.Examingblservice;
+
+public class ExamingController implements Examingblservice{
+
+	ArrayList<ReceiptVO> receiptVOs;
+	ExamingDataService dataService;
+	ArrayList<SalesVO> salesVOs;
+	
+	
+	ExamingController(){
+		
+	}
+	
+	
+	public boolean pass(String id) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean notPass(String id) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean modify(ReceiptVO vo) {
+		// TODO Auto-generated method stub
+		
+		return true;
+	}
+
+
+	public boolean examing(ReceiptVO vo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public ArrayList<ReceiptVO> getReceipts() {
+		// TODO Auto-generated method stub
+		return receiptVOs;
+	}
+
+}

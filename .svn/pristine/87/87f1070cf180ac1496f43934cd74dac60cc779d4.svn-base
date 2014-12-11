@@ -1,0 +1,46 @@
+package businesslogic.promotionbl;
+
+import java.util.ArrayList;
+
+import po.GiftPO;
+import po.GoodsPO;
+import businesslogic.stockbl.GoodsManager;
+
+public class GoodsList {
+
+	private ArrayList<GiftPO> goods=new ArrayList<GiftPO>();
+	
+	public void add(GiftPO lineItem){
+		goods.add(lineItem);
+	}
+	
+	public void del(String id){
+		ArrayList<GiftPO> temp=new ArrayList<GiftPO>();
+		for(GiftPO item:goods){
+			if(item.getId().equals(id)){
+				temp.add(item);
+			}
+		}
+		goods.removeAll(temp);
+		
+	}
+	
+	public ArrayList<GiftPO> getGoods() {
+		return goods;
+	}
+
+	public void setGoods(ArrayList<GiftPO> goods) {
+		this.goods = goods;
+	}
+
+	@SuppressWarnings("unused")
+	public double total() {
+		double result=0;
+		GoodsManager manager=new GoodsManager();
+		for(GiftPO po:goods){
+			GoodsPO goodsPO=GoodsManager.findGoods(po.getId());
+			result+=goodsPO.getRecentPrice()*po.getNumber();
+		}
+		return result;
+	}
+}

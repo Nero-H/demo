@@ -1,0 +1,11 @@
+package businesslogicservice.stockblservice;
+
+import utility.MyTreeNode;
+import vo.GoodsVO;
+
+public interface GoodsInterface {
+	public MyTreeNode getGoodsList();
+	public boolean importGoods(String goodsID, int number, double unitPrice);
+	public boolean saleGoods(String goodsID, int number, double unitPrice);
+	public GoodsVO findGoods(String goodsID);
+}

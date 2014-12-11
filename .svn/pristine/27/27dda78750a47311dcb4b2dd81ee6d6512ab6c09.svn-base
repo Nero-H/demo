@@ -1,0 +1,14 @@
+package dataservice.stockdataservice;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import data.stockdata.StockRoom;
+import po.StockPO;
+
+public interface StockChangeService {
+
+	 public void renew(StockPO stockPO) throws RemoteException;
+	 
+	 public ArrayList<StockRoom > getStock() throws RemoteException;
+}

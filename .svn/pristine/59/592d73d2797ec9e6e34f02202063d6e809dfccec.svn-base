@@ -1,0 +1,48 @@
+package dataservice.userdataservice.driver;
+
+import po.UserIdentity;
+import po.UserPO;
+import data.userdata.UserDataServiceSerializableIml;
+import dataservice.userdataservice.UserDataService;
+
+public class UserDataService_Driver {
+	public void drive(UserDataService userDataService){
+		UserPO user = new UserPO("Nero","X092","asd2323",UserIdentity.FinancialManager);
+		boolean result = userDataService.addUser(user);
+		if(result){
+			System.out.println("driver: add user pass");
+		}else{
+			System.out.println("driver: add user failed");
+		}
+		
+		result = userDataService.deleteUser(user.getName());
+		if(result){
+			System.out.println("driver: delete user pass");
+		}else{
+			System.out.println("driver: delete user failed");
+		}
+		
+		result = userDataService.updateUser(user);
+		if(result){
+			System.out.println("driver: update user pass");
+		}else{
+			System.out.println("driver: update user failed");
+		}
+		
+		UserPO findedUser = userDataService.findUser("zxas");
+		if(findedUser != null){
+			System.out.println("driver: find user pass");
+		}else{
+			System.out.println("driver: find user failed");
+		}
+		
+		userDataService.init();
+		userDataService.finish();
+	}
+	
+	public static void main(String[] args) {
+		UserDataService_Driver driver = new UserDataService_Driver();
+		UserDataService userDataService = new UserDataServiceSerializableIml();
+		driver.drive(userDataService);
+	}
+}

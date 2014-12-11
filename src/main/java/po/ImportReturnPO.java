@@ -1,0 +1,31 @@
+package po;
+
+import vo.ReceiptType;
+
+
+public class ImportReturnPO extends Import_Sales_FatherPO{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	ReceiptType type=ReceiptType.ImportReturn;
+
+	public ImportReturnPO(ImportPO po, String receiptsID) {
+		// TODO Auto-generated constructor stub
+		setReceiptsID(receiptsID);
+		setClient(po.getClient());
+		setStorehouse(po.getStorehouse());
+		setTotal(po.getTotal());
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String getId() {
+		// TODO Auto-generated method stub
+		return getReceiptsID();
+	}
+
+}

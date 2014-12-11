@@ -1,0 +1,47 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+
+import businesslogicservice.stockblservice.StockBLService;
+
+public class StockBLService_Driver {
+
+	public void drive(StockBLService StockBLService){
+		try {
+			String time1 = " ";
+			String time2 = " ";
+			if(StockBLService.checkStock(time1,time2)== null){
+				System.out.println("Add Successfully!");
+			}
+			
+			if(StockBLService.checkDailyStock()== null){
+				System.out.println("Delete Successfully!");
+			}
+			
+			if(StockBLService.reportStock()== null){
+				System.out.println("Update Successfully!");
+			}
+			
+			String ID = " ";
+			int num = 0;
+			if(StockBLService.giveGift(ID,num)== null){
+				System.out.println("Find Successfully!");
+			}
+			
+			if(StockBLService.warning()== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	public static void main(String[] args){
+		StockBLService StockBLController =  new StockBLService_Controller();
+		StockBLService_Driver drive = new StockBLService_Driver();
+		drive.drive(StockBLController);
+	}
+}

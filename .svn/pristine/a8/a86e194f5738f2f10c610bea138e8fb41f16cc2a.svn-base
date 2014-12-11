@@ -1,0 +1,114 @@
+package po;
+
+import java.rmi.RemoteException;
+
+import utility.MyTreeNode;
+
+
+public class GoodsPO extends MyTreeNode{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String goodsNumber;
+	private String goodsName;
+	private String goodsModelNumber;
+	private int stockNumber;
+	private double inPrice;
+	private double retailPrice;
+	private double recentPrice;
+	private double recentRetailPrice;
+	private int warningNumber;
+	
+	public GoodsPO(String goodsNumber, String goodsName,
+			String goodsModelNumber, int stockNumber, double inPrice,
+			double retailPrice, 
+			int warningNumber) throws RemoteException {
+		super(goodsName);
+		this.goodsNumber = goodsNumber;
+		this.goodsName = goodsName;
+		this.goodsModelNumber = goodsModelNumber;
+		this.stockNumber = stockNumber;
+		this.inPrice = inPrice;
+		this.retailPrice = retailPrice;
+		
+		this.warningNumber = warningNumber;
+	}
+
+	public int getWarningNumber() {
+		return warningNumber;
+	}
+
+	public void setWarningNumber(int warningNumber) {
+		this.warningNumber = warningNumber;
+	}
+
+	public String getGoodsNumber() {
+		return goodsNumber;
+	}
+
+	public void setGoodsNumber(String goodsNumber) {
+		this.goodsNumber = goodsNumber;
+	}
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+
+	public String getGoodsModelNumber() {
+		return goodsModelNumber;
+	}
+
+	public void setGoodsModelNumber(String goodsModelNumber) {
+		this.goodsModelNumber = goodsModelNumber;
+	}
+
+	public int getStockNumber() {
+		return stockNumber;
+	}
+
+	public void setStockNumber(int stockNumber) {
+		this.stockNumber = stockNumber;
+	}
+
+	public double getInPrice() {
+		return inPrice;
+	}
+
+	public void setInPrice(int inPrice) {
+		this.inPrice = inPrice;
+	}
+
+	public double getRetailPrice() {
+		return retailPrice;
+	}
+
+	public void setRetailPrice(int retailPrice) {
+		this.retailPrice = retailPrice;
+	}
+
+	public double getRecentPrice() {
+		return recentPrice;
+	}
+
+	public void setRecentPrice(int recentPrice) {
+		this.recentPrice = recentPrice;
+	}
+
+	public double getRecentRetailPrice() {
+		return recentRetailPrice;
+	}
+
+	public void setRecentRetailPrice(int recentRetailPrice) {
+		this.recentRetailPrice = recentRetailPrice;
+	}
+
+
+	
+
+}

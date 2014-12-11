@@ -1,0 +1,81 @@
+package data.userdata;
+
+import java.util.ArrayList;
+
+import po.UserPO;
+import utility.LikeHashMap;
+import data.databaseutility.FileOperate;
+import dataservice.userdataservice.UserDataService;
+
+public class UserDataServiceSerializableIml implements UserDataService{
+	LikeHashMap<String,UserPO> userList = new LikeHashMap<String, UserPO>(); 
+	
+	private static UserDataServiceSerializableIml userDataServiceSerializableIml;
+	
+	public UserDataServiceSerializableIml(){
+		init();
+	}
+	
+	public static UserDataServiceSerializableIml getInstance(){
+		if(userDataServiceSerializableIml==null)
+			userDataServiceSerializableIml=new UserDataServiceSerializableIml();
+		return userDataServiceSerializableIml;
+	}
+	
+	
+	public boolean addUser(UserPO po) {
+		// TODO Auto-generated method stub
+		boolean isIn = userList.containsValue(po);
+		if(isIn){
+			System.out.println("User already exist");
+		}else{
+			System.out.println("add User successfully");
+		}
+		return isIn;
+	}
+
+	public boolean deleteUser(String id) {
+		// TODO Auto-generated method stub
+		UserPO user = userList.remove(id);
+		return !(user == null);
+	}
+
+	public boolean updateUser(UserPO po) {
+		// TODO Auto-generated method stub
+		boolean isIn = userList.containsValue(po);
+		if(isIn){
+			userList.put(po.getId(), po);
+			System.out.println("update user successfully");
+		}else{
+			System.out.println("user not exist");
+		}
+			return isIn;
+	}
+
+	public UserPO findUser(String ID) {
+		// TODO Auto-generated method stub
+		UserPO user = userList.get(ID);
+		return user;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void init() {
+		// TODO Auto-generated method stub
+		userList=(LikeHashMap<String, UserPO>) new FileOperate("src/user.ser").read();
+		if(userList==null)
+			userList=new LikeHashMap<String, UserPO>();
+	}
+
+	public void finish() {
+		// TODO Auto-generated method stub
+		new FileOperate("src/user.ser").write(userList);
+	}
+
+	public ArrayList<UserPO> getUserPOs() {
+		// TODO Auto-generated method stub
+		ArrayList<UserPO> userPOs=new ArrayList<UserPO>();
+		userPOs.addAll(userList.values());
+		return userPOs;
+	}
+
+}

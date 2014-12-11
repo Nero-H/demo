@@ -1,0 +1,39 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+
+import vo.GoodsSortVO;
+import businesslogicservice.stockblservice.GoodsSortBLService;
+
+public class GoodsSortBLService_Driver {
+
+	public void drive(GoodsSortBLService goodsSortService){
+		try {
+			if(goodsSortService.addGoodsSort(new GoodsSortVO(""))== true){
+				System.out.println("Add Successfully!");
+			}
+			
+			if(goodsSortService.deleteGoodsSort(new GoodsSortVO(""))== true){
+				System.out.println("Delete Successfully!");
+			}
+			
+			if(goodsSortService.updateGoodsSort(new GoodsSortVO(""))== true){
+				System.out.println("Update Successfully!");
+			}
+			
+			String ID = " ";
+			if(goodsSortService.findGoodsSort(ID)== null){
+				System.out.println("Find Successfully!");
+			}
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args){
+		GoodsSortBLService goodsSortController =   new GoodsSortBLService_Controller();
+		GoodsSortBLService_Driver drive = new GoodsSortBLService_Driver();
+		drive.drive(goodsSortController);
+	}
+}

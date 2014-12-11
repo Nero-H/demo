@@ -1,0 +1,55 @@
+package server;
+
+import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.server.UnicastRemoteObject;
+
+import businesslogic.clientbl.ClientController;
+import businesslogic.financialbl.Account;
+import businesslogic.financialbl.AccountController;
+import businesslogicservice.clientblservice.ClientBLService;
+import businesslogicservice.financialblservice.AccountBLService;
+
+public class Server extends UnicastRemoteObject implements ServerInterface, Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public Server() throws RemoteException {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public static void main(String[] args) {
+		//注册通讯端口
+		try {
+			ServerInterface server = new Server();
+			LocateRegistry.createRegistry(5000);
+			Naming.rebind("rmi://127.0.0.1:5000/ServerInterface", server);
+			System.out.println("Service Start!");
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public ClientBLService getClientService() throws RemoteException{
+		ClientBLService clientBLService = new ClientController();
+		return clientBLService;
+	}
+
+
+	public AccountBLService getAccountBLService() throws RemoteException {
+		// TODO Auto-generated method stub
+		return new AccountController();
+	}
+}

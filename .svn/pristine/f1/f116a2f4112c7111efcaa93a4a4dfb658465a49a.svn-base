@@ -1,0 +1,111 @@
+package data.stockdata;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+
+import utility.MyTreeNode;
+import businesslogic.financialbl.RecordController;
+import dataservice.stockdataservice.GoodsManageDataService;
+
+public class GoodsMangeDataServiceSerializableImpl implements GoodsManageDataService{
+	static GoodsMangeDataServiceSerializableImpl unique;
+	public static GoodsMangeDataServiceSerializableImpl getInstance(){
+		if(unique == null){
+			unique = new GoodsMangeDataServiceSerializableImpl();
+		}
+		return unique;
+	}
+	
+	public GoodsMangeDataServiceSerializableImpl(){
+		init();
+	}
+	
+	File file;
+	MyTreeNode root;
+	public MyTreeNode getRoot() {
+		return root;
+	}
+
+	public void setRoot(MyTreeNode root) {
+		this.root = root;
+		finish();
+	}
+
+	public MyTreeNode findGoods(String id) {
+		return findGoods(id, root);
+	}
+	
+	public MyTreeNode findGoods(String id,MyTreeNode root){
+		MyTreeNode returnNode;
+		for(int i = 0 ; i < root.getChildCount() ; i ++){
+			MyTreeNode child = (MyTreeNode)root.getChildAt(i);
+			if((!child.getAllowsChildren())&&child.getGoodsNumber().equals(id)){
+				return child;
+			}
+			if((returnNode = findGoods(id,child)) != null){
+				return returnNode;
+			}
+		}
+		return null;
+	}
+	
+	public void init() {
+		file = new File("data/" + new RecordController().getRecordName()
+				+ "/Goods.ser");
+		File dir = new File("data/" + new RecordController().getRecordName());
+		if(!dir.exists()){
+			dir.mkdirs();
+		}
+		if(file.exists()){
+		try {
+			ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+			if (file.length() > 0) {
+				root = (MyTreeNode) ois.readObject();
+			} else {
+				root = new MyTreeNode("root");
+			}
+			ois.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}else{
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			root = new MyTreeNode("root");
+
+		}
+	}
+
+	public void finish() {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(
+					new FileOutputStream(file));
+			oos.writeObject(root);
+			oos.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

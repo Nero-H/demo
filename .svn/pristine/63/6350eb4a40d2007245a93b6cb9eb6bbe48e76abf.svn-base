@@ -1,0 +1,9 @@
+package dataservice.stockdataservice;
+
+import java.rmi.RemoteException;
+import java.sql.Date;
+
+public interface StockChangeRecord {
+
+	public void  StockChange (Date date, String name ,String id,Boolean IOstate ,int IOnumber ,int IOprice ) throws RemoteException;
+}

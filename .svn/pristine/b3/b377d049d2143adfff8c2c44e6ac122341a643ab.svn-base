@@ -1,0 +1,38 @@
+package vo;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+
+
+public class GiftReceiptVO extends ReceiptVO implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	ArrayList<GiftVO> gifts=new ArrayList<GiftVO>();
+	Date date=new Date();
+	ReceiptType type=ReceiptType.Gift;
+	
+	public ReceiptType getType() {
+		return type;
+	}
+	public void setType(ReceiptType type) {
+		this.type = type;
+	}
+	public ArrayList<GiftVO> getGifts() {
+		return gifts;
+	}
+	public void setGifts(ArrayList<GiftVO> gifts) {
+		this.gifts = gifts;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+
+}

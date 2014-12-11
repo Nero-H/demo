@@ -1,0 +1,72 @@
+package businesslogic.financialbl;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import utility.TimePeriod;
+import vo.CashRecordLineItemVO;
+import vo.CashRecordVO;
+import businesslogicservice.financialblservice.CashRecordBLService;
+
+public class CashRecordController implements CashRecordBLService{
+
+	public double addItem(CashRecordLineItemVO vo) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new CashRecord().addItem(vo);
+	}
+
+	public double delItem(int row) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new CashRecord().delItem(row);
+	}
+
+	public double updateItem(Object value,int row, int col) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new CashRecord().updateItem(value, row, col);
+	}
+
+	public boolean setAccount(String accountId) throws RemoteException {
+		// TODO Auto-generated method stub
+		return new CashRecord().setAccount(accountId);
+	}
+
+	public boolean finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		return new CashRecord().finish();
+	}
+
+	public String getSerialNumber() {
+		// TODO Auto-generated method stub
+		try {
+			return new CashRecord().getSerialNumber();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public String getUserName() {
+		// TODO Auto-generated method stub
+		try {
+			return new CashRecord().getUserName();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public ArrayList<CashRecordVO> mutipleConditionFind(TimePeriod period,
+			String userName, String accountName) {
+		// TODO Auto-generated method stub
+		try {
+			return new CashRecord().mutipleConditionFind(period, userName, accountName);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+}

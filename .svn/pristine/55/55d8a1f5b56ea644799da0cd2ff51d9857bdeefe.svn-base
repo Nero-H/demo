@@ -1,0 +1,32 @@
+package businesslogic.examingbl;
+
+import po.ReceiptPO;
+import vo.ReceiptVO;
+import businesslogicservice.examingblservice.Examingblservice;
+
+public class ExamingManagerStub implements Examingblservice{
+	
+	public ExamingManagerStub() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public boolean pass() {
+		// TODO Auto-generated method stub
+		System.out.println("Pass");
+		
+		return true;
+	}
+
+	public boolean notPass() {
+		// TODO Auto-generated method stub
+		System.out.println("Not Pass");
+		return true;
+	}
+
+
+	public boolean modify(ReceiptVO v) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,41 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+
+import vo.GoodsVO;
+import businesslogicservice.stockblservice.GoodsManageService;
+
+public class GoodsManageBLService_Stub implements GoodsManageService {
+
+	
+	
+	
+	
+	public boolean addGoods(GoodsVO vo) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public boolean deleteGoods(GoodsVO vo ) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public boolean updateGoods (GoodsVO vo) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public GoodsVO findGoods(String ID)  {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

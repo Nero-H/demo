@@ -1,0 +1,24 @@
+package data.promotiondata;
+
+import java.rmi.RemoteException;
+
+import po.AccountGiftPromotionPO;
+import dataservice.promotiondataservice.PromotionDataService;
+
+public class PromotionDataManagerDriver {
+	
+	public void drive(PromotionDataService promotionDataService) throws RemoteException {
+		promotionDataService.dailyUpdate();
+		promotionDataService.init();
+		promotionDataService.delete(new AccountGiftPromotionPO());
+		promotionDataService.finish();
+		promotionDataService.insert(new AccountGiftPromotionPO());
+		
+		
+	}
+	
+	public static void main(String[] args) throws RemoteException {
+		new PromotionDataManagerDriver().drive(new PromotionDataManagerStub());
+	}
+
+}

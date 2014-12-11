@@ -1,0 +1,34 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+
+import vo.GoodsSortVO;
+import businesslogicservice.stockblservice.GoodsSortBLService;
+
+public class GoodsSortBLService_Controller implements GoodsSortBLService{
+	public boolean addGoodsSort (GoodsSortVO vo){
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public boolean deleteGoodsSort (GoodsSortVO vo ) {
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public boolean updateGoodsSort (GoodsSortVO vo){
+		// TODO Auto-generated method stub
+		return true ;
+	}
+	public GoodsSortVO findGoodsSort (String ID) {
+		// TODO Auto-generated method stub
+		return new GoodsSortVO(ID);
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

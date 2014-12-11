@@ -1,0 +1,64 @@
+package businesslogic.financialbl;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import utility.TimePeriod;
+import vo.MoneyLineItemVO;
+import vo.PayVO;
+import vo.ReceiptType;
+import vo.ReceiveVO;
+import businesslogicservice.financialblservice.MoneyBLService;
+
+public class MoneyController implements MoneyBLService{
+	ReceiptType type;
+	
+	public MoneyController(ReceiptType type) {
+		this.type = type;
+	}
+	
+	public boolean addItem(MoneyLineItemVO vo) throws RemoteException {
+		return new Money(type).addItem(vo);
+	}
+
+	public boolean delItem(int row) {
+		return new Money(type).delItem(row);
+	}
+
+	public boolean updateItem(Object value, int row, int col) {
+		return new Money(type).updateItem(value, row, col);
+	}
+
+	public String getSerialNumber() {
+		return new Money(type).getSerialNumber();
+	}
+
+	public boolean setClient(String clientName) {
+		return new Money(type).setClient(clientName);
+	}
+
+	public String getUser() {
+		return new Money(type).getUser();
+	}
+
+	public double getSum() {
+		return new Money(type).getSum();
+	}
+
+	public ArrayList<PayVO> mutipleConditionFindPay(TimePeriod period,
+			String clientName, String userName,String accountName) {
+		return new Money(type).mutipleConditionFindPay(period, clientName, userName,accountName);
+	}
+
+	public ArrayList<ReceiveVO> mutipleConditionFindReceive(TimePeriod period,
+			String clientName, String userName,String accountName) {
+		return new Money(type).mutipleConditionFindReceive(period, clientName, userName,accountName);
+	}
+
+	public boolean finish(ReceiptType type) {
+		return new Money(type).finish(type);
+	}
+
+
+
+}

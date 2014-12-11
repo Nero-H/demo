@@ -1,0 +1,37 @@
+package data.stockdata;
+
+import java.rmi.RemoteException;
+import java.sql.Date;
+import java.util.ArrayList;
+
+import dataservice.stockdataservice.StockChangeService;
+import po.StockPO;
+
+public class StockRoom implements StockChangeService{
+	Date date ;
+	String nameString ;
+	String modelNum ;
+	boolean state;
+	int number ;
+	double perPrice ;
+	
+	ArrayList<StockRoom> stockRooms = new ArrayList<StockRoom>();
+	
+	public void renew(StockPO stockPO) throws RemoteException{
+		StockRoom stockRoom  = new StockRoom();
+		stockRoom.date = stockPO.getDate();
+		stockRoom.nameString = stockPO.getNameString();
+		stockRoom.modelNum = stockPO.getModelNum();
+		stockRoom.state = stockPO.isState();
+		stockRoom.number = stockPO.getNumber();
+		stockRoom.perPrice = stockPO.getPerPrice();
+		
+		stockRooms.add(stockRoom);
+		
+	}
+	
+	public ArrayList<StockRoom> getStock() throws RemoteException{
+		
+		return stockRooms;
+	}
+}

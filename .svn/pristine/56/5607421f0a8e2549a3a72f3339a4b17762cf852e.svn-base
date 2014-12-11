@@ -1,0 +1,43 @@
+package businesslogic.examingbl;
+
+import java.util.ArrayList;
+
+import dataservice.examingdataservice.ExamingDataService;
+import po.ReceiptPO;
+
+public class ExamingManager {
+	
+	ArrayList<ReceiptPO> receiptPOs;
+	ExamingDataService dataService;
+	ExamingController controller;
+
+	public ExamingManager() {
+		
+	}
+	
+	public void examing(ReceiptPO po) {
+        controller=new ExamingController(po);
+	}
+
+	public ArrayList<ReceiptPO> getReceiptPOs() {
+		return receiptPOs;
+	}
+
+	public void setReceiptPOs(ArrayList<ReceiptPO> receiptPOs) {
+		this.receiptPOs = receiptPOs;
+	}
+
+	public ExamingController getController() {
+		return controller;
+	}
+
+	public void setController(ExamingController controller) {
+		this.controller = controller;
+	}
+	
+	
+	
+	
+	
+
+}

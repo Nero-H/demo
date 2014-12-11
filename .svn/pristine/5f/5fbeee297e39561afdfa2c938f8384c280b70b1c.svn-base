@@ -1,0 +1,36 @@
+package data.stockdata;
+
+import java.rmi.RemoteException;
+
+import po.GoodsPO;
+import dataservice.stockdataservice.GoodsManageDataService;
+
+
+public class GoodsManageDataService_Driver {
+	public void drive(GoodsManageDataService goodsManageDataService){
+			if(goodsManageDataService.addGoods(new GoodsPO("X1","GN","X01",12,213,213,3432))== true){
+				System.out.println("Add Successfully!");
+			}
+			
+			if(goodsManageDataService.deleteGoods(new GoodsPO("X1","GN","X01",12,213,213,3432))== true){
+				System.out.println("Delete Successfully!");
+			}
+			
+			if(goodsManageDataService.updateGoods(new GoodsPO("X1","GN","X01",12,213,213,3432))== true){
+				System.out.println("Update Successfully!");
+			}
+			
+			String ID = " ";
+			if(goodsManageDataService.findGoods(ID)== null){
+				System.out.println("Find Successfully!");
+			}
+		
+	}
+
+	public static void main(String[] args){
+		GoodsManageDataService goodManageController =  new GoodsManageDataService_Controller();
+		GoodsManageDataService_Driver drive = new GoodsManageDataService_Driver();
+		drive.drive(goodManageController);
+	}
+
+}

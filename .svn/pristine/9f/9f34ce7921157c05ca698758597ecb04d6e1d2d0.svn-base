@@ -1,0 +1,22 @@
+package businesslogicservice.promotionblservice;
+
+import java.util.ArrayList;
+
+import vo.AccountGiftPromotionVO;
+import vo.AccountVoucherPromotionVO;
+import vo.CustomerDiscountPromotionVO;
+import vo.CustomerGiftPromotionVO;
+import vo.CustomerVoucherPromotionVO;
+import vo.GoodsDiscountPromotionVO;
+import vo.PromotionVO;
+
+public interface PromotionBLService {
+	public boolean addCustomerDiscount(CustomerDiscountPromotionVO vo);
+	public boolean addCustomerGift(CustomerGiftPromotionVO vo);
+	public boolean addGoodsDiscount(GoodsDiscountPromotionVO vo);
+	public boolean addAccountVoucher (AccountVoucherPromotionVO vo);
+	public boolean addAccountGift (AccountGiftPromotionVO vo) ;
+	public boolean addCustomerVoucher(CustomerVoucherPromotionVO vo);
+	public ArrayList<PromotionVO> getPromotionVOs();
+
+}

@@ -1,0 +1,24 @@
+package businesslogic.stockbl;
+
+import java.rmi.RemoteException;
+
+import utility.MyTreeNode;
+import data.databaseutility.SerializableDataFactory;
+import dataservice.utility.DataFactory;
+import businesslogicservice.stockblservice.GoodsManageBLService;
+
+public class GoodsManage implements GoodsManageBLService{
+
+	public MyTreeNode getRoot() throws RemoteException {
+		// TODO Auto-generated method stub
+		MyTreeNode po = new SerializableDataFactory().getGoodsManageDataService().getRoot();
+		return new SerializableDataFactory().getGoodsManageDataService().getRoot();
+	}
+
+	public void setRoot(MyTreeNode node) throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

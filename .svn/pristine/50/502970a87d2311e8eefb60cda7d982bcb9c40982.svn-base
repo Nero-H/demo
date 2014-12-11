@@ -1,0 +1,121 @@
+package presentaion.financialui;
+
+import java.awt.EventQueue;
+import java.awt.Font;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
+public class ViewCaseReportUI {
+
+	private JFrame frame;
+	private JTable table;
+	private JTextField textField;
+	private JTextField textField_3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ViewCaseReportUI window = new ViewCaseReportUI();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public ViewCaseReportUI() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 796, 473);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBounds(138, 57, 623, 332);
+		frame.getContentPane().add(panel);
+		
+		JLabel label = new JLabel("起始时间：");
+		label.setBounds(10, 52, 74, 15);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("查看经营情况表");
+		label_1.setFont(new Font("宋体", Font.PLAIN, 33));
+		label_1.setBounds(167, 0, 279, 38);
+		panel.add(label_1);
+		
+		table = new JTable();
+		table.setBounds(10, 77, 592, 257);
+		panel.add(table);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(84, 49, 126, 21);
+		panel.add(textField);
+		
+		JLabel label_5 = new JLabel("截止时间：");
+		label_5.setBounds(319, 48, 64, 15);
+		panel.add(label_5);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(400, 46, 155, 21);
+		panel.add(textField_3);
+		
+		JButton button = new JButton("退出系统");
+		button.setBounds(425, 24, 93, 23);
+		frame.getContentPane().add(button);
+		
+		JButton button_1 = new JButton("软件帮助");
+		button_1.setBounds(299, 24, 93, 23);
+		frame.getContentPane().add(button_1);
+		
+		JLabel label_6 = new JLabel("当前用户");
+		label_6.setBounds(625, 14, 54, 15);
+		frame.getContentPane().add(label_6);
+		
+		JButton button_2 = new JButton("注销");
+		button_2.setBounds(680, 10, 64, 19);
+		frame.getContentPane().add(button_2);
+		
+		JButton button_3 = new JButton("制定收付款单");
+		button_3.setBounds(10, 163, 118, 23);
+		frame.getContentPane().add(button_3);
+		
+		JButton button_4 = new JButton("查看经营历程表");
+		button_4.setBounds(10, 290, 118, 23);
+		frame.getContentPane().add(button_4);
+		
+		JButton button_5 = new JButton("查看销售明细表");
+		button_5.setBounds(10, 247, 118, 23);
+		frame.getContentPane().add(button_5);
+		
+		JButton button_6 = new JButton("账户管理");
+		button_6.setBounds(10, 120, 118, 23);
+		frame.getContentPane().add(button_6);
+		
+		JButton button_7 = new JButton("制定现金费用单");
+		button_7.setBounds(10, 206, 118, 23);
+		frame.getContentPane().add(button_7);
+	}
+
+}

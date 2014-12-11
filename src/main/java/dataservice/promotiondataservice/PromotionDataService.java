@@ -1,0 +1,23 @@
+package dataservice.promotiondataservice;
+
+import java.util.ArrayList;
+
+import po.PromotionPO;
+
+public interface PromotionDataService {
+	
+	public boolean insert(PromotionPO po)  ;
+	
+	public void delete(PromotionPO po)  ;
+	
+	public ArrayList<PromotionPO> getList();
+	
+	
+	
+	public  void  dailyUpdate();
+	
+	public boolean init()  ;
+	
+	public boolean finish() ;
+
+}

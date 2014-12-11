@@ -1,0 +1,194 @@
+package businesslogic.importbl;
+
+import java.util.ArrayList;
+
+import po.ClientPO;
+import po.ImportPO;
+import po.ImportReturnPO;
+import po.Import_Sales_FatherPO;
+import utility.SerialNumber;
+import utility.TimePeriod;
+import vo.ClientVO;
+import vo.GoodsInfoVO;
+import vo.ImportInfoVO;
+import vo.ImportVO;
+import businesslogic.utilitybl.Import_Sales_MultipleFind;
+import businesslogic.utilitybl.TransForm_GoodsInfo;
+import businesslogicservice.importblservice.ImportInterface;
+import data.databaseutility.SerializableDataFactory;
+import dataservice.clientdataservice.ClientDataService;
+import dataservice.importdataservice.ImportDataService;
+import dataservice.importdataservice.ImportReturnDataService;
+import dataservice.utility.DataFactory;
+
+public class Import implements ImportInterface{
+	private ImportList importList;
+	private ArrayList<ImportPO> importPOs;
+	private ImportPO importPO;
+	private int importReceiptNumber;
+	private int importReturnReceiptNumber;
+	private DataFactory factory;
+	
+	public Import() {
+		// TODO Auto-generated constructor stub
+		factory = new SerializableDataFactory();
+		importList = new ImportList();
+		ImportDataService importData = factory.getImportDataService();
+		importPOs = importData.getImportList();
+		importPO = new ImportPO();
+		importReceiptNumber = importData.getTodayNum();
+	}
+
+
+	public boolean addClient(ClientVO vo) {
+		// TODO Auto-generated method stub
+		ClientDataService clientData = factory.getClientDataService();
+		ClientPO po = clientData.findByNum(vo.getNum());
+		importPO.setClient(po);
+		return true;
+	}
+
+	public boolean addGoods(String goodsNumber, int number, double unitPrice, String notes) {
+		// TODO Auto-generated method stub
+		return importList.addOneGoods(goodsNumber, number, unitPrice, notes);
+	}
+
+	public boolean addOtherInfo(ImportInfoVO vo) {
+		// TODO Auto-generated method stub
+		importPO.setNotes(vo.getNotes());
+		importPO.setOperator(vo.getOperator());
+		importPO.setStorehouse(vo.getStorehouse());
+		importPO.setReceiptsID(SerialNumber.getSerialNumber("JHD", importReceiptNumber));
+		return true;
+	}
+
+	public ArrayList<ImportVO> showImport() {
+		// TODO Auto-generated method stub
+		ArrayList<ImportVO> vos = new ArrayList<ImportVO>();
+		ArrayList<ImportPO> pos = factory.getImportDataService().getImportList();
+		ArrayList<Import_Sales_FatherPO> temp = new ArrayList<Import_Sales_FatherPO>();
+		for (int i = 0; i < pos.size(); i++) {
+			temp.add((Import_Sales_FatherPO) pos.get(i));
+		}
+		transform_ImportPOs_to_ImportVOs(temp, vos);
+		return vos;
+	}
+
+	public ArrayList<ImportVO> showImportReturn() {
+		// TODO Auto-generated method stub
+		ArrayList<ImportVO> vos = new ArrayList<ImportVO>();
+		ArrayList<ImportReturnPO> pos = factory.getImportReturnDataService().getImportReturnList();
+		ArrayList<Import_Sales_FatherPO> temp = new ArrayList<Import_Sales_FatherPO>();
+		for (int i = 0; i < pos.size(); i++) {
+			temp.add((Import_Sales_FatherPO) pos.get(i));
+		}
+		transform_ImportPOs_to_ImportVOs(temp, vos);
+		return vos;
+	}
+	
+	public boolean importReturn(int loc) {
+		// TODO Auto-generated method stub
+		ImportReturnDataService importReturnData = factory.getImportReturnDataService();
+		ImportReturnPO po = new ImportReturnPO(importPOs.get(loc), SerialNumber.getSerialNumber("JHTHD", importReturnReceiptNumber));
+		return importReturnData.insert(po);
+	}
+
+	public double getTotal() {
+		// TODO Auto-generated method stub
+		return importList.getTotal();
+	}
+
+	public boolean creatImport() {
+		// TODO Auto-generated method stub
+		ImportDataService importData = factory.getImportDataService();
+		return importData.insert(importPO);
+	}
+	
+	public boolean removeClient(){
+		// TODO Auto-generated method stub
+		importPO.setClient(null);
+		return true;
+	}
+	
+	public boolean removeGoods(int loc) {
+		// TODO Auto-generated method stub
+		return importList.removeGoods(loc);
+	}
+	
+	public void endImport() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ArrayList<ImportPO> getImportList() {
+		// TODO Auto-generated method stub
+		ImportDataService importData = factory.getImportDataService();
+		return importData.getImportList();
+	}
+
+
+	public ArrayList<ImportReturnPO> getImportReturnList() {
+		// TODO Auto-generated method stub
+		ImportReturnDataService importReturnData = factory.getImportReturnDataService();
+		return importReturnData.getImportReturnList();
+	}
+	
+	//提供给财务人员接口
+	public ArrayList<ImportPO> multipleConditionFindImport(TimePeriod period,String goodsName,String clientId,String storehouse){
+		ArrayList<ImportPO> findsPOs = new ArrayList<ImportPO>();
+		for (int i = 0; i < importPOs.size(); i++) {
+			ImportPO temp = importPOs.get(i);
+			if (new Import_Sales_MultipleFind(temp, period, goodsName, clientId, "", storehouse).check()) {
+				findsPOs.add(temp);
+			}
+		}
+		return findsPOs;
+	}
+	
+	public ArrayList<ImportReturnPO> multipleConditionFindImportReturn(TimePeriod period,String goodsName,String clientId,String storehouse){
+		ArrayList<ImportReturnPO> findsPOs = new ArrayList<ImportReturnPO>();
+		ImportReturnDataService importReturnData = factory.getImportReturnDataService();
+		ArrayList<ImportReturnPO> importReturnPOs = importReturnData.getImportReturnList();
+		for (int i = 0; i < importReturnPOs.size(); i++) {
+			ImportReturnPO temp = importReturnPOs.get(i);
+			if (new Import_Sales_MultipleFind(temp, period, goodsName, clientId, "", storehouse).check()) {
+				findsPOs.add(temp);
+			}
+		}
+		return findsPOs;
+	}
+	
+	public double getAllPayout(TimePeriod period) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	//将po转换成vo
+	public void transform_ImportPOs_to_ImportVOs(ArrayList<Import_Sales_FatherPO> temp, ArrayList<ImportVO> vos){
+		if (vos.size() != 0) {
+			return;
+		}
+		for (int i = 0; i < temp.size(); i++) {
+			ImportVO vo = new ImportVO();
+			transform_ImportPO_to_ImportVO(temp.get(i), vo);
+			vos.add(vo);
+		}
+	}
+	
+	
+	public void transform_ImportPO_to_ImportVO(Import_Sales_FatherPO po, ImportVO vo){
+		vo.setClient(po.getClient().getName());
+		ArrayList<GoodsInfoVO> vos = new TransForm_GoodsInfo(po.getGoodsPOs()).transPOs_to_VOs();
+		vo.setGoodsVOs(vos);
+		vo.setNotes(po.getNotes());
+		vo.setOperator(po.getOperator());
+		vo.setReceiptsID(po.getReceiptsID());
+		vo.setStorehouse(po.getStorehouse());
+		vo.setTotal(po.getTotal());
+		vo.setDate(po.getDate());
+	}
+
+
+
+	
+}

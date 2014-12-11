@@ -1,0 +1,41 @@
+package data.stockdata;
+
+import java.rmi.RemoteException;
+
+import po.DailyStockPO;
+import po.GiftReceiptPO;
+import po.StatePO;
+import po.StockPO;
+import po.WarningPO;
+
+public class StockDataService_Stub {
+
+	public StockPO checkStock (String time1, String time2) {
+		// TODO Auto-generated method stub
+		return new StockPO();
+	}
+	public DailyStockPO checkDailyStock (String date) {
+		// TODO Auto-generated method stub
+		return new DailyStockPO();
+	}
+	public StatePO reportStock() {
+		// TODO Auto-generated method stub
+		return new StatePO();
+	}
+	public GiftReceiptPO giveGift(String ID ,int num) {
+		// TODO Auto-generated method stub
+		return new GiftReceiptPO();
+	}
+	public WarningPO warning () {
+		
+		return new WarningPO();
+	}
+	public void init() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+	public void finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		
+	}
+}

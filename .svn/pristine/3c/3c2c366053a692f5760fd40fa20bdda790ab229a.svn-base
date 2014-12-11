@@ -1,0 +1,37 @@
+package businesslogic.examingbl;
+
+import po.ReceiptPO;
+import vo.ReceiptType;
+import vo.ReceiptVO;
+import vo.SalesVO;
+
+public class ReceiptTransform {
+	
+	public ReceiptPO transform_vo_to_po(ReceiptVO vo){
+		switch (vo.getType()) {
+		case Sales:
+			SalesVO salesVO=(SalesVO)vo;
+			break;
+		case SalesReturn:
+			break;
+		case Imoprt:
+			break;
+		case ImportReturn:
+			break;
+		case Gift:
+			break;
+		case CashRecord:
+			break;
+		case Pay:
+			break;
+		case Receive:
+
+		default:
+			break;
+		}
+		
+		return null;
+		
+	}
+
+}

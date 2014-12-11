@@ -1,0 +1,17 @@
+package dataservice.examingdataservice;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import po.ReceiptPO;
+
+public interface ExamingDataService {
+
+	//将已审批的单据插入已审批的单据中
+	public boolean insert(ReceiptPO po);
+	//在未审批单据列表中删除已审批的单据
+	public boolean delete(String id) ;
+	public boolean init() ;
+	public ArrayList<ReceiptPO> getReceiptPOs();
+	public boolean finish();
+}

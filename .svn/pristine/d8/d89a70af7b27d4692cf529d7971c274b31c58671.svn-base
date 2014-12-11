@@ -1,0 +1,20 @@
+package businesslogic.stockbl;
+
+import java.util.ArrayList;
+
+import po.GoodsPO;
+
+public class GoodsManager {
+	static ArrayList<GoodsPO> goods=new ArrayList<GoodsPO>();
+	
+	static public GoodsPO findGoods(String ID){
+		for(GoodsPO po:goods){
+			if(po.getGoodsNumber().equals(ID))
+				return po;
+		}
+		return null;
+	}
+	
+	
+	
+}

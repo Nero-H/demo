@@ -1,0 +1,83 @@
+package po;
+
+import java.util.Date;
+
+public class CustomerVoucherPromotionPO extends PromotionPO{
+	
+	private static final long serialVersionUID = 1L;
+	Date startDate;
+	Date endDate;
+	ClientLevel customerLevel;
+	double voucher;
+	Promotiontype ptype=Promotiontype.CustomerVoucher;
+	
+
+	public Promotiontype getPtype() {
+		return ptype;
+	}
+
+	public void setPtype(Promotiontype ptype) {
+		this.ptype = ptype;
+	}
+
+	public CustomerVoucherPromotionPO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public ClientLevel getCustomerLevel() {
+		return customerLevel;
+	}
+
+	public void setCustomerLevel(ClientLevel clientLevel) {
+		this.customerLevel = clientLevel;
+	}
+
+	
+	
+	@Override
+	public boolean test(SalesPO po) {
+		if(po.getDate().compareTo(endDate)<=0)
+			if(po.getClient().getLevel().ordinal()>(customerLevel.ordinal()))
+					po.setVoucher(voucher);
+				
+		return true;
+	}
+
+	public double getVoucher() {
+		return voucher;
+	}
+
+	public void setVoucher(double voucher) {
+		this.voucher = voucher;
+	}
+
+	public int compare(CustomerVoucherPromotionPO po){
+		if(customerLevel==po.getCustomerLevel())
+			if(startDate.compareTo(po.getStartDate())<=0)
+				if (endDate.compareTo(po.getEndDate())>=0) {
+						return -1;
+				}
+		return 0;
+		
+	}
+
+
+}

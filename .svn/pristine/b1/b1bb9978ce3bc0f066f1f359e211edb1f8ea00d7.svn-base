@@ -1,0 +1,88 @@
+package dataservice.financialdataservice.driver;
+
+import java.util.ArrayList;
+
+import po.AccountPO;
+import po.ClientPO;
+import po.MoneyLineItemPO;
+import po.PayReceiptPO;
+import po.ReceiveReceiptPO;
+import po.UserPO;
+import utility.TimePeriod;
+import vo.ReceiptType;
+import businesslogic.financialbl.MoneyList;
+import data.financialdata.stub.MoneyDataServiceSerializableImplStub;
+import dataservice.financialdataservice.MoneyDataService;
+
+public class MoneyDataService_Driver {
+	
+	public void drive(MoneyDataService moneyDataService){
+		ClientPO client = new ClientPO();
+		ArrayList<MoneyLineItemPO> lineItemList = new ArrayList<MoneyLineItemPO>();
+		AccountPO account = new AccountPO("Nero",2133);
+		lineItemList.add(new MoneyLineItemPO("accountId",21312,"comment"));
+		UserPO user = new UserPO("User1","x007","325400");
+		PayReceiptPO paypo = new PayReceiptPO("clientName", new MoneyList(), 123, "serialNumber", "userName");
+		boolean result = moneyDataService.addPay(paypo);
+		if(result){
+			System.out.println("add Pay pass");
+		}else{
+			System.out.println("add Pay failed");
+		}
+		
+		ArrayList<MoneyLineItemPO> receiveLineItemList = new ArrayList<MoneyLineItemPO>();
+		receiveLineItemList.add(new MoneyLineItemPO("accountId",21312,"comment"));
+		ReceiveReceiptPO receivepo = new ReceiveReceiptPO("clientName", new MoneyList(), 123, "serialNumber", "userName");
+		result = moneyDataService.addReceive(receivepo);
+		
+		if(result){
+			System.out.println("add Receive pass");
+		}else{
+			System.out.println("add Receive failed");
+		}
+		
+		PayReceiptPO pay = moneyDataService.findPay("FKD-yyyyMMdd-12321");
+		if(pay != null){
+			System.out.println("find pay pass");
+		}else{
+			System.out.println("find pay failed");
+		}
+		
+		ReceiveReceiptPO receive = moneyDataService.findReceive("SKD-yyyyMMdd-12345");
+		if(receive != null){
+			System.out.println("find receive pass");
+		}else{
+			System.out.println("find receive failed");
+		}
+		
+		TimePeriod period = null;
+		try {
+			period = new TimePeriod("2014-2-3","2014-6-3");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ArrayList<PayReceiptPO> payList = moneyDataService.mutipleConditionFindPay(period, "clientName", "userName", "accountNam");
+		if(!payList.isEmpty()){
+			System.out.println("mutiple condition find pay pass");
+		}else{
+			System.out.println("mutiple condition find pay failed");
+		}
+		
+		ArrayList<ReceiveReceiptPO> receiveList = moneyDataService.mutipleConditionFindReceive(period, "clientName", "userName", "accountNam");
+		if(!receiveList.isEmpty()){
+			System.out.println("mutiple condition find receive pass");
+		}else{
+			System.out.println("mutiple condition find receive failed");
+		}
+		
+		moneyDataService.init();
+		moneyDataService.finish(ReceiptType.Receive);
+	}
+	
+	public static void main(String[] args) {
+		MoneyDataService_Driver driver = new MoneyDataService_Driver();
+		MoneyDataService moneyDataService = new MoneyDataServiceSerializableImplStub();
+		driver.drive(moneyDataService);
+	}
+}

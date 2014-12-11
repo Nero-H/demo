@@ -1,0 +1,125 @@
+package businesslogic.financialbl;
+
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.Date;
+
+import po.CashRecordLineItemPO;
+import po.CashRecordReceiptPO;
+import utility.SerialNumber;
+import utility.TimePeriod;
+import vo.CashRecordLineItemVO;
+import vo.CashRecordVO;
+import businesslogic.userbl.UserController;
+import businesslogic.userbl.UserManager;
+import businesslogicservice.financialblservice.CashRecordBLService;
+import data.databaseutility.SerializableDataFactory;
+import dataservice.financialdataservice.CashRecordDataService;
+import dataservice.utility.DataFactory;
+
+public class CashRecord implements CashRecordBLService {
+	String accountId;
+	CashRecordList itemList;
+	String serialNumber;
+	String userName;
+
+	public CashRecord() throws RemoteException {
+		itemList = new CashRecordList();
+		serialNumber = SerialNumber.getSerialNumber("XJFYD",1);
+		userName = new UserManager().getUserName();
+	}
+
+	public double addItem(CashRecordLineItemVO vo) {
+		itemList.add(new CashRecordLineItemPO(vo.getName(), vo.getSum(), vo
+				.getComment()));
+		return getSum();
+	}
+
+	public double delItem(int row) throws RemoteException {
+		itemList.delete(row);
+		return 0;
+	}
+
+	public double updateItem(Object value, int row, int col)
+			throws RemoteException {
+		itemList.update(value, row, col);
+		return getSum();
+	}
+
+	public boolean finish() throws RemoteException {
+		// TODO Auto-generated method stub
+		DataFactory factory = new SerializableDataFactory();
+		CashRecordDataService cashRecordDataService = factory
+				.getCashRecordDataService();
+		cashRecordDataService.addCashRecord(new CashRecordReceiptPO(accountId,
+				itemList, getSum(), serialNumber, userName));
+		writeLog(cashRecordDataService, "制定现金费用单 " + serialNumber);
+		return true;
+	}
+
+	public boolean setAccount(String accountId) {
+		if (new Account().findAccount(accountId) != null) {
+			this.accountId = accountId;
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public double getSum() {
+		return itemList.getTotal();
+	}
+
+	public String getSerialNumber() {
+		return serialNumber;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public boolean contains(String key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	void writeLog(CashRecordDataService cashRecordDataService, String log) {
+		try {
+			cashRecordDataService.writeLog(new Date() + "\t"
+					+ new UserController().getUserIdentity() + " "
+					+ new UserController().getUserName() + " " + log);
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<CashRecordVO> mutipleConditionFind(TimePeriod period,
+			String userName, String accountName) {
+		DataFactory factory = new SerializableDataFactory();
+		CashRecordDataService cashRecordDataService = factory
+				.getCashRecordDataService();
+		return convertListToVO(cashRecordDataService.mutipleConditionSearch(period, userName, accountName));
+	}
+
+	private ArrayList<CashRecordVO> convertListToVO(
+			ArrayList<CashRecordReceiptPO> poList) {
+		ArrayList<CashRecordVO> voList = new ArrayList<CashRecordVO>();
+		for (CashRecordReceiptPO po : poList) {
+			voList.add(new CashRecordVO(po.getAccountName(),
+					converLineItemListToVO(po.getItemList().getList()), po
+							.getSum(), po.getSerialNumber(), po.getUserName()));
+		}
+		return voList;
+	}
+
+	private ArrayList<CashRecordLineItemVO> converLineItemListToVO(
+			ArrayList<CashRecordLineItemPO> poList) {
+		ArrayList<CashRecordLineItemVO> voList = new ArrayList<CashRecordLineItemVO>();
+		for (CashRecordLineItemPO po : poList) {
+			voList.add(new CashRecordLineItemVO(po.getName(), po.getSum(), po
+					.getComment()));
+		}
+		return voList;
+	}
+}

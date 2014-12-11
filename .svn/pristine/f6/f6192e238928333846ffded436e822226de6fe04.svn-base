@@ -1,0 +1,20 @@
+package dataservice.stockdataservice;
+
+import java.rmi.RemoteException;
+
+import po.DailyStockPO;
+import po.GiftReceiptPO;
+import po.StatePO;
+import po.StockCheckListPO;
+import po.WarningPO;
+
+public interface StockDataService {
+
+	public StockCheckListPO checkStock (String time1, String time2) throws RemoteException;
+	public DailyStockPO checkDailyStock (String date) throws RemoteException;
+	public StatePO reportStock() throws RemoteException;
+	public GiftReceiptPO giveGift(String ID ,int num) throws RemoteException;
+	public WarningPO warning () throws RemoteException;
+	public void init() throws RemoteException;
+	public void finish()  throws RemoteException;
+}

@@ -1,0 +1,46 @@
+package businesslogic.examingbl;
+
+import java.nio.file.attribute.PosixFilePermission;
+
+import po.ReceiptPO;
+import vo.ReceiptType;
+import vo.ReceiptVO;
+import businesslogicservice.examingblservice.Examingblservice;
+
+public class ExamingController implements Examingblservice{
+
+	Examing examing;
+	ReceiptType type;
+	
+	ExamingController(ReceiptPO po){
+		examing=new Examing(po);
+		type=po.getType();
+	}
+	
+	public ReceiptType getType() {
+		return type;
+	}
+
+	public void setType(ReceiptType type) {
+		this.type = type;
+	}
+
+	public boolean pass() {
+		// TODO Auto-generated method stub
+		examing.pass();
+		return true;
+	}
+
+	public boolean notPass() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public boolean modify(ReceiptVO vo) {
+		// TODO Auto-generated method stub
+		examing.modify();
+		examing.pass();
+		return true;
+	}
+
+}

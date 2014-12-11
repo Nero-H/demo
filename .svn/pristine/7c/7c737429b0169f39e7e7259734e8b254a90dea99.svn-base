@@ -1,0 +1,62 @@
+package po;
+
+import java.io.Serializable;
+
+import utility.Containsable;
+import vo.ReceiptType;
+import businesslogic.financialbl.MoneyList;
+
+
+public class ReceiveReceiptPO extends ReceiptPO implements Containsable,MoneyPO {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String clientName;
+	MoneyList list;
+	double sum;
+	String serialNumber;
+	String userName;
+	ReceiptType type=ReceiptType.Receive;
+	
+
+	public ReceiveReceiptPO(String clientName, MoneyList list, double sum,
+			String serialNumber, String userName) {
+		super();
+		this.clientName = clientName;
+		this.list = list;
+		this.sum = sum;
+		this.serialNumber = serialNumber;
+		this.userName = userName;
+	}
+
+
+	public String getClientName() {
+		return clientName;
+	}
+
+
+	public MoneyList getList() {
+		return list;
+	}
+
+
+
+	public double getSum() {
+		return sum;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public String getSerialNumber(){
+		return serialNumber;
+	}
+
+
+	public boolean contains(String key) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

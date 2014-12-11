@@ -1,0 +1,10 @@
+package po;
+
+public enum UserIdentity {
+
+	Administrator,
+	Manager,
+	FinancialManager,
+	SalesManager,
+	StockManager;
+}
